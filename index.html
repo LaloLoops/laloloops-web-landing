@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lalo Loops — One Human, Many Agents, Lots of Loops</title>
+    <meta name="description" content="Building tools for the weird AI future. One human, many agents, lots of loops.">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #E8872B;
+            --orange-light: #F5A623;
+            --cream: #FDF0DC;
+            --cream-dark: #F0D9B5;
+            --black: #1A1A1A;
+            --dark: #2C2C2C;
+            --gray: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating infinity symbols */
+        .floater {
+            position: fixed;
+            opacity: 0.06;
+            font-size: 4rem;
+            color: var(--orange);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floater:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .floater:nth-child(2) { top: 30%; right: 8%; animation-delay: -5s; font-size: 3rem; }
+        .floater:nth-child(3) { top: 60%; left: 12%; animation-delay: -10s; font-size: 5rem; }
+        .floater:nth-child(4) { top: 80%; right: 15%; animation-delay: -15s; font-size: 2.5rem; }
+        .floater:nth-child(5) { top: 45%; left: 80%; animation-delay: -8s; font-size: 3.5rem; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(10px) rotate(-3deg); }
+            75% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding-top: 3rem;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid var(--orange);
+            box-shadow: 0 8px 32px rgba(232, 135, 43, 0.25);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: rotate(360deg) scale(1.05);
+        }
+
+        .brand-name {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.5px;
+        }
+
+        .brand-name span {
+            color: var(--orange);
+        }
+
+        .tagline {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero CTAs */
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.75rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-ctas a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.25s ease;
+        }
+
+        .hero-ctas a svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .cta-x {
+            background: var(--black);
+            color: var(--cream);
+            border: 2px solid var(--black);
+        }
+
+        .cta-x:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 26, 26, 0.3);
+        }
+
+        .cta-github {
+            background: var(--orange);
+            color: white;
+            border: 2px solid var(--orange);
+        }
+
+        .cta-github:hover {
+            background: #d47a24;
+            border-color: #d47a24;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 135, 43, 0.35);
+        }
+
+        /* Status bar */
+        .status-bar {
+            background: var(--black);
+            color: var(--cream);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            margin: 2.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ADE80;
+            margin-right: 6px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .status-bar .right {
+            color: var(--orange-light);
+        }
+
+        /* Main content */
+        .hero {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--dark);
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Agent standup card */
+        .standup {
+            background: white;
+            border: 2px solid var(--cream-dark);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .standup-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .standup .agent {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--cream-dark);
+        }
+
+        .standup .agent:last-child {
+            border-bottom: none;
+        }
+
+        .agent-name {
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .agent-status {
+            color: var(--gray);
+        }
+
+        /* Banner image */
+        .banner-wrapper {
+            margin: 2.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--cream-dark);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .banner-wrapper img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Quote */
+        .quote {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin: 1rem 0;
+        }
+
+        .quote p {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .quote .attr {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.75rem;
+            font-style: normal;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Footer links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--orange);
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .footer .infinity {
+            font-size: 2rem;
+            color: var(--orange);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .brand-name { font-size: 1.8rem; }
+            .hero h2 { font-size: 1.25rem; }
+            .status-bar { font-size: 0.65rem; flex-direction: column; text-align: center; }
+            .container { padding: 1.5rem 1rem; }
+            .avatar { width: 110px; height: 110px; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .hero-ctas a { width: 100%; max-width: 220px; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating infinity symbols -->
+    <div class="floater">&infin;</div>
+    <div class="floater">&infin;</div>
+    <div class="floater">&infin;</div>
+    <div class="floater">&infin;</div>
+    <div class="floater">&infin;</div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="avatar.png" alt="Lalo Loops" class="avatar">
+            <div class="brand-name">Lalo <span>Loops</span></div>
+            <div class="tagline">one human &middot; many agents &middot; lots of loops</div>
+
+            <!-- Hero CTAs -->
+            <div class="hero-ctas">
+                <a href="https://x.com/LaloLoops" target="_blank" rel="noopener" class="cta-x">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Follow on X
+                </a>
+                <a href="https://github.com/LaloLoops" target="_blank" rel="noopener" class="cta-github">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    See the builds
+                </a>
+            </div>
+        </div>
+
+        <!-- System status bar -->
+        <div class="status-bar">
+            <div>
+                <span class="status-dot"></span>
+                systems: online-ish
+            </div>
+            <div class="right">agents deployed: too many</div>
+        </div>
+
+        <!-- Hero -->
+        <div class="hero">
+            <h2>Building tools for the weird AI future.</h2>
+            <p>
+                I can build the thing. Now I'm learning how to make people care.
+                One human managing a tiny AI-agent team to build apps, services,
+                and systems &mdash; while figuring out distribution from absolute zero.
+            </p>
+        </div>
+
+        <!-- Agent standup -->
+        <div class="standup">
+            <div class="standup-title">Agent Standup #001</div>
+
+            <div class="agent">
+                <span class="agent-name">Scout</span>
+                <span class="agent-status"> &mdash; researched 47 competitors. found 46 reasons to panic.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Builder</span>
+                <span class="agent-status"> &mdash; shipped the landing page. it's this one. you're looking at it.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Marketing</span>
+                <span class="agent-status"> &mdash; wrote 12 taglines. all sound like fortune cookies. under review.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">QA</span>
+                <span class="agent-status"> &mdash; found 3 bugs. 2 were features. 1 was a philosophical question.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Scribe</span>
+                <span class="agent-status"> &mdash; documented everything. nobody has read it. as is tradition.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Human (Lalo)</span>
+                <span class="agent-status"> &mdash; approved one PR. questioned three life choices. drank coffee.</span>
+            </div>
+        </div>
+
+        <!-- Banner -->
+        <div class="banner-wrapper">
+            <img src="header.png" alt="The Loop Room - one human, many agents">
+        </div>
+
+        <!-- Quote -->
+        <div class="quote">
+            <p>"I used AI to save time. Then used the saved time to manage the AI. The loop is complete."</p>
+            <div class="attr">&mdash; Lalo, Loop #001</div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <span class="infinity">&infin;</span>
+            0 users &middot; 0 revenue &middot; 5 agents &middot; 1 human pretending this is a system
+            <br>
+            vamos.
+            <br><br>
+            <div class="footer-links">
+                <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X / Twitter</a>
+                <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
+            </div>
+            &copy; 2025 Lalo Loops &middot; built by agents, approved by a human (probably)
+        </div>
+    </div>
+</body>
+</html>
