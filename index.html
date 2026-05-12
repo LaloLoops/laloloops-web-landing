@@ -59,7 +59,7 @@
 
         /* Flying bots */
         .flying-bot {
-            position: fixed;
+            position: absolute;
             z-index: 2;
             opacity: 0.5;
             pointer-events: auto;
@@ -85,32 +85,32 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* Position bots clustered tight around the header/avatar */
+        /* Position bots relative to header */
         .flying-bot-1 {
             width: 52px;
-            top: 4%;
-            left: calc(50% - 260px);
+            top: 20px;
+            left: calc(50% - 130px);
             animation: botDrift1 22s ease-in-out infinite;
         }
 
         .flying-bot-2 {
             width: 44px;
-            top: 6%;
-            right: calc(50% - 240px);
+            top: 30px;
+            right: calc(50% - 120px);
             animation: botDrift2 26s ease-in-out infinite;
         }
 
         .flying-bot-3 {
             width: 48px;
-            top: 20%;
-            left: calc(50% - 280px);
+            top: 110px;
+            left: calc(50% - 150px);
             animation: botDrift3 24s ease-in-out infinite;
         }
 
         .flying-bot-4 {
             width: 42px;
-            top: 22%;
-            right: calc(50% - 260px);
+            top: 120px;
+            right: calc(50% - 140px);
             animation: botDrift4 20s ease-in-out infinite;
         }
 
@@ -140,24 +140,16 @@
             60% { transform: translate(12px, 6px) rotate(2deg); }
         }
 
-        /* Tablets / narrow screens — fall back to viewport edges */
-        @media (max-width: 960px) {
-            .flying-bot-1 { left: 2%; }
-            .flying-bot-2 { right: 2%; }
-            .flying-bot-3 { left: 3%; }
-            .flying-bot-4 { right: 3%; }
-        }
-
         @media (max-width: 768px) {
-            .flying-bot { opacity: 0.35; }
-            .flying-bot-1 { width: 38px; }
-            .flying-bot-2 { width: 34px; }
-            .flying-bot-3 { width: 36px; }
-            .flying-bot-4 { width: 32px; }
+            .flying-bot { opacity: 0.45; }
+            .flying-bot-1 { width: 36px; }
+            .flying-bot-2 { width: 32px; }
+            .flying-bot-3 { width: 34px; }
+            .flying-bot-4 { width: 30px; }
         }
 
         @media (max-width: 480px) {
-            .flying-bot { opacity: 0.25; }
+            .flying-bot { opacity: 0.4; }
             .flying-bot-1 { width: 28px; }
             .flying-bot-2 { width: 24px; }
             .flying-bot-3 { width: 26px; }
@@ -176,6 +168,7 @@
         .header {
             text-align: center;
             padding-top: 3rem;
+            position: relative;
         }
 
         .avatar {
@@ -447,12 +440,6 @@
     </style>
 </head>
 <body>
-    <!-- Flying bots -->
-    <div class="flying-bot flying-bot-1"><img src="bot_wave.png" alt="" aria-hidden="true"></div>
-    <div class="flying-bot flying-bot-2"><img src="bot_note.png" alt="" aria-hidden="true"></div>
-    <div class="flying-bot flying-bot-3"><img src="bot_surprised.png" alt="" aria-hidden="true"></div>
-    <div class="flying-bot flying-bot-4"><img src="bot_write.png" alt="" aria-hidden="true"></div>
-
     <!-- Floating infinity symbols -->
     <div class="floater">&infin;</div>
     <div class="floater">&infin;</div>
@@ -463,6 +450,12 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
+            <!-- Flying bots -->
+            <div class="flying-bot flying-bot-1"><img src="bot_wave.png" alt="" aria-hidden="true"></div>
+            <div class="flying-bot flying-bot-2"><img src="bot_note.png" alt="" aria-hidden="true"></div>
+            <div class="flying-bot flying-bot-3"><img src="bot_surprised.png" alt="" aria-hidden="true"></div>
+            <div class="flying-bot flying-bot-4"><img src="bot_write.png" alt="" aria-hidden="true"></div>
+
             <img src="avatar.png" alt="Lalo Loops — sitting cross-legged with laptop and coffee" class="avatar">
             <div class="brand-name">Lalo <span>Loops</span></div>
             <div class="tagline">dad &middot; engineer &middot; agents &middot; coffee</div>
