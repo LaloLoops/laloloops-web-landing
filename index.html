@@ -388,6 +388,67 @@
             font-family: 'Space Mono', monospace;
         }
 
+        /* Latest loop teaser */
+        .latest-loop {
+            background: white;
+            border: 2px solid var(--cream-dark);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+        }
+
+        .loop-teaser {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            padding: 0.5rem 0;
+        }
+
+        .loop-teaser-title {
+            display: block;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--black);
+            margin-bottom: 0.4rem;
+        }
+
+        .loop-teaser-summary {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .loop-teaser-cta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        .loop-teaser:hover .loop-teaser-cta {
+            text-decoration: underline;
+        }
+
+        .loop-see-all {
+            display: block;
+            text-align: right;
+            margin-top: 0.75rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+        }
+
+        .loop-see-all a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .loop-see-all a:hover {
+            color: var(--black);
+        }
+
         /* Footer links */
         .footer-links {
             display: flex;
@@ -527,6 +588,17 @@
             </div>
         </div>
 
+        <!-- Latest Loop -->
+        <div id="latest-loop" class="latest-loop" style="display: none;">
+            <div class="standup-title">Latest from the Loop</div>
+            <a id="latest-loop-link" href="#" class="loop-teaser">
+                <span id="latest-loop-title" class="loop-teaser-title"></span>
+                <span id="latest-loop-summary" class="loop-teaser-summary"></span>
+                <span class="loop-teaser-cta">Read this loop &rarr;</span>
+            </a>
+            <div class="loop-see-all"><a href="/loops/">See all loops &rarr;</a></div>
+        </div>
+
         <!-- Banner -->
         <div class="banner-wrapper">
             <img src="header.png" alt="The Loop Room — Lalo at the desk surrounded by agent bots">
@@ -546,11 +618,31 @@
             vamos.
             <br><br>
             <div class="footer-links">
+                <a href="/loops/">Loops</a>
                 <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X / Twitter</a>
                 <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
             </div>
             &copy; 2026 Lalo Loops &middot; built by agents, approved by a human (probably)
         </div>
     </div>
+
+    <script>
+        (function() {
+            var RAW = 'https://raw.githubusercontent.com/LaloLoops/laloloops-web-landing/content';
+
+            fetch(RAW + '/loops/manifest.json')
+                .then(function(r) { return r.json(); })
+                .then(function(manifest) {
+                    var loop = manifest.loops.find(function(l) { return l.id === manifest.latest; });
+                    if (!loop) return;
+
+                    document.getElementById('latest-loop-title').textContent = loop.title;
+                    document.getElementById('latest-loop-summary').textContent = loop.summary;
+                    document.getElementById('latest-loop-link').href = '/loops/' + loop.id;
+                    document.getElementById('latest-loop').style.display = 'block';
+                })
+                .catch(function() {});
+        })();
+    </script>
 </body>
 </html>

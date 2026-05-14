@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lalo Loops</title>
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --orange: #E8872B;
+            --orange-light: #F5A623;
+            --cream: #FDF0DC;
+            --cream-dark: #F0D9B5;
+            --black: #1A1A1A;
+            --dark: #2C2C2C;
+            --gray: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Nav */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-brand span { color: var(--orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover { color: var(--black); }
+
+        /* Loop content */
+        .loop-header {
+            margin-bottom: 2rem;
+        }
+
+        .loop-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .loop-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Markdown content styling */
+        .loop-body {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .loop-body h1, .loop-body h2, .loop-body h3 {
+            margin: 2rem 0 1rem;
+            line-height: 1.3;
+        }
+
+        .loop-body h1 { font-size: 1.5rem; }
+        .loop-body h2 { font-size: 1.3rem; }
+        .loop-body h3 { font-size: 1.1rem; }
+
+        .loop-body p { margin-bottom: 1rem; }
+
+        .loop-body ul, .loop-body ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .loop-body li { margin-bottom: 0.5rem; }
+
+        .loop-body code {
+            font-family: 'Space Mono', monospace;
+            background: var(--cream-dark);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .loop-body pre {
+            background: var(--black);
+            color: var(--cream);
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .loop-body pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .loop-body blockquote {
+            border-left: 3px solid var(--orange);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--gray);
+            font-style: italic;
+        }
+
+        .loop-body a {
+            color: var(--orange);
+            text-decoration: underline;
+        }
+
+        .loop-body img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .loop-body hr {
+            border: none;
+            border-top: 2px solid var(--cream-dark);
+            margin: 2rem 0;
+        }
+
+        .loop-body em { color: var(--gray); }
+
+        /* Loading / error states */
+        .loading {
+            text-align: center;
+            padding: 4rem 0;
+            font-family: 'Space Mono', monospace;
+            color: var(--gray);
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .not-found h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .not-found p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .not-found a {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 3rem;
+            border-top: 2px solid var(--cream-dark);
+        }
+
+        .footer .infinity {
+            font-size: 1.5rem;
+            color: var(--orange);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer a:hover { color: var(--black); }
+
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 1rem; }
+            .loop-title { font-size: 1.4rem; }
+            .loop-meta { flex-direction: column; gap: 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="/" class="nav-brand">Lalo <span>Loops</span></a>
+            <div class="nav-links">
+                <a href="/loops/">Loops</a>
+                <a href="/">Home</a>
+            </div>
+        </nav>
+
+        <div id="loading" class="loading">Loading loop...</div>
+
+        <div id="loop-content" style="display: none;">
+            <div class="loop-header">
+                <h1 id="loop-title" class="loop-title"></h1>
+                <div class="loop-meta">
+                    <span id="loop-id"></span>
+                    <span id="loop-date"></span>
+                </div>
+            </div>
+            <div id="loop-body" class="loop-body"></div>
+        </div>
+
+        <div id="not-found" class="not-found" style="display: none;">
+            <h2>404 &mdash; Loop Not Found</h2>
+            <p>This loop doesn't exist. Maybe it was a dream.<br>Maybe the agents ate it.</p>
+            <a href="/">&#8592; Back to base</a>
+            &nbsp;&middot;&nbsp;
+            <a href="/loops/">All loops</a>
+        </div>
+
+        <div class="footer">
+            <span class="infinity">&infin;</span>
+            <a href="/">laloloops.com</a> &middot;
+            <a href="/loops/">Loops</a> &middot;
+            <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X</a> &middot;
+            <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        var RAW = 'https://raw.githubusercontent.com/LaloLoops/laloloops-web-landing/content';
+
+        function showNotFound() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('loop-content').style.display = 'none';
+            document.getElementById('not-found').style.display = 'block';
+            document.title = '404 \u2014 Lalo Loops';
+        }
+
+        function showLoop(loop, html) {
+            document.getElementById('loop-title').textContent = loop.title;
+            document.getElementById('loop-id').textContent = '#' + loop.id.split('_')[0];
+            document.getElementById('loop-date').textContent = loop.date;
+            document.getElementById('loop-body').innerHTML = html;
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('loop-content').style.display = 'block';
+            document.title = loop.title + ' \u2014 Lalo Loops';
+        }
+
+        (async function() {
+            var path = window.location.pathname;
+            var match = path.match(/^\/loops\/(.+?)\/?$/);
+
+            if (!match) {
+                showNotFound();
+                return;
+            }
+
+            var slug = match[1];
+
+            try {
+                var res = await fetch(RAW + '/loops/manifest.json');
+                if (!res.ok) throw new Error();
+                var manifest = await res.json();
+                var loop = manifest.loops.find(function(l) { return l.id === slug; });
+
+                if (!loop) {
+                    showNotFound();
+                    return;
+                }
+
+                var mdRes = await fetch(RAW + '/loops/' + loop.file);
+                if (!mdRes.ok) throw new Error();
+                var md = await mdRes.text();
+
+                showLoop(loop, marked.parse(md));
+            } catch (e) {
+                showNotFound();
+            }
+        })();
+    </script>
+</body>
+</html>
