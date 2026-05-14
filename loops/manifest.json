@@ -13,7 +13,14 @@
       "summary": "The landing page is live, but the harder part has started: getting any actual human to notice.",
       "date": "2026-05-14",
       "file": "0002_launch_meet_silence.md"
+    },
+    {
+      "id": "0003_posting_through_the_cringe",
+      "title": "Posting Through the Cringe",
+      "summary": "The first real attempt at distribution turned out to be less about posting and more about removing jargon, fake confidence, and panic.",
+      "date": "2026-05-14",
+      "file": "0003_posting_through_the_cringe.md"
     }
   ],
-  "latest": "0002_launch_meet_silence"
+  "latest": "0003_posting_through_the_cringe"
 }
