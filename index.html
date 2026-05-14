@@ -431,12 +431,25 @@
             padding: 0.5rem 0;
         }
 
+        .loop-teaser-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .loop-teaser-id {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--orange);
+            flex-shrink: 0;
+        }
+
         .loop-teaser-title {
-            display: block;
             font-weight: 600;
             font-size: 1.1rem;
             color: var(--black);
-            margin-bottom: 0.4rem;
         }
 
         .loop-teaser-summary {
@@ -623,7 +636,10 @@
         <div id="latest-loop" class="latest-loop" style="display: none;">
             <div class="standup-title">Latest from the Loop</div>
             <a id="latest-loop-link" href="#" class="loop-teaser">
-                <span id="latest-loop-title" class="loop-teaser-title"></span>
+                <div class="loop-teaser-header">
+                    <span id="latest-loop-id" class="loop-teaser-id"></span>
+                    <span id="latest-loop-title" class="loop-teaser-title"></span>
+                </div>
                 <span id="latest-loop-summary" class="loop-teaser-summary"></span>
                 <span class="loop-teaser-cta">Read this loop &rarr;</span>
             </a>
@@ -668,8 +684,8 @@
                     if (!loop) return;
 
                     var num = parseInt(loop.id.split('_')[0], 10);
-                    var prefix = num ? 'Loop #' + String(num).padStart(3, '0') + ' — ' : '';
-                    document.getElementById('latest-loop-title').textContent = prefix + loop.title;
+                    if (num) document.getElementById('latest-loop-id').textContent = '#' + loop.id.split('_')[0];
+                    document.getElementById('latest-loop-title').textContent = loop.title;
                     document.getElementById('latest-loop-summary').textContent = loop.summary;
                     document.getElementById('latest-loop-link').href = '/loops/' + loop.id;
                     document.getElementById('latest-loop').style.display = 'block';
