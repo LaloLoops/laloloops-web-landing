@@ -667,7 +667,9 @@
                     var loop = manifest.loops.find(function(l) { return l.id === manifest.latest; });
                     if (!loop) return;
 
-                    document.getElementById('latest-loop-title').textContent = loop.title;
+                    var num = parseInt(loop.id.split('_')[0], 10);
+                    var prefix = num ? 'Loop #' + String(num).padStart(3, '0') + ' — ' : '';
+                    document.getElementById('latest-loop-title').textContent = prefix + loop.title;
                     document.getElementById('latest-loop-summary').textContent = loop.summary;
                     document.getElementById('latest-loop-link').href = '/loops/' + loop.id;
                     document.getElementById('latest-loop').style.display = 'block';
