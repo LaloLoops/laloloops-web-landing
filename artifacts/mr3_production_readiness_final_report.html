@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR Ventures Production Readiness &mdash; Final Consolidated Report</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface-raised: #1c2128;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-dim: #1f6feb33;
+    --green: #3fb950;
+    --green-dim: #23863615;
+    --yellow: #d29922;
+    --yellow-dim: #d2992215;
+    --orange: #db6d28;
+    --orange-dim: #db6d2815;
+    --red: #f85149;
+    --red-dim: #f8514915;
+    --purple: #bc8cff;
+    --purple-dim: #bc8cff15;
+    --radius: 8px;
+    --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-sans); font-size: 14px; line-height: 1.65; }
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  /* Header */
+  .report-header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .report-header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; color: var(--accent); }
+  .report-header .subtitle { font-size: 16px; color: var(--text-muted); margin-bottom: 12px; }
+  .report-header .meta { font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); }
+
+  /* TOC */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .toc h2 { font-size: 16px; margin-bottom: 12px; color: var(--accent); }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 4px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .toc-sub { padding-left: 20px; list-style-type: lower-alpha; }
+
+  /* Sections */
+  section { margin-bottom: 48px; }
+  section h2 {
+    font-size: 22px;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  section h3 { font-size: 17px; font-weight: 600; margin: 20px 0 10px; color: var(--purple); }
+  section h4 { font-size: 15px; font-weight: 600; margin: 16px 0 8px; }
+
+  p { margin-bottom: 12px; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: var(--surface); font-weight: 600; white-space: nowrap; }
+  td { background: var(--surface-raised); }
+  tr:hover td { background: var(--surface); }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .badge-done { background: var(--green-dim); color: var(--green); border: 1px solid var(--green); }
+  .badge-partial { background: var(--yellow-dim); color: var(--yellow); border: 1px solid var(--yellow); }
+  .badge-missing { background: var(--red-dim); color: var(--red); border: 1px solid var(--red); }
+  .badge-info { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+  .badge-a1 { background: var(--purple-dim); color: var(--purple); border: 1px solid var(--purple); }
+  .badge-a2 { background: var(--orange-dim); color: var(--orange); border: 1px solid var(--orange); }
+  .badge-both { background: var(--accent-dim); color: var(--accent); border: 1px solid var(--accent); }
+
+  /* Priority Severity */
+  .sev { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; }
+  .sev-p0 { background: var(--red); color: #fff; }
+  .sev-p1 { background: var(--orange); color: #fff; }
+  .sev-p2 { background: var(--yellow); color: #000; }
+  .sev-p3 { background: var(--text-muted); color: var(--bg); }
+
+  /* Effort */
+  .effort {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  /* Summary cards */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .summary-card .sc-value { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .summary-card .sc-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .sc-red .sc-value { color: var(--red); }
+  .sc-yellow .sc-value { color: var(--yellow); }
+  .sc-green .sc-value { color: var(--green); }
+  .sc-blue .sc-value { color: var(--accent); }
+
+  /* Gap card */
+  .gap-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .gap-card .gc-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .gap-card .gc-source { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; font-family: var(--font-mono); }
+  .gap-card .gc-body { font-size: 13px; }
+  .gap-card .gc-body p { margin-bottom: 6px; }
+
+  /* Work item */
+  .work-item {
+    background: var(--surface);
+    border-left: 3px solid var(--border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+  .work-item.wi-p0 { border-left-color: var(--red); }
+  .work-item.wi-p1 { border-left-color: var(--orange); }
+  .work-item.wi-p2 { border-left-color: var(--yellow); }
+  .work-item.wi-p3 { border-left-color: var(--text-muted); }
+  .wi-title { font-weight: 600; margin-bottom: 4px; }
+  .wi-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .wi-meta { font-size: 11px; color: var(--text-muted); display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Spec block */
+  .spec-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .spec-block h4 { color: var(--accent); margin-bottom: 8px; font-size: 16px; }
+  .spec-block .spec-meta { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .spec-block ul, .spec-block ol { padding-left: 20px; margin-bottom: 8px; }
+  .spec-block li { margin-bottom: 4px; font-size: 13px; }
+
+  /* Code */
+  code {
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+
+  /* Alerts */
+  .alert {
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    font-size: 13px;
+  }
+  .alert-red { background: var(--red-dim); border: 1px solid var(--red); }
+  .alert-yellow { background: var(--yellow-dim); border: 1px solid var(--yellow); }
+  .alert-green { background: var(--green-dim); border: 1px solid var(--green); }
+  .alert-blue { background: var(--accent-dim); border: 1px solid var(--accent); }
+
+  /* Detail toggles */
+  details { margin-bottom: 8px; }
+  details summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 0;
+    color: var(--accent);
+  }
+  details summary:hover { text-decoration: underline; }
+  details .detail-body {
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+<div class="main">
+
+<!-- ================================================================
+     HEADER
+     ================================================================ -->
+<div class="report-header">
+  <h1>MR Ventures &mdash; Production Readiness Final Report</h1>
+  <div class="subtitle">Consolidated analysis from two independent audit sessions, with gap analysis, unified roadmap, and detailed PRDs for every pending work item</div>
+  <div class="meta">
+    Generated 2026-05-14 &middot; Branch <code>analysys_roadmap_for_completion</code> &middot; Godot 4.6.1-stable &middot; .NET 9.0.203 &middot; 622/622 C# tests passing
+  </div>
+</div>
+
+<!-- ================================================================
+     TABLE OF CONTENTS
+     ================================================================ -->
+<nav class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#exec-summary">Executive Summary</a></li>
+    <li><a href="#source-comparison">Source Report Comparison &amp; Gap Analysis</a></li>
+    <li><a href="#current-state">Current State Snapshot</a></li>
+    <li><a href="#unified-roadmap">Unified Roadmap</a>
+      <ol class="toc-sub">
+        <li><a href="#roadmap-p0">P0 &mdash; Blockers (Before Any Playable Release)</a></li>
+        <li><a href="#roadmap-p1">P1 &mdash; Ship-Critical (Before Production Launch)</a></li>
+        <li><a href="#roadmap-p2">P2 &mdash; Important (Before Retention-Ready Launch)</a></li>
+        <li><a href="#roadmap-p3">P3 &mdash; Post-Launch Polish</a></li>
+      </ol>
+    </li>
+    <li><a href="#prd-splash">PRD: Splash &amp; Loading Screen</a></li>
+    <li><a href="#prd-ftue">PRD: First-Time User Experience (FTUE)</a></li>
+    <li><a href="#prd-progressive-unlocks">PRD: Progressive Feature Unlocks</a></li>
+    <li><a href="#prd-tutorial">PRD: Tutorial System Activation</a></li>
+    <li><a href="#prd-indicators">PRD: Tab Badges &amp; Attention Indicators</a></li>
+    <li><a href="#prd-settings">PRD: Settings Screen</a></li>
+    <li><a href="#prd-save-hardening">PRD: Save System Hardening</a></li>
+    <li><a href="#prd-analytics">PRD: Analytics Foundation</a></li>
+    <li><a href="#prd-monetization">PRD: Monetization &amp; IAP Integration</a></li>
+    <li><a href="#prd-ci">PRD: CI/QA Gate Promotion</a></li>
+    <li><a href="#prd-export">PRD: Export &amp; Mobile Readiness</a></li>
+    <li><a href="#prd-celebration">PRD: Celebration Animations &amp; Audio</a></li>
+    <li><a href="#prd-content">PRD: Content &amp; Education Polish</a></li>
+    <li><a href="#prd-market">PRD: Market Card State Model</a></li>
+    <li><a href="#prd-gem-speedup">PRD: Gem Speedup System</a></li>
+    <li><a href="#prd-cloud">PRD: Cloud Save &amp; Remote Config</a></li>
+    <li><a href="#qa-plan">Consolidated QA Test Plan</a></li>
+    <li><a href="#competitive">Competitive Benchmark Summary</a></li>
+    <li><a href="#player-journey">Ideal First 5 Minutes</a></li>
+    <li><a href="#appendix">Appendix: Specification Conflicts &amp; Resolutions</a></li>
+  </ol>
+</nav>
+
+<!-- ================================================================
+     1. EXECUTIVE SUMMARY
+     ================================================================ -->
+<section id="exec-summary">
+  <h2>1. Executive Summary</h2>
+
+  <div class="summary-grid">
+    <div class="summary-card sc-green">
+      <div class="sc-value">~75%</div>
+      <div class="sc-label">Core Game Mechanics Complete</div>
+    </div>
+    <div class="summary-card sc-yellow">
+      <div class="sc-value">~35%</div>
+      <div class="sc-label">Production Shell Ready</div>
+    </div>
+    <div class="summary-card sc-red">
+      <div class="sc-value">16</div>
+      <div class="sc-label">Ship-Critical Work Items</div>
+    </div>
+    <div class="summary-card sc-blue">
+      <div class="sc-value">2</div>
+      <div class="sc-label">Source Audits Consolidated</div>
+    </div>
+  </div>
+
+  <div class="alert alert-blue">
+    <strong>Bottom line:</strong> The core gameplay loop (generators, upgrades, missions, chests, staff, executive actions, market, rank progression) is functionally solid with 622 passing C# tests and clean GDScript validation. However, the game lacks the production shell (splash, loading, FTUE, tutorial, progressive unlocks, settings, analytics, monetization) required for a shippable product. Both independent audits converge on the same core gaps.
+  </div>
+
+  <h3>What Works Well</h3>
+  <ul>
+    <li>8-generator economy with formula-driven stats (GeneratorStatsCalculator)</li>
+    <li>Rank progression (30 ranks across 5 wealth chapters)</li>
+    <li>48 staff members with tier system, pity guarantees, and chest drops</li>
+    <li>696 executive action/deal resources across 8 generator themes</li>
+    <li>Mission system (dynamic + scenario) with chest rewards</li>
+    <li>Market with ventures + research sub-tabs</li>
+    <li>HQ upgrades system with gem economy</li>
+    <li>Store UI with offer catalog and rank gating</li>
+    <li>Offline earnings calculation</li>
+    <li>Localization (EN/ES) with content localization pipeline</li>
+    <li>DomainEventBus + SignalHub communication architecture</li>
+    <li>Save/load system with version migration</li>
+    <li>Strong test coverage (622 C#, 21 bridge, GDScript passing)</li>
+  </ul>
+
+  <h3>What Is Missing for Shipping</h3>
+  <ul>
+    <li>No splash/loading screen &mdash; app launches directly into gameplay</li>
+    <li>No first-time user experience (welcome, tutorial, guided first session)</li>
+    <li>No progressive feature unlocks &mdash; all tabs visible at once</li>
+    <li>No tab notification badges or next-best-action indicators</li>
+    <li>No settings screen (audio, locale, tutorial replay, support)</li>
+    <li>No production analytics or telemetry</li>
+    <li>No IAP/ad provider integration (UnavailableStorePurchaseProvider active)</li>
+    <li>No cloud save system</li>
+    <li>No corrupted-save recovery UI</li>
+    <li>No celebration animations beyond basic popups</li>
+    <li>No audio/music/haptics system</li>
+    <li>CI GDScript and export gates are advisory, not required</li>
+  </ul>
+</section>
+
+<!-- ================================================================
+     2. SOURCE REPORT COMPARISON & GAP ANALYSIS
+     ================================================================ -->
+<section id="source-comparison">
+  <h2>2. Source Report Comparison &amp; Gap Analysis</h2>
+
+  <p>Two independent audits were conducted using the same codebase snapshot. This section identifies where they agree, where they diverge, and what each uniquely discovered.</p>
+
+  <h3>Areas of Full Agreement</h3>
+  <table>
+    <thead>
+      <tr><th>Area</th><th>Shared Finding</th><th>Severity</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Splash/Loading</td><td>Completely missing &mdash; no branded launch experience</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Welcome/FTUE</td><td>No first-time user flow; players see full game immediately</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Progressive Unlocks</td><td>All tabs (HQ, Execs, Market, Staff, Store) visible at start; should be gated</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Tutorial System</td><td>TutorialManager exists but only 2 tutorial resources wired; most first-session moments missing</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Tab Indicators</td><td>Only EA/deal completion dots exist; missing mission, staff, store, upgrade, and next-best-action indicators</td><td><span class="sev sev-p2">P2</span></td></tr>
+      <tr><td>Settings Screen</td><td>No user-facing settings (audio, locale, tutorial replay, support, credits)</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Analytics</td><td>DomainEventBus exists for testing; no production telemetry sink</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Monetization/IAP</td><td>Store UI and offer catalog exist; purchase provider is intentionally unavailable</td><td><span class="sev sev-p1">P1</span></td></tr>
+      <tr><td>Audio/Music</td><td>No sound system implemented</td><td><span class="sev sev-p2">P2</span></td></tr>
+      <tr><td>Competitive Pattern Violations</td><td>MR Ventures violates 6 of 8 common idle-game patterns for first-session UX</td><td><span class="sev sev-p1">P1</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Divergent Findings &amp; Unique Contributions</h3>
+  <table>
+    <thead>
+      <tr><th>Finding</th><th>Source</th><th>Details</th><th>Severity</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>19 case-mismatch file paths</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Identified specific file paths with case mismatches that will break on Linux/Android (case-sensitive filesystems)</td>
+        <td><span class="sev sev-p0">P0</span></td>
+      </tr>
+      <tr>
+        <td>First-time user state machine (10 states)</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Comprehensive state machine covering fresh install, returning, corrupted, cloud conflict, no-network, app update, new scenario, progress reset</td>
+        <td><span class="sev sev-p1">P1</span></td>
+      </tr>
+      <tr>
+        <td>Save system hardening</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Corrupted-save quarantine UI, cloud adapter interface, conflict-resolution flow, migration verification</td>
+        <td><span class="sev sev-p1">P1</span></td>
+      </tr>
+      <tr>
+        <td>Analytics event schema</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Detailed 19-event minimum launch schema with payload definitions</td>
+        <td><span class="sev sev-p1">P1</span></td>
+      </tr>
+      <tr>
+        <td>CI gate promotion</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>GDScript, publish settings, resource validation, smoke test, export gates should be promoted from advisory to required; Godot version mismatch (CI uses 4.5.1, project declares 4.6)</td>
+        <td><span class="sev sev-p1">P1</span></td>
+      </tr>
+      <tr>
+        <td>Market card state model expansion</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Cards should show slot-capped, cash-short, buyable, newly unlocked, and owned states</td>
+        <td><span class="sev sev-p2">P2</span></td>
+      </tr>
+      <tr>
+        <td>Gem speedup implementation</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Use gems to speed up EA timers and generator cycles; critical for gem sink economy</td>
+        <td><span class="sev sev-p2">P2</span></td>
+      </tr>
+      <tr>
+        <td>Celebration animations</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Rank-up, evolution, milestone, generator acquisition celebration sequences</td>
+        <td><span class="sev sev-p2">P2</span></td>
+      </tr>
+      <tr>
+        <td>Financial education popups</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Contextual educational moments at key first-time actions</td>
+        <td><span class="sev sev-p2">P2</span></td>
+      </tr>
+      <tr>
+        <td>Finley mascot guide system</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Speech bubble guide character for tutorials and tips</td>
+        <td><span class="sev sev-p3">P3</span></td>
+      </tr>
+      <tr>
+        <td>A/B testing &amp; remote config</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Framework for testing FTUE variants, economy tuning, and monetization placement</td>
+        <td><span class="sev sev-p3">P3</span></td>
+      </tr>
+      <tr>
+        <td>Device matrix &amp; export verification</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Verified export stripping of test autoloads, safe-area layout, device compatibility matrix</td>
+        <td><span class="sev sev-p1">P1</span></td>
+      </tr>
+      <tr>
+        <td>Scenario resource validation CLI</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Automated validation of all scenario data resources across environments</td>
+        <td><span class="sev sev-p2">P2</span></td>
+      </tr>
+      <tr>
+        <td>Privacy/legal compliance</td>
+        <td><span class="badge badge-a2">Audit 2</span></td>
+        <td>Privacy consent flow, COPPA/GDPR considerations for analytics and ads</td>
+        <td><span class="sev sev-p1">P1</span></td>
+      </tr>
+      <tr>
+        <td>Accessibility improvements</td>
+        <td><span class="badge badge-a1">Audit 1</span></td>
+        <td>Screen reader support, color-blind modes, text scaling</td>
+        <td><span class="sev sev-p3">P3</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================
+     3. CURRENT STATE SNAPSHOT
+     ================================================================ -->
+<section id="current-state">
+  <h2>3. Current State Snapshot</h2>
+
+  <table>
+    <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td>C# Files</td><td>253</td></tr>
+      <tr><td>GDScript Files</td><td>101</td></tr>
+      <tr><td>Scenes (.tscn)</td><td>58</td></tr>
+      <tr><td>C# Unit Tests</td><td>622 passed, 0 failed</td></tr>
+      <tr><td>Bridge Tests</td><td>21 passed</td></tr>
+      <tr><td>GDScript Validation</td><td>Passed</td></tr>
+      <tr><td>Publish Settings</td><td>All checks passed</td></tr>
+      <tr><td>Build Warnings</td><td>495 (C# build)</td></tr>
+      <tr><td>Generators (prod)</td><td>8 generators, 48 chapter resources</td></tr>
+      <tr><td>EAs/Deals (prod)</td><td>696 resources</td></tr>
+      <tr><td>Staff (prod)</td><td>48 members, 56 staff-slot resources</td></tr>
+      <tr><td>Localization</td><td>EN + ES, two CSV files</td></tr>
+      <tr><td>Godot Version</td><td>4.6.1-stable</td></tr>
+      <tr><td>.NET Version</td><td>9.0.203</td></tr>
+    </tbody>
+  </table>
+
+  <h3>System Readiness Matrix</h3>
+  <table>
+    <thead>
+      <tr><th>System</th><th>Status</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Generator Economy</td><td><span class="badge badge-done">DONE</span></td><td>Formula-driven, clamp systems, cost snapshotting</td></tr>
+      <tr><td>Rank Progression</td><td><span class="badge badge-done">DONE</span></td><td>30 ranks, 5 chapters, RP-driven</td></tr>
+      <tr><td>Missions</td><td><span class="badge badge-done">DONE</span></td><td>Dynamic + scenario, chest rewards</td></tr>
+      <tr><td>Chests &amp; Drops</td><td><span class="badge badge-done">DONE</span></td><td>Tier gating, pity system, first-rare/epic guarantees</td></tr>
+      <tr><td>Staff System</td><td><span class="badge badge-done">DONE</span></td><td>48 staff, assignment, XP, milestones</td></tr>
+      <tr><td>Executive Actions</td><td><span class="badge badge-done">DONE</span></td><td>Timer, rewards, RP, cost snapshotting</td></tr>
+      <tr><td>Market</td><td><span class="badge badge-done">DONE</span></td><td>Ventures + research, acquisition flow</td></tr>
+      <tr><td>HQ Upgrades</td><td><span class="badge badge-done">DONE</span></td><td>Gem-based upgrades with rank gating</td></tr>
+      <tr><td>Store/Offers</td><td><span class="badge badge-partial">PARTIAL</span></td><td>UI + catalog exist; no purchase provider</td></tr>
+      <tr><td>Offline Earnings</td><td><span class="badge badge-done">DONE</span></td><td>30% rate, 12h cap, popup exists</td></tr>
+      <tr><td>Save/Load</td><td><span class="badge badge-partial">PARTIAL</span></td><td>Works for local; no cloud, no corruption recovery UI</td></tr>
+      <tr><td>Localization</td><td><span class="badge badge-done">DONE</span></td><td>EN/ES with content pipeline</td></tr>
+      <tr><td>Splash/Loading</td><td><span class="badge badge-missing">MISSING</span></td><td>No splash, loading, or welcome screen</td></tr>
+      <tr><td>FTUE/Tutorial</td><td><span class="badge badge-missing">MISSING</span></td><td>TutorialManager exists; only 2 resources wired</td></tr>
+      <tr><td>Progressive Unlocks</td><td><span class="badge badge-missing">MISSING</span></td><td>All tabs visible at start</td></tr>
+      <tr><td>Tab Indicators</td><td><span class="badge badge-partial">PARTIAL</span></td><td>Only EA/deal completion dots</td></tr>
+      <tr><td>Settings</td><td><span class="badge badge-missing">MISSING</span></td><td>No settings screen at all</td></tr>
+      <tr><td>Analytics</td><td><span class="badge badge-missing">MISSING</span></td><td>Domain events for testing; no prod sink</td></tr>
+      <tr><td>IAP/Ads</td><td><span class="badge badge-missing">MISSING</span></td><td>Provider interface exists; no platform integration</td></tr>
+      <tr><td>Audio/Music</td><td><span class="badge badge-missing">MISSING</span></td><td>No implementation</td></tr>
+      <tr><td>Cloud Save</td><td><span class="badge badge-missing">MISSING</span></td><td>No cloud provider</td></tr>
+      <tr><td>Celebrations</td><td><span class="badge badge-partial">PARTIAL</span></td><td>Basic popups exist; no animated sequences</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================
+     4. UNIFIED ROADMAP
+     ================================================================ -->
+<section id="unified-roadmap">
+  <h2>4. Unified Roadmap</h2>
+
+  <div class="alert alert-yellow">
+    This roadmap merges findings from both audit sources into a single prioritized list. Items are ordered by shipping criticality, not effort.
+  </div>
+
+  <!-- P0 -->
+  <div id="roadmap-p0">
+    <h3><span class="sev sev-p0">P0</span> &mdash; Blockers (Before Any Playable Release)</h3>
+
+    <div class="work-item wi-p0">
+      <div class="wi-title">WI-001: Fix case-mismatch file paths</div>
+      <div class="wi-desc">19 file path case mismatches that will break on Linux/Android case-sensitive filesystems. App will crash or show missing textures on target platforms.</div>
+      <div class="wi-meta"><span class="effort">XS</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p0">
+      <div class="wi-title">WI-002: Required clean-launch smoke test</div>
+      <div class="wi-desc">Automate a test that verifies the game can reach first playable gameplay from a fresh state without runtime errors.</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-a2">Audit 2</span></div>
+    </div>
+  </div>
+
+  <!-- P1 -->
+  <div id="roadmap-p1">
+    <h3><span class="sev sev-p1">P1</span> &mdash; Ship-Critical (Before Production Launch)</h3>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-003: Splash &amp; loading screen</div>
+      <div class="wi-desc">Branded splash scene, loading progress bar with tips, failure fallback. Prevents blank app launch.</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-both">Both</span> <a href="#prd-splash">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-004: Welcome / FTUE flow</div>
+      <div class="wi-desc">Welcome screen introducing the game fantasy, scenario context, and guided first session from first tap to first mission complete.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span> <a href="#prd-ftue">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-005: Progressive feature unlocks</div>
+      <div class="wi-desc">Centralized FeatureVisibilityService controlling tab/section visibility based on rank, state flags, and scenario progress.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span> <a href="#prd-progressive-unlocks">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-006: Tutorial system activation</div>
+      <div class="wi-desc">Wire TutorialManager to 12+ first-session game events. Create tutorial resources for first generator, upgrade, mission, chest, EA, deal, staff, rank-up, market, staff assignment.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span> <a href="#prd-tutorial">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-007: First-session mission sequence</div>
+      <div class="wi-desc">Ensure first missions are completable within target pacing (2-4 minutes), rewarding, and clearly connected to the progression loop.</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-008: Settings screen</div>
+      <div class="wi-desc">Gear icon accessible from all states. Audio toggle, locale selector, tutorial replay, support link, credits, version info, progress reset.</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-both">Both</span> <a href="#prd-settings">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-009: Save system hardening</div>
+      <div class="wi-desc">Corrupted-save quarantine UI, versioned migration verification, save integrity checks, recovery/reset dialog.</div>
+      <div class="wi-meta"><span class="effort">L</span> <span class="badge badge-a2">Audit 2</span> <a href="#prd-save-hardening">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-010: Analytics foundation</div>
+      <div class="wi-desc">AnalyticsService adapter with minimum 19-event launch schema. First-launch, tutorial, economy, monetization, retention, and error events.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span> <a href="#prd-analytics">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-011: IAP integration / purchase provider</div>
+      <div class="wi-desc">Wire platform purchase/ad providers behind existing interfaces. Sandbox testing for purchase, restore, failure, and ad availability flows.</div>
+      <div class="wi-meta"><span class="effort">XL</span> <span class="badge badge-both">Both</span> <a href="#prd-monetization">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-012: CI gate promotion</div>
+      <div class="wi-desc">Promote GDScript, publish settings, resource validation, smoke launch, and export build from advisory to required CI checks. Fix Godot version mismatch (CI 4.5.1 vs project 4.6).</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a2">Audit 2</span> <a href="#prd-ci">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-013: App icon, export configuration, and mobile readiness</div>
+      <div class="wi-desc">Production export dry-run, test autoload stripping, safe-area layout verification, device matrix QA.</div>
+      <div class="wi-meta"><span class="effort">L</span> <span class="badge badge-both">Both</span> <a href="#prd-export">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p1">
+      <div class="wi-title">WI-014: Privacy and legal compliance</div>
+      <div class="wi-desc">Privacy consent flow for analytics and ads. COPPA/GDPR/CCPA considerations. Privacy policy URL.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a2">Audit 2</span></div>
+    </div>
+  </div>
+
+  <!-- P2 -->
+  <div id="roadmap-p2">
+    <h3><span class="sev sev-p2">P2</span> &mdash; Important (Before Retention-Ready Launch)</h3>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-015: Tab notification badges</div>
+      <div class="wi-desc">Priority-ranked badge system for all 5 tabs plus generator cards. Triggers include completed EA, mission chest, staff assignable, affordable upgrade, store offer.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span> <a href="#prd-indicators">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-016: Next-best-action indicators</div>
+      <div class="wi-desc">Global arbitration service that determines the single most impactful action for idle players. Shows contextual indicator after 10+ seconds idle.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-017: Market card state model expansion</div>
+      <div class="wi-desc">Market venture cards show slot-capped, cash-short, buyable, newly unlocked, and owned states with distinct visual treatment.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a2">Audit 2</span> <a href="#prd-market">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-018: Gem speedup implementation</div>
+      <div class="wi-desc">Spend gems to skip/accelerate EA timers and generator production cycles. Critical gem sink for F2P economy balance.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span> <a href="#prd-gem-speedup">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-019: Celebration animations</div>
+      <div class="wi-desc">Animated sequences for rank-up, generator evolution, milestone achievements, and generator acquisition.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span> <a href="#prd-celebration">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-020: Sound &amp; music system</div>
+      <div class="wi-desc">Background music, SFX for actions/rewards, haptic feedback on key moments. Mute setting respected from first frame.</div>
+      <div class="wi-meta"><span class="effort">L</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-021: Financial education popups</div>
+      <div class="wi-desc">Contextual educational moments at first cash, first upgrade, first deal, first staff, first offline return.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span> <a href="#prd-content">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-022: Scenario resource validation CLI</div>
+      <div class="wi-desc">Automated validation of all scenario data resources across dev/prod environments. Reports missing, invalid, or orphaned resources.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a2">Audit 2</span></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-023: Progression probes</div>
+      <div class="wi-desc">Reports for first 5-minute pacing and G3-G8 unlock timing to verify economy bands in live play.</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-a2">Audit 2</span></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-024: Staff onboarding polish</div>
+      <div class="wi-desc">First staff drop, first assignment, and empty staff-tab states polished for clarity.</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-both">Both</span></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-025: Offline earnings rate explanation</div>
+      <div class="wi-desc">Show the offline rate (30%), earning calculation, and time cap (12h) in the offline popup.</div>
+      <div class="wi-meta"><span class="effort">XS</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p2">
+      <div class="wi-title">WI-026: Empty state guidance</div>
+      <div class="wi-desc">When tabs have no actionable content, show guidance text instead of empty space (e.g., Staff tab with no staff).</div>
+      <div class="wi-meta"><span class="effort">S</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+  </div>
+
+  <!-- P3 -->
+  <div id="roadmap-p3">
+    <h3><span class="sev sev-p3">P3</span> &mdash; Post-Launch Polish</h3>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-027: Cloud save</div>
+      <div class="wi-desc">Cloud save adapter, conflict resolution UI, cross-device sync.</div>
+      <div class="wi-meta"><span class="effort">L</span> <span class="badge badge-both">Both</span> <a href="#prd-cloud">PRD &rarr;</a></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-028: Finley mascot / guide character</div>
+      <div class="wi-desc">Animated speech bubble guide for tutorials, tips, and celebrations. Market Research portrait already exists.</div>
+      <div class="wi-meta"><span class="effort">L</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-029: A/B testing framework</div>
+      <div class="wi-desc">Test FTUE variants, economy tuning, monetization placement, and feature rollout.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-030: Remote config / LiveOps</div>
+      <div class="wi-desc">Server-side economy tuning, feature flags, event scheduling.</div>
+      <div class="wi-meta"><span class="effort">L</span> <span class="badge badge-both">Both</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-031: Rewarded ad hooks</div>
+      <div class="wi-desc">Ad-double offline earnings, ad-boost production, ad-skip EA timer. Frequency caps.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-032: Premium chest purchase</div>
+      <div class="wi-desc">Buy higher-rarity chests with gems or IAP.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-033: Accessibility improvements</div>
+      <div class="wi-desc">Screen reader support, color-blind modes, text scaling, touch target sizing.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-034: Additional locales</div>
+      <div class="wi-desc">Beyond EN/ES: PT, FR, DE, IT, JA, KO, ZH based on target market data.</div>
+      <div class="wi-meta"><span class="effort">S per locale</span> <span class="badge badge-a1">Audit 1</span></div>
+    </div>
+
+    <div class="work-item wi-p3">
+      <div class="wi-title">WI-035: Visual polish pass</div>
+      <div class="wi-desc">Consistent theming, animation quality, visual regression snapshots for mobile viewports.</div>
+      <div class="wi-meta"><span class="effort">M</span> <span class="badge badge-both">Both</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     PRD SECTIONS
+     ================================================================ -->
+
+<!-- PRD: Splash & Loading -->
+<section id="prd-splash">
+  <h2>5. PRD: Splash &amp; Loading Screen</h2>
+  <div class="spec-block">
+    <h4>WI-003: Splash &amp; Loading Screen</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">S</span>
+      <span>Sources: Both audits</span>
+    </div>
+
+    <p><strong>Problem:</strong> The app currently launches directly into the full gameplay dashboard with no branded transition. This feels unprofessional and prevents proper resource loading.</p>
+
+    <p><strong>Goal:</strong> Display a branded splash followed by a loading screen with progress indication before any gameplay UI appears.</p>
+
+    <h4>Requirements</h4>
+    <ol>
+      <li><strong>Engine splash</strong> &mdash; Configure <code>project.godot</code> boot splash with MR Ventures branding (logo + background color). Auto-advance after 1.5s.</li>
+      <li><strong>Game splash scene</strong> &mdash; MR Ventures logo animation (simple fade/scale), studio mark (optional). Transitions to loading.</li>
+      <li><strong>Loading scene</strong> &mdash; Progress bar or progress indicator, rotating business-themed tip text (localized), failure fallback with retry/exit options.</li>
+      <li><strong>Responsive on slow loads</strong> &mdash; Loading screen must remain interactive (no frozen frame). Inject-able delay for testing.</li>
+      <li><strong>Transition</strong> &mdash; Smooth transition to Welcome (first launch) or Gameplay (returning player).</li>
+    </ol>
+
+    <h4>Content/Assets Required</h4>
+    <table>
+      <tr><th>Asset</th><th>Owner</th><th>Status</th></tr>
+      <tr><td>Game logo (high-res)</td><td>Art</td><td>App icon exists; splash logo needed</td></tr>
+      <tr><td>Studio mark</td><td>Art</td><td>Not found; optional</td></tr>
+      <tr><td>Splash background</td><td>Art</td><td>Brand-appropriate gradient or image</td></tr>
+      <tr><td>Loading tip strings (EN/ES)</td><td>Content</td><td>5-8 rotating tips, localized</td></tr>
+    </table>
+
+    <h4>Technical Notes</h4>
+    <ul>
+      <li>Scenes: <code>scenes/ui/splash.tscn</code>, <code>scenes/ui/loading.tscn</code></li>
+      <li>Loading scene uses Godot's <code>ResourceLoader</code> async loading with progress callback</li>
+      <li>Route: MainNode decides next scene based on save state (fresh vs returning vs corrupted)</li>
+    </ul>
+
+    <h4>Definition of Done</h4>
+    <ul>
+      <li>Branded splash displays before any gameplay</li>
+      <li>Loading screen shows progress and does not appear frozen</li>
+      <li>Failure during load shows retry/fallback, not crash</li>
+      <li>Returning players skip welcome, go to gameplay after loading</li>
+      <li>Tip text is localized (EN/ES)</li>
+    </ul>
+
+    <h4>Test Cases</h4>
+    <ul>
+      <li>Fresh install &rarr; splash &rarr; loading &rarr; welcome</li>
+      <li>Returning player &rarr; splash &rarr; loading &rarr; gameplay</li>
+      <li>Injected 10s delay &rarr; loading remains responsive</li>
+      <li>Failed resource load &rarr; error/retry shown, no crash</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: FTUE -->
+<section id="prd-ftue">
+  <h2>6. PRD: First-Time User Experience (FTUE)</h2>
+  <div class="spec-block">
+    <h4>WI-004: Welcome &amp; FTUE Flow</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">M</span>
+      <span>Sources: Both audits</span>
+    </div>
+
+    <p><strong>Problem:</strong> New players see the full game at once with no guidance. Competitive analysis shows all successful idle games start with 1-2 visible systems and a guided first 5 minutes.</p>
+
+    <p><strong>Goal:</strong> Guide new players through their first session so they understand the core loop (earn &rarr; upgrade &rarr; mission &rarr; chest &rarr; rank) within 5 minutes.</p>
+
+    <h4>Welcome Flow (One-Time)</h4>
+    <table>
+      <tr><th>Step</th><th>Screen</th><th>Player Sees</th><th>Player Action</th><th>Purpose</th><th>Skip?</th><th>Save Flag</th></tr>
+      <tr><td>1</td><td>Welcome</td><td>Finley + "Welcome to MR Ventures" + tagline</td><td>Tap "Begin Your Journey"</td><td>Establish game fantasy</td><td>No</td><td><code>welcome_seen</code></td></tr>
+      <tr><td>2</td><td>Scenario Intro</td><td>"You start with a small investment and a big dream..."</td><td>Tap "Let's Go"</td><td>Set narrative context</td><td>No</td><td><code>scenario_intro_seen</code></td></tr>
+      <tr><td>3</td><td>First Generator</td><td>Dashboard with G1 spotlighted, dimmed background</td><td>Tap generator to produce</td><td>Teach tap-to-earn</td><td>No</td><td><code>first_tap_done</code></td></tr>
+      <tr><td>4</td><td>First Cash</td><td>Cash counter animates up, brief celebration</td><td>Continue tapping</td><td>Positive reinforcement</td><td>Soft</td><td><code>first_earn_done</code></td></tr>
+      <tr><td>5</td><td>First Upgrade</td><td>Upgrade button glows when affordable</td><td>Tap upgrade</td><td>Teach reinvestment</td><td>No</td><td><code>first_upgrade_done</code></td></tr>
+      <tr><td>6</td><td>Mission Introduction</td><td>Mission bar highlighted</td><td>Acknowledge</td><td>Introduce goal structure</td><td>Soft</td><td><code>mission_intro_done</code></td></tr>
+      <tr><td>7</td><td>First Mission Complete</td><td>Mission completion + chest popup</td><td>Claim chest</td><td>Teach reward loop</td><td>No</td><td><code>first_chest_done</code></td></tr>
+      <tr><td>8</td><td>First Staff (if earned)</td><td>Staff tab spotlight</td><td>View earned staff</td><td>Introduce collection</td><td>Soft</td><td><code>staff_intro_done</code></td></tr>
+      <tr><td>9</td><td>First Rank-Up</td><td>Rank-up celebration, HQ tab unlocks</td><td>Explore HQ</td><td>Celebrate milestone</td><td>Soft</td><td><code>rank_up_intro_done</code></td></tr>
+      <tr><td>10</td><td>Market Introduction</td><td>Market tab + available ventures</td><td>Browse market</td><td>Portfolio expansion</td><td>Soft</td><td><code>market_intro_done</code></td></tr>
+      <tr><td>11</td><td>First EA</td><td>Execs tab spotlight</td><td>Start first EA</td><td>Strategic investment</td><td>Soft</td><td><code>ea_intro_done</code></td></tr>
+      <tr><td>12</td><td>Staff Assignment</td><td>Generator detail Team tab</td><td>Assign staff</td><td>Teach bonuses</td><td>Soft</td><td><code>staff_assign_done</code></td></tr>
+    </table>
+
+    <h4>First-Time User State Machine</h4>
+    <table>
+      <tr><th>State</th><th>First Screen</th><th>Save Behavior</th><th>Tutorial Behavior</th></tr>
+      <tr><td>Fresh install, no save</td><td>Splash &rarr; Loading &rarr; Welcome</td><td>Create save after first playable</td><td>Run full FTUE</td></tr>
+      <tr><td>Fresh install, cloud save found</td><td>Cloud restore choice</td><td>No local save until choice resolved</td><td>Use restored flags or FTUE</td></tr>
+      <tr><td>Returning local save</td><td>Splash &rarr; Loading &rarr; Gameplay</td><td>Load save, calculate offline</td><td>Skip completed tutorials</td></tr>
+      <tr><td>Returning, cloud conflict</td><td>Conflict resolver</td><td>Preserve both until choice</td><td>Suppress during resolution</td></tr>
+      <tr><td>Corrupted save</td><td>Recovery dialog</td><td>Quarantine bad save</td><td>Preserve flags if recoverable</td></tr>
+      <tr><td>After app update</td><td>Loading &rarr; migration</td><td>Run versioned migrations</td><td>Show only new-feature tutorials</td></tr>
+      <tr><td>Long offline return</td><td>Gameplay + offline popup</td><td>Calculate once, mark claimed</td><td>First offline tutorial only once</td></tr>
+      <tr><td>New scenario</td><td>Scenario intro</td><td>New scenario file, global preserved</td><td>Scenario intro, not full FTUE</td></tr>
+      <tr><td>Progress reset</td><td>Confirm &rarr; fresh welcome</td><td>Delete after confirmation</td><td>Restart tutorials</td></tr>
+      <tr><td>No network</td><td>Local gameplay</td><td>Local save, queue sync</td><td>No forced change</td></tr>
+    </table>
+
+    <h4>Definition of Done</h4>
+    <ul>
+      <li>New player sees welcome and understands first goal within one screen</li>
+      <li>Core loop (earn &rarr; upgrade &rarr; mission &rarr; reward) demonstrated within 5 minutes</li>
+      <li>All tutorial save flags persist across restarts</li>
+      <li>Returning players never repeat completed tutorials</li>
+      <li>Skip/replay accessible from Settings</li>
+      <li>All text localized (EN/ES)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Progressive Unlocks -->
+<section id="prd-progressive-unlocks">
+  <h2>7. PRD: Progressive Feature Unlocks</h2>
+  <div class="spec-block">
+    <h4>WI-005: Progressive Feature Visibility</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">M</span>
+      <span>Sources: Both audits</span>
+    </div>
+
+    <p><strong>Problem:</strong> All 5 tabs and all systems are visible from the start. This overwhelms new players and violates the universal idle-game pattern of progressive disclosure.</p>
+
+    <h4>Feature Visibility Schedule</h4>
+    <table>
+      <tr><th>System</th><th>Recommended State</th><th>Current State</th><th>Unlock Trigger</th></tr>
+      <tr><td>Dashboard / Generators</td><td><span class="badge badge-done">OPEN AT START</span></td><td>Open</td><td>Always visible</td></tr>
+      <tr><td>Upgrade Button</td><td><span class="badge badge-done">OPEN AT START</span></td><td>Open</td><td>Always visible</td></tr>
+      <tr><td>Mission Bar</td><td><span class="badge badge-done">OPEN AT START</span></td><td>Open</td><td>Always visible</td></tr>
+      <tr><td>Rank Display</td><td><span class="badge badge-done">OPEN AT START</span></td><td>Open</td><td>Always visible (simplified)</td></tr>
+      <tr><td>HQ Tab</td><td><span class="badge badge-partial">VISIBLE BUT LOCKED</span></td><td>Open</td><td>Rank 2 or first EA complete</td></tr>
+      <tr><td>Execs Tab</td><td><span class="badge badge-missing">HIDDEN UNTIL UNLOCK</span></td><td>Open</td><td>First generator at GC1 or first EA available</td></tr>
+      <tr><td>Market Tab</td><td><span class="badge badge-partial">VISIBLE BUT LOCKED</span></td><td>Open</td><td>G2 visible as preview; active at Rank 3</td></tr>
+      <tr><td>Market Research</td><td><span class="badge badge-missing">HIDDEN UNTIL UNLOCK</span></td><td>Lock icon shown</td><td>2 generators + 120s runtime</td></tr>
+      <tr><td>Staff Tab</td><td><span class="badge badge-missing">HIDDEN UNTIL UNLOCK</span></td><td>Open (48 locked roster)</td><td>First staff earned from chest</td></tr>
+      <tr><td>Store Tab</td><td><span class="badge badge-missing">HIDDEN UNTIL UNLOCK</span></td><td>Visible, content locked at Rank 4</td><td>Rank 4 + gem value taught</td></tr>
+      <tr><td>Settings</td><td><span class="badge badge-done">ALWAYS ACCESSIBLE</span></td><td>Missing</td><td>Gear icon, always visible</td></tr>
+      <tr><td>Offline Return</td><td><span class="badge badge-info">AFTER FIRST RETURN</span></td><td>Works</td><td>First meaningful return</td></tr>
+      <tr><td>Gem Speedup</td><td><span class="badge badge-missing">HIDDEN UNTIL UNLOCK</span></td><td>Missing</td><td>After Rank 2 gem grant</td></tr>
+    </table>
+
+    <h4>Technical Approach</h4>
+    <ul>
+      <li>Create <code>FeatureVisibilityService</code> (pure C#) that evaluates visibility rules against player state</li>
+      <li>Rules use <code>min_rank</code>, save flags, and state conditions (like "has_staff" or "gems_earned")</li>
+      <li>Bottom navigation bar reads visibility state from the service on state change events</li>
+      <li>Tab animations for unlock moments (slide-in, glow, one-time celebration)</li>
+    </ul>
+
+    <h4>Definition of Done</h4>
+    <ul>
+      <li>Fresh player sees only Dashboard + Mission Bar + Rank at start</li>
+      <li>Each tab unlocks individually with visual announcement</li>
+      <li>Unlock triggers match the table above</li>
+      <li>Visibility state persists across restarts</li>
+      <li>No tab shows empty or useless content when first unlocked</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Tutorial System -->
+<section id="prd-tutorial">
+  <h2>8. PRD: Tutorial System Activation</h2>
+  <div class="spec-block">
+    <h4>WI-006: Tutorial System Activation</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">M</span>
+    </div>
+
+    <p><strong>Current State:</strong> <code>TutorialManager</code> autoload exists with priority sorting, ShowOnce logic, and save-backed shown IDs. Only 2 tutorial resources are wired (Market Research, HQ Upgrades).</p>
+
+    <h4>Required Tutorial Resources</h4>
+    <table>
+      <tr><th>Tutorial ID</th><th>Trigger Event</th><th>Target UI</th><th>Blocking?</th><th>Priority</th></tr>
+      <tr><td><code>tutorial_welcome</code></td><td>First launch, no save</td><td>Welcome screen</td><td>Yes</td><td>100</td></tr>
+      <tr><td><code>tutorial_first_generator</code></td><td>Dashboard loaded first time</td><td>G1 card spotlight</td><td>Soft</td><td>90</td></tr>
+      <tr><td><code>tutorial_first_upgrade</code></td><td>Cash reaches upgrade cost</td><td>Upgrade button glow</td><td>No</td><td>80</td></tr>
+      <tr><td><code>tutorial_missions</code></td><td>First mission visible</td><td>Mission bar</td><td>No</td><td>70</td></tr>
+      <tr><td><code>tutorial_first_chest</code></td><td>First mission complete</td><td>Chest popup</td><td>Yes</td><td>90</td></tr>
+      <tr><td><code>tutorial_staff_intro</code></td><td>First staff earned</td><td>Staff tab</td><td>No</td><td>70</td></tr>
+      <tr><td><code>tutorial_rank_up</code></td><td>Rank 2 reached</td><td>Rank-up popup + HQ</td><td>No</td><td>80</td></tr>
+      <tr><td><code>tutorial_market</code></td><td>Market tab unlocks</td><td>Market tab</td><td>No</td><td>70</td></tr>
+      <tr><td><code>tutorial_market_research</code></td><td>MR conditions met</td><td>Research tab</td><td>Yes (existing)</td><td>80</td></tr>
+      <tr><td><code>tutorial_first_ea</code></td><td>First EA available</td><td>Generator detail Ops</td><td>No</td><td>70</td></tr>
+      <tr><td><code>tutorial_staff_assign</code></td><td>Staff + empty slot available</td><td>Generator detail Team</td><td>No</td><td>60</td></tr>
+      <tr><td><code>tutorial_hq_upgrades</code></td><td>HQ tab first open</td><td>HQ section (existing)</td><td>No</td><td>60</td></tr>
+      <tr><td><code>tutorial_offline_return</code></td><td>First meaningful return</td><td>Offline popup</td><td>No</td><td>50</td></tr>
+      <tr><td><code>tutorial_store</code></td><td>Store tab unlocks</td><td>Store section</td><td>No</td><td>40</td></tr>
+    </table>
+
+    <h4>Definition of Done</h4>
+    <ul>
+      <li>All listed tutorial resources created as <code>.tres</code> files</li>
+      <li>DomainEventBus subscriptions in TutorialManager for each trigger</li>
+      <li>ShowOnce flag persists and prevents repeats</li>
+      <li>Tutorial replay option accessible from Settings</li>
+      <li>Tutorial skip option for advanced players</li>
+      <li>All tutorial text localized (EN/ES)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Indicators -->
+<section id="prd-indicators">
+  <h2>9. PRD: Tab Badges &amp; Attention Indicators</h2>
+  <div class="spec-block">
+    <h4>WI-015: Tab Badges &amp; Attention Indicators</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p2">P2</span>
+      <span class="effort">M</span>
+    </div>
+
+    <h4>Indicator Priority System</h4>
+    <table>
+      <tr><th>Priority</th><th>Indicators</th><th>Rule</th></tr>
+      <tr><td><span class="sev sev-p0">P0 Critical</span></td><td>First affordable upgrade, completed required EA/deal, completed scenario mission, rank-up pending</td><td>Only one P0 active at a time</td></tr>
+      <tr><td><span class="sev sev-p1">P1 High</span></td><td>Mission chest ready, G2 buyable after slot unlock, staff assignable to open slot, Market Research unlocked</td><td>Visible but suppressible if P0 exists</td></tr>
+      <tr><td><span class="sev sev-p2">P2 Reminder</span></td><td>Offline return ready, HQ upgrade affordable, newly unlocked content</td><td>Non-urgent reminders</td></tr>
+      <tr><td><span class="sev sev-p3">P3 Promo</span></td><td>Store offer, rewarded ad multiplier, optional premium chest</td><td>Never during first 5 minutes</td></tr>
+    </table>
+
+    <h4>Tab Badge Triggers</h4>
+    <table>
+      <tr><th>Tab / Surface</th><th>Show When</th><th>Clear When</th></tr>
+      <tr><td>Market tab</td><td>EA or Deal completes (reward ready)</td><td>Reward collected</td></tr>
+      <tr><td>HQ tab</td><td>Enough gems for available upgrade</td><td>Upgrades purchased or gems below threshold</td></tr>
+      <tr><td>Execs tab</td><td>EA completes, reward ready to claim</td><td>All completed EA rewards claimed</td></tr>
+      <tr><td>Staff tab</td><td>New staff earned and not viewed, or unassigned staff with available slots</td><td>Staff tab opened + staff viewed, or staff assigned</td></tr>
+      <tr><td>Store tab</td><td>New offer unlocked at current rank</td><td>Store tab opened and offers viewed</td></tr>
+      <tr><td>Generator card</td><td>EA/Deal reward ready for this generator</td><td>Reward collected</td></tr>
+      <tr><td>Mission bar</td><td>Mission progress reaches 80%+</td><td>Mission completed and claimed</td></tr>
+      <tr><td>Upgrade button</td><td>Player has enough cash to upgrade</td><td>Generator upgraded or cash drops</td></tr>
+    </table>
+
+    <h4>Definition of Done</h4>
+    <ul>
+      <li>Red dot indicator on each applicable tab/surface</li>
+      <li>Priority arbitration prevents indicator overload</li>
+      <li>Indicators clear correctly after action taken</li>
+      <li>No stale indicators after app restart</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Settings -->
+<section id="prd-settings">
+  <h2>10. PRD: Settings Screen</h2>
+  <div class="spec-block">
+    <h4>WI-008: Settings Screen</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">S</span>
+    </div>
+
+    <h4>Required Settings</h4>
+    <table>
+      <tr><th>Setting</th><th>Type</th><th>Default</th><th>Persisted</th></tr>
+      <tr><td>Music Volume</td><td>Slider 0-100</td><td>100</td><td>Yes (user prefs)</td></tr>
+      <tr><td>SFX Volume</td><td>Slider 0-100</td><td>100</td><td>Yes</td></tr>
+      <tr><td>Haptic Feedback</td><td>Toggle</td><td>On</td><td>Yes</td></tr>
+      <tr><td>Language</td><td>Dropdown (EN/ES)</td><td>System locale</td><td>Yes</td></tr>
+      <tr><td>Replay Tutorial</td><td>Button</td><td>N/A</td><td>Resets tutorial flags</td></tr>
+      <tr><td>Support / Contact</td><td>Link</td><td>N/A</td><td>N/A</td></tr>
+      <tr><td>Credits</td><td>Link/screen</td><td>N/A</td><td>N/A</td></tr>
+      <tr><td>Privacy Policy</td><td>Link</td><td>N/A</td><td>N/A</td></tr>
+      <tr><td>Version Info</td><td>Label</td><td>N/A</td><td>N/A</td></tr>
+      <tr><td>Reset Progress</td><td>Button (confirm dialog)</td><td>N/A</td><td>Deletes save</td></tr>
+    </table>
+
+    <h4>Access</h4>
+    <ul>
+      <li>Gear icon in top-right of dashboard, always visible</li>
+      <li>Opens as popup/overlay, not a full screen transition</li>
+      <li>Audio settings respected from first frame (including splash)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Save Hardening -->
+<section id="prd-save-hardening">
+  <h2>11. PRD: Save System Hardening</h2>
+  <div class="spec-block">
+    <h4>WI-009: Save System Hardening</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">L</span>
+      <span>Source: Audit 2</span>
+    </div>
+
+    <p><strong>Current State:</strong> SaveService loads local JSON saves and handles version migration. No user-facing recovery UI for corrupted saves. No cloud support.</p>
+
+    <h4>Requirements</h4>
+    <ol>
+      <li><strong>Corrupted Save Detection</strong> &mdash; JSON parse failure, missing required fields, invalid version all trigger recovery path</li>
+      <li><strong>Recovery Dialog</strong> &mdash; When corruption detected, show user-facing dialog: "Save data appears corrupted" with options: Retry, Restore from Backup, Start Fresh</li>
+      <li><strong>Backup Strategy</strong> &mdash; Auto-backup save file on each successful save (keep last 3 backups). Backup in separate directory from primary save.</li>
+      <li><strong>Quarantine</strong> &mdash; Move corrupted file to quarantine directory (don't delete). Include timestamp and error reason.</li>
+      <li><strong>Migration Verification</strong> &mdash; After running versioned migration, validate result before overwriting. Rollback on validation failure.</li>
+      <li><strong>Integrity Hash</strong> &mdash; Optional SHA256 checksum stored alongside save to detect file tampering/corruption.</li>
+    </ol>
+
+    <h4>Test Cases</h4>
+    <ul>
+      <li>Write invalid JSON to global_profile.json &rarr; recovery dialog shown</li>
+      <li>Delete required save field &rarr; migration or recovery triggered</li>
+      <li>App closed during save write &rarr; backup auto-restores</li>
+      <li>Version migration from older save &rarr; data preserved, no loss</li>
+      <li>Successful save &rarr; 3 recent backups maintained</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Analytics -->
+<section id="prd-analytics">
+  <h2>12. PRD: Analytics Foundation</h2>
+  <div class="spec-block">
+    <h4>WI-010: Analytics Foundation</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">M</span>
+    </div>
+
+    <p><strong>Current State:</strong> DomainEventBus and EventRecorder exist for MCP-based testing. No production telemetry sink, schema validation, or analytics SDK.</p>
+
+    <h4>Architecture</h4>
+    <ul>
+      <li><code>AnalyticsService</code> (pure C#) &mdash; accepts events, validates schema, dispatches to sink</li>
+      <li><code>AnalyticsSink</code> interface &mdash; implemented by production SDK adapter (Firebase, Amplitude, etc.) and debug logger</li>
+      <li>Leverage existing DomainEventBus subscriptions in EventRecorder as reference</li>
+      <li>Every event includes: player_id, session_id, app_version, platform, scenario_id, global_rank, save_state, tutorial_state, elapsed_time_since_launch</li>
+    </ul>
+
+    <h4>Minimum Launch Event Schema</h4>
+    <table>
+      <tr><th>Event</th><th>Trigger</th><th>Extra Data</th></tr>
+      <tr><td><code>app_launch_started</code></td><td>App entry point</td><td>launch_type (fresh/return/update)</td></tr>
+      <tr><td><code>splash_screen_shown</code></td><td>Splash displayed</td><td>&mdash;</td></tr>
+      <tr><td><code>loading_started</code></td><td>Loading begins</td><td>&mdash;</td></tr>
+      <tr><td><code>loading_completed</code></td><td>Loading finishes</td><td>duration_ms</td></tr>
+      <tr><td><code>loading_failed</code></td><td>Loading error</td><td>error_type</td></tr>
+      <tr><td><code>new_player_detected</code></td><td>No save found</td><td>&mdash;</td></tr>
+      <tr><td><code>returning_player_detected</code></td><td>Valid save found</td><td>offline_duration</td></tr>
+      <tr><td><code>welcome_screen_shown</code></td><td>Welcome displayed</td><td>&mdash;</td></tr>
+      <tr><td><code>welcome_continue_clicked</code></td><td>Player taps continue</td><td>&mdash;</td></tr>
+      <tr><td><code>tutorial_started</code></td><td>Tutorial begins</td><td>tutorial_id</td></tr>
+      <tr><td><code>tutorial_step_completed</code></td><td>Step finished</td><td>tutorial_id, step_index</td></tr>
+      <tr><td><code>tutorial_skipped</code></td><td>Player skips</td><td>tutorial_id, step_index</td></tr>
+      <tr><td><code>first_generator_seen</code></td><td>G1 visible</td><td>&mdash;</td></tr>
+      <tr><td><code>first_cash_earned</code></td><td>First production</td><td>amount</td></tr>
+      <tr><td><code>first_upgrade_completed</code></td><td>First upgrade</td><td>generator_id, level</td></tr>
+      <tr><td><code>first_mission_completed</code></td><td>First mission done</td><td>mission_id</td></tr>
+      <tr><td><code>first_chest_earned</code></td><td>First chest opened</td><td>rarity, staff_id</td></tr>
+      <tr><td><code>rank_increased</code></td><td>Rank up</td><td>old_rank, new_rank</td></tr>
+      <tr><td><code>first_session_ended</code></td><td>First session close</td><td>duration, rank, generators</td></tr>
+    </table>
+
+    <h4>Dependencies</h4>
+    <ul>
+      <li>Analytics provider selection (Firebase Analytics, Amplitude, or custom)</li>
+      <li>Privacy consent flow (WI-014)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Monetization -->
+<section id="prd-monetization">
+  <h2>13. PRD: Monetization &amp; IAP Integration</h2>
+  <div class="spec-block">
+    <h4>WI-011: IAP Integration / Purchase Provider</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">XL</span>
+    </div>
+
+    <p><strong>Current State:</strong> Store UI, offer catalog, and <code>StorePurchaseProviders.cs</code> interface exist. Active provider is <code>UnavailableStorePurchaseProvider</code>. No rewarded ad SDK, receipt validation, purchase restore, or platform credentials.</p>
+
+    <h4>Requirements</h4>
+    <ol>
+      <li><strong>Platform IAP Provider</strong> &mdash; Implement Apple StoreKit / Google Play Billing behind existing <code>IStorePurchaseProvider</code> interface</li>
+      <li><strong>Receipt Validation</strong> &mdash; Server-side or client-side receipt verification</li>
+      <li><strong>Purchase Restore</strong> &mdash; Restore previously purchased non-consumables on reinstall</li>
+      <li><strong>Failure Handling</strong> &mdash; Graceful handling of: cancelled, failed, network error, already owned</li>
+      <li><strong>Rewarded Ads</strong> &mdash; Interface + provider for rewarded video ads (offline earnings double, production boost)</li>
+      <li><strong>Ad Caps</strong> &mdash; Frequency limits to prevent ad fatigue</li>
+      <li><strong>Non-Gating</strong> &mdash; No progression path requires purchase. All store items are accelerants.</li>
+      <li><strong>Store Hidden Before Value</strong> &mdash; Store tab hidden until Rank 4 + gem value taught (per progressive unlock schedule)</li>
+    </ol>
+
+    <h4>MVP Decision Point</h4>
+    <div class="alert alert-yellow">
+      If IAP/ad integration is not ready for MVP launch, the Store tab should remain hidden and monetization disabled. The game should be fully playable F2P.
+    </div>
+
+    <h4>Test Cases</h4>
+    <ul>
+      <li>Sandbox IAP purchase &rarr; item granted, receipt valid</li>
+      <li>Restore purchase on fresh install &rarr; items restored</li>
+      <li>Purchase failure (cancelled, network) &rarr; graceful error, no item granted</li>
+      <li>Rewarded ad unavailable &rarr; button hidden/disabled, no crash</li>
+      <li>Ad cap reached &rarr; ad button disabled with cooldown</li>
+      <li>Store unlock timing &rarr; not visible before Rank 4</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: CI -->
+<section id="prd-ci">
+  <h2>14. PRD: CI/QA Gate Promotion</h2>
+  <div class="spec-block">
+    <h4>WI-012: CI Gate Promotion</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">M</span>
+      <span>Source: Audit 2</span>
+    </div>
+
+    <p><strong>Current State:</strong> C# lint, build, and test are required. GDScript lint and test are advisory (continue-on-error). No Godot import, resource validation, publish settings, smoke test, or export build in CI. CI uses Godot 4.5.1 while project declares 4.6.</p>
+
+    <h4>Required CI Status Checks (promote to blocking)</h4>
+    <table>
+      <tr><th>Check</th><th>Current Status</th><th>Target Status</th></tr>
+      <tr><td>C# lint + build + test</td><td><span class="badge badge-done">Required</span></td><td>Required</td></tr>
+      <tr><td>GDScript lint</td><td><span class="badge badge-partial">Advisory</span></td><td>Required</td></tr>
+      <tr><td>GDScript tests (GUT)</td><td><span class="badge badge-partial">Advisory</span></td><td>Required</td></tr>
+      <tr><td>Godot import (4.6)</td><td><span class="badge badge-missing">Missing</span></td><td>Required</td></tr>
+      <tr><td>Resource validation</td><td><span class="badge badge-missing">Missing</span></td><td>Required</td></tr>
+      <tr><td>Publish settings check</td><td><span class="badge badge-missing">Missing</span></td><td>Required</td></tr>
+      <tr><td>Smoke launch test</td><td><span class="badge badge-missing">Missing</span></td><td>Required</td></tr>
+      <tr><td>Export dry-run</td><td><span class="badge badge-missing">Missing</span></td><td>Required</td></tr>
+    </table>
+
+    <h4>Actions</h4>
+    <ol>
+      <li>Update CI Godot version from 4.5.1 to 4.6.x</li>
+      <li>Remove <code>continue-on-error</code> from GDScript jobs</li>
+      <li>Add Godot headless import step before GUT</li>
+      <li>Add <code>validate-publish-settings.sh</code> as CI step</li>
+      <li>Add resource validation job (scenario data, localization keys)</li>
+      <li>Add export dry-run for Android/iOS</li>
+    </ol>
+  </div>
+</section>
+
+<!-- PRD: Export & Mobile -->
+<section id="prd-export">
+  <h2>15. PRD: Export &amp; Mobile Readiness</h2>
+  <div class="spec-block">
+    <h4>WI-013: Export &amp; Mobile Readiness</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p1">P1</span>
+      <span class="effort">L</span>
+    </div>
+
+    <h4>Requirements</h4>
+    <ol>
+      <li><strong>Test autoload stripping</strong> &mdash; Verify <code>tools/strip-test-autoloads.sh</code> removes MR Ventures Test Bridge, Godot MCP, and TestStateQuery from release exports</li>
+      <li><strong>Safe-area layout</strong> &mdash; All UI respects notch/home indicator safe areas on iPhone X+, Android punch-hole displays</li>
+      <li><strong>App icon</strong> &mdash; Production icon for all required sizes (Android adaptive, iOS all sizes)</li>
+      <li><strong>Export presets</strong> &mdash; Verify <code>export_presets.cfg</code> excludes development saves, test fixtures, docs</li>
+      <li><strong>Signed builds</strong> &mdash; APK signing for Android, provisioning for iOS</li>
+      <li><strong>Device matrix</strong> &mdash; Test on: iPhone SE (small), iPhone 15 (standard), iPad (tablet), Android low-end (720p), Android mid-range</li>
+    </ol>
+
+    <h4>Definition of Done</h4>
+    <ul>
+      <li>Signed test builds launch on all device matrix targets</li>
+      <li>No debug/test autoloads in release builds</li>
+      <li>Safe-area respected on all tested devices</li>
+      <li>No missing resource errors in device logs</li>
+      <li>Stable 60fps performance on mid-range devices</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Celebrations -->
+<section id="prd-celebration">
+  <h2>16. PRD: Celebration Animations &amp; Audio</h2>
+  <div class="spec-block">
+    <h4>WI-019: Celebration Animations</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p2">P2</span>
+      <span class="effort">M</span>
+      <span>Source: Audit 1</span>
+    </div>
+
+    <h4>Celebration Moments</h4>
+    <table>
+      <tr><th>Moment</th><th>Current State</th><th>Target</th></tr>
+      <tr><td>Rank-up</td><td>Basic popup</td><td>Animated celebration with rank badge reveal, particles, sound</td></tr>
+      <tr><td>Generator Evolution</td><td>Basic popup</td><td>Visual transformation sequence, new appearance reveal</td></tr>
+      <tr><td>Generator Acquisition</td><td>Celebration popup exists</td><td>Polish: confetti, card flip reveal, sound</td></tr>
+      <tr><td>Milestone Achievement</td><td>Toast notification</td><td>Brief celebration overlay with milestone icon</td></tr>
+      <tr><td>First Staff Earned</td><td>Chest popup</td><td>Special first-staff reveal with character art highlight</td></tr>
+      <tr><td>Chest Opening</td><td>Popup exists</td><td>Chest opening animation, rarity glow, reveal sequence</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- PRD: Content & Education -->
+<section id="prd-content">
+  <h2>17. PRD: Content &amp; Education Polish</h2>
+  <div class="spec-block">
+    <h4>WI-021: Financial Education Popups</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p2">P2</span>
+      <span class="effort">M</span>
+    </div>
+
+    <p><strong>Current State:</strong> Content is reality-anchored with professional business themes. No educational moments implemented in the FTUE.</p>
+
+    <h4>Education Moment Map</h4>
+    <table>
+      <tr><th>Moment</th><th>Financial Concept</th><th>Placement</th></tr>
+      <tr><td>First Cash Earned</td><td>Revenue generation</td><td>After first production cycle</td></tr>
+      <tr><td>First Upgrade</td><td>Reinvestment / compound growth</td><td>After first upgrade</td></tr>
+      <tr><td>First Deal</td><td>Strategic partnerships</td><td>After first deal complete</td></tr>
+      <tr><td>First Staff</td><td>Human capital investment</td><td>After first staff earned</td></tr>
+      <tr><td>First Offline Return</td><td>Passive income</td><td>Offline earnings popup</td></tr>
+      <tr><td>Market Research</td><td>Market analysis / due diligence</td><td>Research unlock</td></tr>
+      <tr><td>Generator Evolution</td><td>Business scaling / growth stages</td><td>Evolution celebration</td></tr>
+    </table>
+
+    <h4>Content Requirements</h4>
+    <ul>
+      <li>Each moment: one concise sentence (localized EN/ES)</li>
+      <li>Optional Finley speech bubble for delivery</li>
+      <li>Tone: reality-anchored, optimistic, professional (per CONTENT_AUTHORING_GUIDELINES.md)</li>
+      <li>Never blocks gameplay, always contextual</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Market Card State -->
+<section id="prd-market">
+  <h2>18. PRD: Market Card State Model</h2>
+  <div class="spec-block">
+    <h4>WI-017: Market Card State Model Expansion</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p2">P2</span>
+      <span class="effort">M</span>
+      <span>Source: Audit 2</span>
+    </div>
+
+    <h4>Card States</h4>
+    <table>
+      <tr><th>State</th><th>Visual</th><th>Interaction</th></tr>
+      <tr><td>LOCKED (rank required)</td><td>Greyed out, "Unlock at Rank X" badge</td><td>Tap shows rank requirement detail</td></tr>
+      <tr><td>SLOT_CAPPED</td><td>Visible but dimmed, "Generator slot available at Rank X"</td><td>Tap shows slot unlock path</td></tr>
+      <tr><td>CASH_SHORT</td><td>Full art, price in red, "Need X more"</td><td>Tap shows cost breakdown</td></tr>
+      <tr><td>BUYABLE</td><td>Full art, glowing CTA, price visible</td><td>Tap to purchase</td></tr>
+      <tr><td>NEWLY_UNLOCKED</td><td>Full art with "NEW" badge, subtle animation</td><td>Badge clears after first view</td></tr>
+      <tr><td>OWNED</td><td>Full art, "OWNED" overlay, level shown</td><td>Tap navigates to generator detail</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- PRD: Gem Speedup -->
+<section id="prd-gem-speedup">
+  <h2>19. PRD: Gem Speedup System</h2>
+  <div class="spec-block">
+    <h4>WI-018: Gem Speedup System</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p2">P2</span>
+      <span class="effort">M</span>
+      <span>Source: Audit 1</span>
+    </div>
+
+    <p><strong>Context:</strong> By Rank 30, F2P players earn ~670 deterministic gems. HQ upgrades cost ~720 total. A gem speedup system creates an additional meaningful gem sink and decision point.</p>
+
+    <h4>Speedup Targets</h4>
+    <table>
+      <tr><th>Target</th><th>Mechanic</th><th>Gem Cost</th></tr>
+      <tr><td>EA Timer Skip</td><td>Instantly complete a running EA</td><td>Scaled by remaining time (e.g., 1 gem per 30s remaining)</td></tr>
+      <tr><td>EA Instant Start</td><td>Start and complete EA in one action</td><td>Full time equivalent</td></tr>
+      <tr><td>Production Boost</td><td>2x production for 30 minutes</td><td>Fixed cost (e.g., 5 gems)</td></tr>
+    </table>
+
+    <h4>Unlock</h4>
+    <ul>
+      <li>Hidden until Rank 2 gem grant (after gems have value)</li>
+      <li>Tutorial explains speedup concept with first gem grant</li>
+      <li>Never required for progression &mdash; purely accelerant</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PRD: Cloud Save -->
+<section id="prd-cloud">
+  <h2>20. PRD: Cloud Save &amp; Remote Config</h2>
+  <div class="spec-block">
+    <h4>WI-027: Cloud Save (Post-Launch)</h4>
+    <div class="spec-meta">
+      <span class="sev sev-p3">P3</span>
+      <span class="effort">L</span>
+    </div>
+
+    <h4>Requirements</h4>
+    <ol>
+      <li><strong>Cloud adapter interface</strong> &mdash; Abstract cloud storage behind interface (supports Google Play Games, Apple Game Center, Firebase, custom)</li>
+      <li><strong>Conflict resolution UI</strong> &mdash; When local and cloud saves diverge, show comparison (rank, generators, playtime) and let player choose</li>
+      <li><strong>Auto-sync</strong> &mdash; Upload save to cloud on meaningful state changes (rank up, mission complete, app pause)</li>
+      <li><strong>No-network graceful degradation</strong> &mdash; Queue sync for later, play locally</li>
+      <li><strong>No silent overwrite</strong> &mdash; Never silently replace local or cloud save</li>
+    </ol>
+
+    <h4>WI-030: Remote Config (Post-Launch)</h4>
+    <ul>
+      <li>Server-side economy parameters (upgrade cost multipliers, chest drop rates, mission cadence)</li>
+      <li>Feature flags for gradual rollout</li>
+      <li>Event scheduling (limited-time scenarios, seasonal content)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================================================================
+     QA TEST PLAN
+     ================================================================ -->
+<section id="qa-plan">
+  <h2>21. Consolidated QA Test Plan</h2>
+
+  <p>Merged from both audit sources, deduplicated, and prioritized.</p>
+
+  <h3>P0 Critical Path Tests</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Test Name</th><th>Setup</th><th>Steps</th><th>Expected Result</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>QA-001</td>
+        <td>Fresh install to first rank-up</td>
+        <td>Delete save data</td>
+        <td>Launch &rarr; complete welcome &rarr; tap generator &rarr; upgrade &rarr; complete mission &rarr; claim chest &rarr; reach Rank 2</td>
+        <td>Player progresses to Rank 2 without confusion. Rank-up popup appears. HQ tab unlocks.</td>
+      </tr>
+      <tr>
+        <td>QA-002</td>
+        <td>Generator acquisition from Market</td>
+        <td>Player at Rank where G2 available</td>
+        <td>Open Market &rarr; find generator &rarr; purchase &rarr; observe celebration &rarr; return to dashboard</td>
+        <td>Generator purchased, celebration plays, appears on dashboard, functional.</td>
+      </tr>
+      <tr>
+        <td>QA-003</td>
+        <td>Mission + chest + staff</td>
+        <td>Active mission near completion</td>
+        <td>Complete mission &rarr; chest popup &rarr; open chest &rarr; staff granted &rarr; new mission appears</td>
+        <td>Full reward chain works. Staff added. Next mission generated.</td>
+      </tr>
+      <tr>
+        <td>QA-004</td>
+        <td>EA start, wait, and claim</td>
+        <td>Player with available EA</td>
+        <td>Start EA &rarr; wait for timer &rarr; claim reward &rarr; verify resources</td>
+        <td>Timer works. Completion dot shows. Reward credited. Slot restored.</td>
+      </tr>
+      <tr>
+        <td>QA-005</td>
+        <td>Staff assignment</td>
+        <td>Player has staff + empty generator slot</td>
+        <td>Navigate to Team tab &rarr; assign staff &rarr; verify bonus</td>
+        <td>Staff assigned. Generator stats updated. Staff shows assigned state.</td>
+      </tr>
+      <tr>
+        <td>QA-006</td>
+        <td>Save persistence across restart</td>
+        <td>Player with Rank 3+, multiple generators</td>
+        <td>Note state &rarr; close app &rarr; relaunch &rarr; verify</td>
+        <td>All progress restored. Offline earnings calculated.</td>
+      </tr>
+      <tr>
+        <td>QA-007</td>
+        <td>Case-sensitivity / Android export</td>
+        <td>Android APK export</td>
+        <td>Export &rarr; install &rarr; navigate all tabs &rarr; check logs</td>
+        <td>No missing resource errors. All scenes load.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>P1 Save/Load &amp; Edge Cases</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Test Name</th><th>Setup</th><th>Expected Result</th></tr></thead>
+    <tbody>
+      <tr><td>QA-008</td><td>Corrupted save recovery</td><td>Invalid JSON in save</td><td>Recovery dialog shown, not silent data loss</td></tr>
+      <tr><td>QA-009</td><td>Offline earnings accuracy</td><td>Note income rate, close 30min</td><td>Earnings match 30% * online_rate * time</td></tr>
+      <tr><td>QA-010</td><td>Tutorial does not repeat</td><td>Completed tutorial save</td><td>No tutorials repeat on relaunch</td></tr>
+      <tr><td>QA-011</td><td>App closed during tutorial</td><td>Close during first upgrade highlight</td><td>Tutorial resumes or restarts coherently</td></tr>
+      <tr><td>QA-012</td><td>Tutorial skipped</td><td>Fresh launch, skip tutorial</td><td>Skip persists, can be reset from Settings</td></tr>
+      <tr><td>QA-013</td><td>Cloud save restore</td><td>No local, cloud profile exists</td><td>Cloud restored without duplicate grants</td></tr>
+      <tr><td>QA-014</td><td>Cloud conflict</td><td>Divergent local/cloud saves</td><td>Conflict UI, no silent overwrite</td></tr>
+      <tr><td>QA-015</td><td>No network on launch</td><td>Network disabled</td><td>Local play works; cloud/store/ads show unavailable</td></tr>
+      <tr><td>QA-016</td><td>Slow loading</td><td>Inject 10s delay</td><td>Loading screen responsive, communicates progress</td></tr>
+      <tr><td>QA-017</td><td>Failed resource load</td><td>Missing scenario data</td><td>User-facing fallback, no crash</td></tr>
+      <tr><td>QA-018</td><td>App closed during splash</td><td>Close during splash</td><td>No partial save corruption on relaunch</td></tr>
+      <tr><td>QA-019</td><td>Save migration from older version</td><td>Older save version</td><td>Migration succeeds; relevant tutorials shown</td></tr>
+    </tbody>
+  </table>
+
+  <h3>P1 Economy &amp; UI</h3>
+  <table>
+    <thead><tr><th>ID</th><th>Test Name</th><th>Setup</th><th>Expected Result</th></tr></thead>
+    <tbody>
+      <tr><td>QA-020</td><td>Generator upgrade cost scaling</td><td>Generator at levels 1/10/25/50/100</td><td>Costs follow GeneratorStatsCalculator. Player never permanently stuck.</td></tr>
+      <tr><td>QA-021</td><td>Gem economy balance</td><td>Track gems Rank 1-15</td><td>F2P players earn enough for several HQ upgrades</td></tr>
+      <tr><td>QA-022</td><td>Tab navigation</td><td>All tabs unlocked</td><td>All open/close correctly, rapid switching no glitches</td></tr>
+      <tr><td>QA-023</td><td>Popup stack behavior</td><td>Trigger multiple popups</td><td>Queue correctly, none swallowed</td></tr>
+      <tr><td>QA-024</td><td>Attention dots clear</td><td>Completed EA with dot</td><td>Dot clears after reward collection</td></tr>
+      <tr><td>QA-025</td><td>Store offer rank gating</td><td>Various ranks</td><td>Locked offers show rank requirement. Purchase reflects provider state.</td></tr>
+      <tr><td>QA-026</td><td>Pity system</td><td>Fresh save, known pity state</td><td>First-rare/epic guarantees fire. Pity counter tracks correctly.</td></tr>
+      <tr><td>QA-027</td><td>Generator evolution</td><td>Generator at evolution threshold</td><td>Evolution triggers, celebration plays, stats update, save correct</td></tr>
+      <tr><td>QA-028</td><td>Insufficient funds handling</td><td>Less cash than needed</td><td>Clear feedback, no silent failures, no negative balance</td></tr>
+      <tr><td>QA-029</td><td>Spanish locale coverage</td><td>Switch to ES</td><td>All text in Spanish, no English fallback visible, text fits containers</td></tr>
+      <tr><td>QA-030</td><td>Performance under load</td><td>8 generators, all staff assigned</td><td>60fps sustained, memory stable, no crashes</td></tr>
+      <tr><td>QA-031</td><td>Safe area / screen sizes</td><td>Phone/tablet aspect fixtures</td><td>No clipped text, overlaps, or unsafe-area violations</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================
+     COMPETITIVE BENCHMARK
+     ================================================================ -->
+<section id="competitive">
+  <h2>22. Competitive Benchmark Summary</h2>
+
+  <table>
+    <thead>
+      <tr><th>Game</th><th>First 5 Minutes</th><th>Locked Features</th><th>Monetization Timing</th><th>Key Lesson for MR Ventures</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AdVenture Capitalist</td><td>1 business, fast upgrades, automation later</td><td>Managers, angels, regions</td><td>After angel reset (~30min)</td><td>Start ultra-simple, tease complexity</td></tr>
+      <tr><td>Idle Miner Tycoon</td><td>1 mine, 3 shafts, first manager gifted, forced tutorial</td><td>Continents, super managers</td><td>Ad boosts from minute 5</td><td>Force first manager tutorial, progressive unlocks</td></tr>
+      <tr><td>Egg, Inc.</td><td>1 farm, tap to earn, research early, drones</td><td>Prestige hidden, silos limited</td><td>Piggy bank (delayed IAP)</td><td>Drones create engagement, delayed IAP is clever</td></tr>
+      <tr><td>Shop Titans</td><td>Craft item, sell, restock, guided tutorial</td><td>Market, guild, workers, quests</td><td>After level 5-10</td><td>Every new menu appears because player needs it</td></tr>
+      <tr><td>Cookie Clicker</td><td>Click, buy cursor, grandmas unlock naturally</td><td>Golden cookies random, prestige at ~1M</td><td>Premium DLC only</td><td>Minimal UI, everything by natural progression</td></tr>
+      <tr><td>Monopoly GO</td><td>Roll dice, land on properties, tutorial guided</td><td>Events, sticker packs</td><td>Immediate but non-blocking</td><td>Familiar theme reduces learning curve</td></tr>
+      <tr><td>Idle Theme Park Tycoon</td><td>Upgrade rides, earn idle cash</td><td>Managers, cards, research</td><td>Ads after park loop</td><td>Staff/managers follow proven timing</td></tr>
+      <tr><td>Idle Bank Tycoon</td><td>Upgrade bank areas, manage flow</td><td>Managers, new banks</td><td>Ads double production</td><td>Offline/ad boosts solve known friction</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Universal Patterns MR Ventures Must Follow</h3>
+  <div class="alert alert-red">
+    <strong>MR Ventures currently violates 6 of 8 universal idle-game patterns.</strong> These must be fixed before production launch.
+  </div>
+  <ol>
+    <li><strong>Only 1-2 things visible at start</strong> &mdash; complexity hidden and revealed progressively <span class="badge badge-missing">VIOLATED</span></li>
+    <li><strong>Forced/soft tutorial for first 2-5 actions</strong> &mdash; players guided through core loop <span class="badge badge-missing">VIOLATED</span></li>
+    <li><strong>Monetization delayed at least 5-15 minutes</strong> &mdash; value established first <span class="badge badge-missing">VIOLATED</span></li>
+    <li><strong>New features unlock one at a time with celebration</strong> <span class="badge badge-missing">VIOLATED</span></li>
+    <li><strong>Locked features teased with locks/previews</strong> <span class="badge badge-partial">PARTIAL</span></li>
+    <li><strong>Tab badges/indicators guide next action</strong> <span class="badge badge-missing">VIOLATED</span></li>
+    <li><strong>Offline return includes ad-double option</strong> <span class="badge badge-partial">PARTIAL</span></li>
+    <li><strong>Store hidden/locked until value established</strong> <span class="badge badge-missing">VIOLATED</span></li>
+  </ol>
+</section>
+
+<!-- ================================================================
+     PLAYER JOURNEY
+     ================================================================ -->
+<section id="player-journey">
+  <h2>23. Ideal First 5 Minutes</h2>
+
+  <table>
+    <thead>
+      <tr><th>Time</th><th>Player Moment</th><th>UI Shown</th><th>Tutorial/Indicator</th><th>Hidden</th><th>Desired Feeling</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0-5s</td><td>Launch</td><td>Logo splash</td><td>None</td><td>Everything</td><td>Polished</td></tr>
+      <tr><td>5-10s</td><td>Loading</td><td>Loading screen + tips</td><td>Progress bar</td><td>All systems</td><td>Intentional</td></tr>
+      <tr><td>10-25s</td><td>Welcome</td><td>Finley + brand promise</td><td>One tap continue</td><td>All tabs</td><td>Curious</td></tr>
+      <tr><td>25-60s</td><td>First generator</td><td>G1 dashboard only</td><td>Soft upgrade highlight</td><td>All tabs, full mission bar</td><td>Momentum</td></tr>
+      <tr><td>1-1.5m</td><td>First upgrade</td><td>Upgrade button glows</td><td>Celebration</td><td>Mission appears</td><td>Rewarded</td></tr>
+      <tr><td>1.5-2m</td><td>First mission progress</td><td>Mission bar highlighted</td><td>Progress tracking</td><td>HQ teased</td><td>Goal-driven</td></tr>
+      <tr><td>2-3m</td><td>First mission complete</td><td>Mission reward + chest</td><td>Chest opening</td><td>Staff teased if earned</td><td>Surprised</td></tr>
+      <tr><td>3-4m</td><td>First chest opened</td><td>Reward reveal</td><td>Staff intro if applicable</td><td>Store, most tabs</td><td>Collecting</td></tr>
+      <tr><td>4-5m</td><td>Second generator preview</td><td>Market tab unlocks</td><td>G2 as aspiration</td><td>Store, Staff (if no staff yet)</td><td>Anticipation</td></tr>
+    </tbody>
+  </table>
+
+  <div class="alert alert-red">
+    <strong>Current state:</strong> MR Ventures skips steps 1-5 entirely. The player sees the full game at 0 seconds with no guidance, no splash, no welcome, no tutorial, and all tabs visible.
+  </div>
+</section>
+
+<!-- ================================================================
+     APPENDIX
+     ================================================================ -->
+<section id="appendix">
+  <h2>24. Appendix: Specification Conflicts &amp; Resolutions</h2>
+
+  <table>
+    <thead><tr><th>Conflict</th><th>Resolution</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>8 vs 12 generators</td>
+        <td>Pacing Master targets 8. Older docs reference 12. Implementation: 8 generators.</td>
+        <td><span class="badge badge-done">RESOLVED</span></td>
+      </tr>
+      <tr>
+        <td>GC naming vs Evolution naming</td>
+        <td>Code uses <code>evolution_order</code> (0-5), docs use "Generator Chapters GC0-GC5". Functionally equivalent.</td>
+        <td><span class="badge badge-done">RESOLVED</span></td>
+      </tr>
+      <tr>
+        <td>Staff slots at GC0</td>
+        <td>Pacing Master says 0 slots at GC0. Implementation correct (no slots until EA rewards).</td>
+        <td><span class="badge badge-done">RESOLVED</span></td>
+      </tr>
+      <tr>
+        <td>Deals have no rewards</td>
+        <td>Both Pacing Master and EA Architecture confirm deals grant RP but no item rewards. Implementation matches.</td>
+        <td><span class="badge badge-done">RESOLVED</span></td>
+      </tr>
+      <tr>
+        <td>G1 start behavior</td>
+        <td>Pacing Master says G1 owned and running at start. Current save shows 2 generators &mdash; may be non-fresh state.</td>
+        <td><span class="badge badge-partial">NEEDS VERIFICATION</span></td>
+      </tr>
+      <tr>
+        <td>Gem economy balance</td>
+        <td>670 deterministic gems by Rank 30. HQ upgrades cost 720. Deficit of 50 gems requires 1 purchase or ad reward. Acceptable for soft monetization.</td>
+        <td><span class="badge badge-done">RESOLVED</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Unresolved Unknowns</h3>
+  <ul>
+    <li>Whether a fresh Godot run reaches first playable gameplay without runtime errors</li>
+    <li>Whether all UI layouts are production-ready on target devices and safe areas</li>
+    <li>Whether first-session pacing hits exact target timing bands in live play</li>
+    <li>Whether export stripping removes debug autoloads in final builds</li>
+    <li>Whether all icon/image references are valid under an export build</li>
+    <li>Theme &amp; Tone reference PDF not found in repository &mdash; content review may need external source</li>
+  </ul>
+
+  <h3>Build Verification Data</h3>
+  <table>
+    <thead><tr><th>Command</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td><code>dotnet --version</code></td><td>9.0.203</td></tr>
+      <tr><td><code>dotnet test tests/csharp/MR Ventures.Tests.csproj</code></td><td>622 passed, 0 failed, 0 skipped</td></tr>
+      <tr><td><code>dotnet build "MR Ventures 2025 Godot.csproj"</code></td><td>Build succeeded, 0 errors, 495 warnings</td></tr>
+      <tr><td><code>./tools/validate-gdscript.sh</code></td><td>GDScript validation passed</td></tr>
+      <tr><td><code>./tools/validate-publish-settings.sh</code></td><td>All publish settings checks passed</td></tr>
+      <tr><td><code>node --test tools.test.js</code></td><td>21/21 passed</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <p>MR Ventures &mdash; Production Readiness Final Consolidated Report &mdash; Generated 2026-05-14</p>
+  <p>Sources: Audit 1 + Audit 2</p>
+  <p>Commit <code>ad6ae418</code> &middot; Branch <code>analysys_roadmap_for_completion</code> &middot; Godot 4.6.1-stable &middot; .NET 9.0.203</p>
+</footer>
+
+</div><!-- /.main -->
+</body>
+</html>
