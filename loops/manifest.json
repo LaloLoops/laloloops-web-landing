@@ -1,0 +1,12 @@
+{
+  "loops": [
+    {
+      "id": "0001_the_first_loop",
+      "title": "The First Loop",
+      "summary": "In which we begin at the beginning, because that's where loops tend to start.",
+      "date": "2026-05-14",
+      "file": "0001_the_first_loop.md"
+    }
+  ],
+  "latest": "0001_the_first_loop"
+}
