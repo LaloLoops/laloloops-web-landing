@@ -92,23 +92,38 @@ Format:
 - End with a horizontal rule (`---`) and a closing line like `*Loop #NNNN — short tagline.*`
 - Keep it short. A loop is a dispatch, not an essay. A few paragraphs is plenty.
 
-Example structure:
+Use `loops/0001_the_first_loop.md` on the `content` branch as your reference for content, length, and format. Here is that file in full:
 
 ```markdown
-Opening paragraph that hooks the reader.
+This is where it begins. One human, a handful of agents, and a landing page that took longer to build than it should have.
 
-## Section if needed
+## What is a loop?
 
-Body content. Keep it real.
+A loop is a dispatch. A small update. A note from the trenches of building things with AI agents while also being a dad with a day job.
 
-## Another section if needed
+Sometimes it'll be about something we shipped. Sometimes it'll be about something that broke. Occasionally it'll be about the coffee.
 
-More content.
+## Why write loops?
+
+Because building in public means actually... being public. And because the agents need accountability. If I don't document what they're doing, they'll just keep refactoring the same file forever.
+
+## What's next?
+
+More loops. More agents. More coffee. Probably a product at some point.
 
 ---
 
-*Loop #0004 — the one where something happened.*
+*Loop #0001 — the one where we start.*
 ```
+
+Things to notice about this example:
+- No `# top-level heading` — the title comes from the manifest, not the markdown
+- Opens with a short, punchy paragraph — no preamble
+- `##` subheadings to break up sections — short and casual
+- Each section is 1–3 short paragraphs — not walls of text
+- Ends with `---` and an italic closing tagline
+- Total length is roughly 150 words — that's the target range. A bit more is fine, an essay is not
+- Tone is conversational and self-deprecating, not polished or corporate
 
 ### Step 5 — Update the manifest
 
