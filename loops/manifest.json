@@ -20,7 +20,14 @@
       "summary": "The first real attempt at distribution turned out to be less about posting and more about removing jargon, fake confidence, and panic.",
       "date": "2026-05-14",
       "file": "0003_posting_through_the_cringe.md"
+    },
+    {
+      "id": "0004_shadowban_probably",
+      "title": "Shadowban, Probably",
+      "summary": "The first real push on X immediately turned into a reminder that distribution can make you invisible for reasons no builder can debug.",
+      "date": "2026-05-15",
+      "file": "0004_shadowban_probably.md"
     }
   ],
-  "latest": "0003_posting_through_the_cringe"
+  "latest": "0004_shadowban_probably"
 }
