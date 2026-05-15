@@ -2,6 +2,8 @@
 
 Static landing page for [laloloops.com](https://laloloops.com). Hosted on GitHub Pages.
 
+> **Disclaimer:** This project is built entirely by AI agents. No human code review has been performed. Use at your own risk.
+
 ## How it works
 
 The site is plain HTML served from the `main` branch. No build step, no frameworks.
