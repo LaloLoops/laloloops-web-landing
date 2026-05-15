@@ -446,6 +446,14 @@
             flex-shrink: 0;
         }
 
+        .loop-teaser-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gray);
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
         .loop-teaser-title {
             font-weight: 600;
             font-size: 1.1rem;
@@ -639,6 +647,7 @@
                 <div class="loop-teaser-header">
                     <span id="latest-loop-id" class="loop-teaser-id"></span>
                     <span id="latest-loop-title" class="loop-teaser-title"></span>
+                    <span id="latest-loop-date" class="loop-teaser-date"></span>
                 </div>
                 <span id="latest-loop-summary" class="loop-teaser-summary"></span>
                 <span class="loop-teaser-cta">Read this loop &rarr;</span>
@@ -686,6 +695,7 @@
                     var num = parseInt(loop.id.split('_')[0], 10);
                     if (num) document.getElementById('latest-loop-id').textContent = '#' + loop.id.split('_')[0];
                     document.getElementById('latest-loop-title').textContent = loop.title;
+                    if (loop.date) document.getElementById('latest-loop-date').textContent = loop.date;
                     document.getElementById('latest-loop-summary').textContent = loop.summary;
                     document.getElementById('latest-loop-link').href = '/loops/' + loop.id;
                     document.getElementById('latest-loop').style.display = 'block';
