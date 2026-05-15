@@ -6,7 +6,7 @@ Static landing page for [laloloops.com](https://laloloops.com). Hosted on GitHub
 
 ## How it works
 
-The site is plain HTML served from the `main` branch. No build step, no frameworks.
+The site is plain HTML deployed to GitHub Pages via a GitHub Actions workflow. No frameworks.
 
 Dynamic content (loops — short dispatches/updates) lives on a separate **`content`** branch and is fetched client-side at page load via `raw.githubusercontent.com`.
 
@@ -77,6 +77,19 @@ git push origin content
 
 The site picks it up automatically. No changes to `main` needed.
 
+### Deployment & analytics
+
+The site is deployed by `.github/workflows/deploy.yml`. On every push to `main`, the workflow:
+
+1. Finds all `.html` files that don't already contain the GA4 measurement ID (`G-H6BXHR02XR`)
+2. Injects the gtag.js snippet into their `<head>`
+3. Builds with Jekyll (to respect `_config.yml` excludes)
+4. Deploys to GitHub Pages
+
+This means **analytics tracking is automatic** — new HTML pages get GA4 without any manual work. The source files stay clean (no gtag in the committed HTML), and the snippet is injected only at build time.
+
+The GitHub Pages source is set to **"GitHub Actions"** (not "Deploy from branch"). If you switch it back, the site will deploy without analytics.
+
 ### Caching
 
 `raw.githubusercontent.com` is CDN-cached for roughly 5 minutes. After pushing new content to the `content` branch, there may be a short delay before it appears on the live site.
@@ -104,6 +117,8 @@ main branch:
 ├── header.png
 ├── favicon.png
 ├── bot_*.png           # Flying bot decorations
+├── .github/workflows/
+│   └── deploy.yml      # GitHub Actions: injects GA4 + deploys to Pages
 ├── _config.yml         # Jekyll config (excludes agent files)
 ├── CNAME               # Custom domain (laloloops.com)
 ├── AGENTS.md
