@@ -26,10 +26,12 @@ jobs:
 
       - name: Generate loop detail pages
         run: |
+          pip install markdown
           git fetch origin content --depth=1 2>/dev/null || true
           MANIFEST=$(git show origin/content:loops/manifest.json 2>/dev/null || echo '{"loops":[]}')
           echo "$MANIFEST" | python3 -c "
           import json, sys, os, subprocess, html
+          import markdown as md_lib
 
           manifest = json.load(sys.stdin)
           template = open('loops/_template.html').read()
@@ -45,10 +47,7 @@ jobs:
                   capture_output=True, text=True
               ).stdout
 
-              body = subprocess.run(
-                  ['pandoc', '-f', 'markdown', '-t', 'html'],
-                  input=md, capture_output=True, text=True
-              ).stdout
+              body = md_lib.markdown(md, extensions=['fenced_code', 'tables'])
 
               page = template.replace('{{TITLE}}', html.escape(title))
               page = page.replace('{{LOOP_NUM}}', html.escape(loop_num))
