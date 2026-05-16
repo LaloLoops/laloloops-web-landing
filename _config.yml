@@ -3,3 +3,4 @@ exclude:
   - CLAUDE.md
   - README.md
   - loops/AGENT_INSTRUCTIONS.md
+  - loops/_template.html

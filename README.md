@@ -8,7 +8,7 @@ Static landing page for [laloloops.com](https://laloloops.com). Hosted on GitHub
 
 The site is plain HTML deployed to GitHub Pages via a GitHub Actions workflow. No frameworks.
 
-Dynamic content (loops — short dispatches/updates) lives on a separate **`content`** branch and is fetched client-side at page load via `raw.githubusercontent.com`.
+Loop content (short dispatches/updates) lives on a separate **`content`** branch as markdown files. At deploy time, the workflow renders them into static HTML pages. The homepage and archive page still fetch the manifest client-side for teasers and listing.
 
 ### Branches
 
@@ -25,7 +25,7 @@ The two branches are independent (orphan). They share no history.
 |---|---|---|
 | `/` | `index.html` | Landing page. Fetches `manifest.json` from `content` branch and shows the latest loop as a teaser card. If the fetch fails, the card stays hidden. |
 | `/loops/` | `loops/index.html` | Archive page. Lists all loops from the manifest, newest first. |
-| `/loops/<slug>` | `404.html` | Individual loop viewer. GitHub Pages serves `404.html` for any path that doesn't match a real file. The page extracts the slug from the URL, looks it up in the manifest, fetches the corresponding `.md` file, and renders it with [marked.js](https://github.com/markedjs/marked). If the slug doesn't match anything, it shows a 404 message. |
+| `/loops/<slug>` | `loops/<slug>/index.html` (generated) | Individual loop page. Built at deploy time from the markdown on the `content` branch using `pandoc` and a template (`loops/_template.html`). Pure HTML, no client-side JS needed. If someone hits a slug that doesn't exist, `404.html` shows a not-found message. |
 
 ### The manifest
 
@@ -75,30 +75,25 @@ git commit -m "Add loop 0002"
 git push origin content
 ```
 
-The site picks it up automatically. No changes to `main` needed.
+Pushing to the `content` branch triggers the deploy workflow, which generates a static page for the new loop and redeploys the site. No changes to `main` needed.
 
 ### Deployment & analytics
 
-The site is deployed by `.github/workflows/deploy.yml`. On every push to `main`, the workflow:
+The site is deployed by `.github/workflows/deploy.yml`. On every push to `main` or `content` (or manual dispatch), the workflow:
 
-1. Finds all `.html` files that don't already contain the GA4 measurement ID (`G-H6BXHR02XR`)
-2. Injects the gtag.js snippet into their `<head>`
-3. Builds with Jekyll (to respect `_config.yml` excludes)
-4. Deploys to GitHub Pages
+1. Checks out `main`
+2. Fetches the manifest from the `content` branch, reads each loop's markdown, converts it to HTML with `pandoc`, and writes a static `loops/<slug>/index.html` from the template
+3. Finds all `.html` files that don't already contain the GA4 measurement ID (`G-H6BXHR02XR`) and injects the gtag.js snippet into their `<head>`
+4. Builds with Jekyll (to respect `_config.yml` excludes)
+5. Deploys to GitHub Pages
 
-This means **analytics tracking is automatic** — new HTML pages get GA4 without any manual work. The source files stay clean (no gtag in the committed HTML), and the snippet is injected only at build time.
+Publishing a new loop on the `content` branch automatically triggers the workflow, which renders the markdown into a static HTML page and deploys the site. Analytics tracking is also automatic — all HTML pages (including the generated loop pages) get GA4 without any manual work. The source files stay clean (no gtag in the committed HTML), and the snippet is injected only at build time.
 
 The GitHub Pages source is set to **"GitHub Actions"** (not "Deploy from branch"). If you switch it back, the site will deploy without analytics.
 
-### Caching
-
-`raw.githubusercontent.com` is CDN-cached for roughly 5 minutes. After pushing new content to the `content` branch, there may be a short delay before it appears on the live site.
-
 ### Known limitations
 
-- **HTTP 404 status on individual loops.** URLs like `/loops/0001_the_first_loop` are served by the GitHub Pages 404 handler, so the HTTP response code is 404 even though the page renders correctly. This means social media crawlers (Twitter cards, Open Graph) won't generate link previews. This is an inherent GitHub Pages limitation for client-side routing. A future GitHub Action could generate static HTML files to fix this.
-- **No server-side rendering.** The content is fetched and rendered entirely in the browser. If JavaScript is disabled, only the static parts of the page are visible.
-- **Markdown is rendered unsanitized.** Since all content comes from this repo (which you control), this is fine. If you ever accept external content, add [DOMPurify](https://github.com/cure53/DOMPurify) or similar.
+- **Homepage and archive still use client-side JS.** The homepage teaser and `/loops/` archive fetch the manifest from `raw.githubusercontent.com` at page load. This content is CDN-cached for roughly 5 minutes, so there may be a short delay after publishing before teasers update. Individual loop pages are fully static.
 
 ## Local development
 
@@ -111,8 +106,9 @@ To test loop rendering locally, you can temporarily point the `RAW` variable in 
 ```
 main branch:
 ├── index.html          # Landing page + latest loop teaser
-├── 404.html            # Individual loop viewer + 404 page
+├── 404.html            # 404 page
 ├── loops/index.html    # Loop archive/listing page
+├── loops/_template.html # Template for generated loop detail pages
 ├── avatar.png
 ├── header.png
 ├── favicon.png
