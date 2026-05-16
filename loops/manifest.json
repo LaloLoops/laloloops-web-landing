@@ -27,7 +27,14 @@
       "summary": "The first real push on X immediately turned into a reminder that distribution can make you invisible for reasons no builder can debug.",
       "date": "2026-05-15",
       "file": "0004_shadowban_probably.md"
+    },
+    {
+      "id": "0005_doing_the_networking_thing",
+      "title": "Doing the Networking Thing",
+      "summary": "The standard playbook for meeting people on X feels a lot less standard when none of it seems to move the needle.",
+      "date": "2026-05-16",
+      "file": "0005_doing_the_networking_thing.md"
     }
   ],
-  "latest": "0004_shadowban_probably"
+  "latest": "0005_doing_the_networking_thing"
 }
