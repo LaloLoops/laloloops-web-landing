@@ -4,6 +4,9 @@ on:
   push:
     branches: [content]
 
+permissions:
+  actions: write
+
 jobs:
   trigger:
     runs-on: ubuntu-latest
