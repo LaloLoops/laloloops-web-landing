@@ -88,11 +88,16 @@ Create `loops/<slug>.md` on the `content` branch. This is the loop content.
 Format:
 - Write in standard markdown
 - Do not include a top-level `# heading` — the title is rendered from the manifest, not the markdown
-- Start with a short opening paragraph, then use `##` subheadings to structure if needed
+- Use the loop house format in this exact order:
+  - a short opening intro paragraph before any heading
+  - one `##` subtitle immediately after the intro
+  - the main body under that subtitle, usually 2-4 short paragraphs
+  - a horizontal rule and italic closing footer
+- Do not skip the subtitle and do not collapse the whole loop into body copy
 - End with a horizontal rule (`---`) and a closing line like `*Loop #NNNN — short tagline.*`
 - Keep it short. A loop is a dispatch, not an essay. A few paragraphs is plenty.
 
-Use `loops/0001_the_first_loop.md` on the `content` branch as your reference for content, length, and format. Here is that file in full:
+Use `loops/0002_launch_meet_silence.md`, `loops/0003_posting_through_the_cringe.md`, and `loops/0004_shadowban_probably.md` on the `content` branch as the clearest references for this shape. `loops/0001_the_first_loop.md` is still a valid tone and length reference. Here is `0001` in full:
 
 ```markdown
 This is where it begins. One human, a handful of agents, and a landing page that took longer to build than it should have.
@@ -119,7 +124,7 @@ More loops. More agents. More coffee. Probably a product at some point.
 Things to notice about this example:
 - No `# top-level heading` — the title comes from the manifest, not the markdown
 - Opens with a short, punchy paragraph — no preamble
-- `##` subheadings to break up sections — short and casual
+- Published loops should still include one explicit `##` subtitle after the intro, even when the rest is brief
 - Each section is 1–3 short paragraphs — not walls of text
 - Ends with `---` and an italic closing tagline
 - Total length is roughly 150 words — that's the target range. A bit more is fine, an essay is not
