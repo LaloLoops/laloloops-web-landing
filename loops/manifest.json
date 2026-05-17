@@ -34,7 +34,14 @@
       "summary": "The standard playbook for meeting people on X feels a lot less standard when none of it seems to move the needle.",
       "date": "2026-05-16",
       "file": "0005_doing_the_networking_thing.md"
+    },
+    {
+      "id": "0006_one_tiny_signal",
+      "title": "One Tiny Signal",
+      "summary": "A single real response changed nothing materially and, annoyingly, everything emotionally.",
+      "date": "2026-05-17",
+      "file": "0006_one_tiny_signal.md"
     }
   ],
-  "latest": "0005_doing_the_networking_thing"
+  "latest": "0006_one_tiny_signal"
 }
