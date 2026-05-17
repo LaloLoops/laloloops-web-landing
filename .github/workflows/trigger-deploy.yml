@@ -1,0 +1,14 @@
+name: Trigger site deploy
+
+on:
+  push:
+    branches: [content]
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh workflow run deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
