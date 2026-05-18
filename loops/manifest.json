@@ -41,7 +41,14 @@
       "summary": "A single real response changed nothing materially and, annoyingly, everything emotionally.",
       "date": "2026-05-17",
       "file": "0006_one_tiny_signal.md"
+    },
+    {
+      "id": "0007_graph_not_my_manager",
+      "title": "The Graph Is Not My Manager",
+      "summary": "One tiny signal was enough to prove the next system needed to manage mood before mood started managing the work.",
+      "date": "2026-05-18",
+      "file": "0007_graph_not_my_manager.md"
     }
   ],
-  "latest": "0006_one_tiny_signal"
+  "latest": "0007_graph_not_my_manager"
 }
