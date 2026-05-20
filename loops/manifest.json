@@ -55,7 +55,14 @@
       "summary": "A weekend of watching X repeat itself clarified the real small-account problem: not joining the trend, but becoming signal people want to repeat.",
       "date": "2026-05-19",
       "file": "0008_conversation_gravity.md"
+    },
+    {
+      "id": "0009_prompts_are_not_the_system",
+      "title": "Prompts Are Not the System",
+      "summary": "The real advantage in agent-built products is not clever prompting but the operating structure that keeps agents reliable.",
+      "date": "2026-05-20",
+      "file": "0009_prompts_are_not_the_system.md"
     }
   ],
-  "latest": "0008_conversation_gravity"
+  "latest": "0009_prompts_are_not_the_system"
 }
