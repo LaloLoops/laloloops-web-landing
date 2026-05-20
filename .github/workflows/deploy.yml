@@ -61,6 +61,87 @@ jobs:
               print(f'Created {dir_path}/index.html')
           "
 
+      - name: Build artifact pages
+        run: |
+          python3 <<'PYEOF'
+          import os, re, html, glob
+
+          artifacts_dir = 'artifacts'
+          if not os.path.isdir(artifacts_dir):
+              raise SystemExit(0)
+
+          with open(os.path.join(artifacts_dir, '_chrome_head.html')) as f:
+              chrome_head = f.read()
+          with open(os.path.join(artifacts_dir, '_chrome_top.html')) as f:
+              chrome_top = f.read()
+          with open(os.path.join(artifacts_dir, '_chrome_bottom.html')) as f:
+              chrome_bottom = f.read()
+          with open(os.path.join(artifacts_dir, '_index_template.html')) as f:
+              index_template = f.read()
+
+          MARKER = '<!-- lalo-chrome-injected -->'
+          IMAGE_EXTS = {'.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg'}
+          DOC_EXTS = {'.pdf', '.md', '.markdown', '.txt'}
+
+          artifacts = []
+
+          for path in sorted(glob.glob(os.path.join(artifacts_dir, '*'))):
+              name = os.path.basename(path)
+              if name.startswith('_') or name == 'index.html':
+                  continue
+              ext = os.path.splitext(name)[1].lower()
+              url = '/artifacts/' + name
+              kind = ext.lstrip('.') or 'file'
+              title = name
+
+              if ext == '.html':
+                  with open(path, encoding='utf-8') as f:
+                      content = f.read()
+                  m = re.search(r'<title>(.*?)</title>', content, re.IGNORECASE | re.DOTALL)
+                  if m:
+                      title = re.sub(r'\s+', ' ', html.unescape(m.group(1))).strip()
+                  if MARKER not in content:
+                      if '<head>' in content:
+                          content = content.replace('<head>', '<head>\n    ' + MARKER + '\n' + chrome_head, 1)
+                      if '<body>' in content:
+                          content = re.sub(r'(<body[^>]*>)', lambda mo: mo.group(1) + '\n' + chrome_top, content, count=1)
+                      if '</body>' in content:
+                          content = content.replace('</body>', chrome_bottom + '\n</body>', 1)
+                      with open(path, 'w', encoding='utf-8') as f:
+                          f.write(content)
+                      print(f'Injected chrome into {path}')
+              elif ext in IMAGE_EXTS or ext in DOC_EXTS:
+                  pass
+              else:
+                  continue
+
+              artifacts.append({'url': url, 'title': title, 'name': name, 'kind': kind})
+
+          if artifacts:
+              items_html = '\n'.join(
+                  '            <a href="{url}" class="artifact-item">\n'
+                  '                <div class="artifact-item-header">\n'
+                  '                    <span class="artifact-item-kind">{kind}</span>\n'
+                  '                    <span class="artifact-item-title">{title}</span>\n'
+                  '                </div>\n'
+                  '                <div class="artifact-item-name">{name}</div>\n'
+                  '            </a>'.format(
+                      url=html.escape(a['url']),
+                      kind=html.escape(a['kind']),
+                      title=html.escape(a['title']),
+                      name=html.escape(a['name']),
+                  )
+                  for a in artifacts
+              )
+          else:
+              items_html = '            <div class="empty">No artifacts yet.</div>'
+
+          index_page = index_template.replace('{{ITEMS}}', items_html)
+          with open(os.path.join(artifacts_dir, 'index.html'), 'w', encoding='utf-8') as f:
+              f.write(index_page)
+          print('Generated artifacts/index.html with', len(artifacts), 'item(s)')
+          PYEOF
+
       - name: Inject Google Analytics
         run: |
           cat > /tmp/ga-snippet.html <<'EOF'

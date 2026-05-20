@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lalo Loops — Artifacts</title>
+    <meta name="description" content="Reports, docs, and build outputs from the loop.">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --orange: #E8872B;
+            --orange-light: #F5A623;
+            --cream: #FDF0DC;
+            --cream-dark: #F0D9B5;
+            --black: #1A1A1A;
+            --dark: #2C2C2C;
+            --gray: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-brand span { color: var(--orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links a:hover { color: var(--black); }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .artifact-item {
+            display: block;
+            background: white;
+            border: 2px solid var(--cream-dark);
+            border-radius: 10px;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .artifact-item:hover {
+            border-color: var(--orange);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(232, 135, 43, 0.15);
+        }
+
+        .artifact-item-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            margin-bottom: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .artifact-item-kind {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--orange);
+            font-weight: 700;
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .artifact-item-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .artifact-item-name {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.4rem;
+            word-break: break-all;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 3rem 0;
+            color: var(--gray);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
+            margin-top: 3rem;
+            border-top: 2px solid var(--cream-dark);
+        }
+
+        .footer .infinity {
+            font-size: 1.5rem;
+            color: var(--orange);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer a:hover { color: var(--black); }
+
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 1rem; }
+            .page-title { font-size: 1.4rem; }
+            .artifact-item-header { flex-direction: column; gap: 0.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="/" class="nav-brand">Lalo <span>Loops</span></a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/loops/">Loops</a>
+                <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">Follow on X</a>
+            </div>
+        </nav>
+
+        <h1 class="page-title">Artifacts</h1>
+        <p class="page-subtitle">Reports, docs, and build outputs from the loop.</p>
+
+        <div id="artifacts-list">
+{{ITEMS}}
+        </div>
+
+        <div class="footer">
+            <span class="infinity">&infin;</span>
+            <a href="/">laloloops.com</a> &middot;
+            <a href="/loops/">Loops</a> &middot;
+            <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X</a> &middot;
+            <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,3 +3,6 @@
 *.swo
 *~
 .env
+
+# Build-generated
+/artifacts/index.html

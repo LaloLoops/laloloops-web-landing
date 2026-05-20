@@ -4,3 +4,7 @@ exclude:
   - README.md
   - loops/AGENT_INSTRUCTIONS.md
   - loops/_template.html
+  - artifacts/_chrome_head.html
+  - artifacts/_chrome_top.html
+  - artifacts/_chrome_bottom.html
+  - artifacts/_index_template.html
