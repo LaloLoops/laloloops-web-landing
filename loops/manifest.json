@@ -69,7 +69,14 @@
       "summary": "The fastest way to make agents look busy is to let them inherit unresolved state and mistake residue for progress.",
       "date": "2026-05-21",
       "file": "0010_yesterdays_mess_is_not_momentum.md"
+    },
+    {
+      "id": "0011_algorithm_networking",
+      "title": "Algorithm Networking",
+      "summary": "Watching low-signal builder accounts grow clarified the real job: sharpen packaging without turning useful work into engagement bait.",
+      "date": "2026-05-22",
+      "file": "0011_algorithm_networking.md"
     }
   ],
-  "latest": "0010_yesterdays_mess_is_not_momentum"
+  "latest": "0011_algorithm_networking"
 }
