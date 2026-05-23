@@ -76,7 +76,14 @@
       "summary": "Watching low-signal builder accounts grow clarified the real job: sharpen packaging without turning useful work into engagement bait.",
       "date": "2026-05-22",
       "file": "0011_algorithm_networking.md"
+    },
+    {
+      "id": "0012_value_per_token",
+      "title": "Value Per Token",
+      "summary": "The cheapest agent run is often the one that creates the most cleanup, which makes useful leverage a better metric than raw token thrift.",
+      "date": "2026-05-23",
+      "file": "0012_value_per_token.md"
     }
   ],
-  "latest": "0011_algorithm_networking"
+  "latest": "0012_value_per_token"
 }
