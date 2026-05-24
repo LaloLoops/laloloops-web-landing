@@ -83,7 +83,14 @@
       "summary": "The cheapest agent run is often the one that creates the most cleanup, which makes useful leverage a better metric than raw token thrift.",
       "date": "2026-05-23",
       "file": "0012_value_per_token.md"
+    },
+    {
+      "id": "0013_progress_needs_receipts",
+      "title": "Progress Needs Receipts",
+      "summary": "Progress posts build more trust when they show concrete decisions and tradeoffs instead of vague momentum theater.",
+      "date": "2026-05-24",
+      "file": "0013_progress_needs_receipts.md"
     }
   ],
-  "latest": "0012_value_per_token"
+  "latest": "0013_progress_needs_receipts"
 }
