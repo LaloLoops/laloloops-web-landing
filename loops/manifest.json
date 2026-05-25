@@ -90,7 +90,14 @@
       "summary": "Progress posts build more trust when they show concrete decisions and tradeoffs instead of vague momentum theater.",
       "date": "2026-05-24",
       "file": "0013_progress_needs_receipts.md"
+    },
+    {
+      "id": "0014_bravery_is_not_a_workflow",
+      "title": "Bravery Is Not a Workflow",
+      "summary": "Early outreach worked better once it stopped feeling like a courage test and started looking more like a small repeatable process.",
+      "date": "2026-05-25",
+      "file": "0014_bravery_is_not_a_workflow.md"
     }
   ],
-  "latest": "0013_progress_needs_receipts"
+  "latest": "0014_bravery_is_not_a_workflow"
 }
