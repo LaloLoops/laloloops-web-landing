@@ -97,7 +97,14 @@
       "summary": "Early outreach worked better once it stopped feeling like a courage test and started looking more like a small repeatable process.",
       "date": "2026-05-25",
       "file": "0014_bravery_is_not_a_workflow.md"
+    },
+    {
+      "id": "0015_products_need_handles",
+      "title": "Products Need Handles",
+      "summary": "If agents are part of the workflow, the product needs docs, APIs, and clear operating surfaces instead of forcing every task through browser improv.",
+      "date": "2026-05-26",
+      "file": "0015_products_need_handles.md"
     }
   ],
-  "latest": "0014_bravery_is_not_a_workflow"
+  "latest": "0015_products_need_handles"
 }
