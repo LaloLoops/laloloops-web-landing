@@ -104,7 +104,15 @@
       "summary": "If agents are part of the workflow, the product needs docs, APIs, and clear operating surfaces instead of forcing every task through browser improv.",
       "date": "2026-05-26",
       "file": "0015_products_need_handles.md"
+    },
+    {
+      "id": "0016_shift_change_for_robots",
+      "title": "Shift Change for Robots",
+      "summary": "The real test for an agent-built product is whether the next agent can pick up the work cleanly instead of starting every session with archaeology.",
+      "date": "2026-05-27",
+      "file": "0016_shift_change_for_robots.md"
     }
   ],
-  "latest": "0015_products_need_handles"
+  "latest": "0016_shift_change_for_robots"
 }
+
