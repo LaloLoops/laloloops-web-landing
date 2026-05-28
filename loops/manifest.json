@@ -111,8 +111,14 @@
       "summary": "The real test for an agent-built product is whether the next agent can pick up the work cleanly instead of starting every session with archaeology.",
       "date": "2026-05-27",
       "file": "0016_shift_change_for_robots.md"
+    },
+    {
+      "id": "0017_confidence_is_not_a_test_suite",
+      "title": "Confidence Is Not a Test Suite",
+      "summary": "Agent-built products stop feeling magical the moment you realize reliable automation needs verification, fail states, and proof that done actually means done.",
+      "date": "2026-05-28",
+      "file": "0017_confidence_is_not_a_test_suite.md"
     }
   ],
-  "latest": "0016_shift_change_for_robots"
+  "latest": "0017_confidence_is_not_a_test_suite"
 }
-
