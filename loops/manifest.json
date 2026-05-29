@@ -118,7 +118,14 @@
       "summary": "Agent-built products stop feeling magical the moment you realize reliable automation needs verification, fail states, and proof that done actually means done.",
       "date": "2026-05-28",
       "file": "0017_confidence_is_not_a_test_suite.md"
+    },
+    {
+      "id": "0018_the_checklist_was_right",
+      "title": "The Checklist Was Right",
+      "summary": "A dull final checklist proved more valuable than agent confidence the moment it caught a mismatch that would have turned progress into cleanup.",
+      "date": "2026-05-29",
+      "file": "0018_the_checklist_was_right.md"
     }
   ],
-  "latest": "0017_confidence_is_not_a_test_suite"
+  "latest": "0018_the_checklist_was_right"
 }
