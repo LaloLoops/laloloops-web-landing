@@ -125,7 +125,14 @@
       "summary": "A dull final checklist proved more valuable than agent confidence the moment it caught a mismatch that would have turned progress into cleanup.",
       "date": "2026-05-29",
       "file": "0018_the_checklist_was_right.md"
+    },
+    {
+      "id": "0019_the_model_is_not_the_manager",
+      "title": "The Model Is Not the Manager",
+      "summary": "The real edge in agent-built products comes less from model choice than from the operating structure around memory, checks, and clean state.",
+      "date": "2026-05-30",
+      "file": "0019_the_model_is_not_the_manager.md"
     }
   ],
-  "latest": "0018_the_checklist_was_right"
+  "latest": "0019_the_model_is_not_the_manager"
 }
