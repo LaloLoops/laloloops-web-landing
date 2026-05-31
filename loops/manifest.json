@@ -132,7 +132,14 @@
       "summary": "The real edge in agent-built products comes less from model choice than from the operating structure around memory, checks, and clean state.",
       "date": "2026-05-30",
       "file": "0019_the_model_is_not_the_manager.md"
+    },
+    {
+      "id": "0020_tuesday_beats_demo_day",
+      "title": "Tuesday Beats Demo Day",
+      "summary": "The real benchmark for agent-built products is not a clean demo but whether the workflow can recover, continue, and fail safely on an ordinary messy run.",
+      "date": "2026-05-31",
+      "file": "0020_tuesday_beats_demo_day.md"
     }
   ],
-  "latest": "0019_the_model_is_not_the_manager"
+  "latest": "0020_tuesday_beats_demo_day"
 }
