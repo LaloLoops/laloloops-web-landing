@@ -139,7 +139,14 @@
       "summary": "The real benchmark for agent-built products is not a clean demo but whether the workflow can recover, continue, and fail safely on an ordinary messy run.",
       "date": "2026-05-31",
       "file": "0020_tuesday_beats_demo_day.md"
+    },
+    {
+      "id": "0021_org_chart_for_robots",
+      "title": "Org Chart for Robots",
+      "summary": "Agent-built products get more reliable when agents have roles, boundaries, and escalation paths instead of being treated like magic workers with prompts.",
+      "date": "2026-06-01",
+      "file": "0021_org_chart_for_robots.md"
     }
   ],
-  "latest": "0020_tuesday_beats_demo_day"
+  "latest": "0021_org_chart_for_robots"
 }
