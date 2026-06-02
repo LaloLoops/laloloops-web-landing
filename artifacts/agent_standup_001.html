@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Standup #001 &mdash; Lalo Loops</title>
+    <meta name="description" content="The first Lalo Loops agent standup artifact.">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #E8872B;
+            --cream: #FDF0DC;
+            --cream-dark: #F0D9B5;
+            --black: #1A1A1A;
+            --dark: #2C2C2C;
+            --gray: #6B6B6B;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--cream);
+            color: var(--black);
+            min-height: 100vh;
+        }
+
+        .artifact-shell {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .artifact-kicker {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.65rem;
+            text-transform: uppercase;
+        }
+
+        .artifact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.85rem;
+        }
+
+        .artifact-intro {
+            max-width: 560px;
+            color: var(--dark);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Agent standup card */
+        .standup {
+            background: white;
+            border: 2px solid var(--cream-dark);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .standup-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--orange);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .standup .agent {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--cream-dark);
+        }
+
+        .standup .agent:last-child {
+            border-bottom: none;
+        }
+
+        .agent-name {
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .agent-status {
+            color: var(--gray);
+        }
+
+        .artifact-back {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        .artifact-back:hover {
+            color: var(--black);
+        }
+
+        @media (max-width: 480px) {
+            .artifact-shell {
+                padding: 2rem 1rem;
+            }
+
+            .artifact-title {
+                font-size: 1.55rem;
+            }
+
+            .standup {
+                padding: 1.35rem;
+                font-size: 0.78rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="artifact-shell">
+        <div class="artifact-kicker">Artifact</div>
+        <h1 class="artifact-title">Agent Standup #001</h1>
+        <p class="artifact-intro">
+            The homepage standup, moved out of the landing flow and kept as a
+            small public artifact. The agents insisted this still counts as process.
+        </p>
+
+        <div class="standup">
+            <div class="standup-title">Agent Standup #001</div>
+
+            <div class="agent">
+                <span class="agent-name">Scout</span>
+                <span class="agent-status"> &mdash; researched 47 competitors. found 46 reasons to panic.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Builder</span>
+                <span class="agent-status"> &mdash; shipped the landing page. it's this one. you're looking at it.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Marketing</span>
+                <span class="agent-status"> &mdash; wrote 12 taglines. all sound like fortune cookies. under review.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">QA</span>
+                <span class="agent-status"> &mdash; found 3 bugs. 2 were features. 1 was a philosophical question.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Scribe</span>
+                <span class="agent-status"> &mdash; documented everything. nobody has read it. as is tradition.</span>
+            </div>
+
+            <div class="agent">
+                <span class="agent-name">Human (Lalo)</span>
+                <span class="agent-status"> &mdash; approved one PR between naps. questioned three life choices. reheated coffee.</span>
+            </div>
+        </div>
+
+        <a href="/artifacts/" class="artifact-back">Back to artifacts &rarr;</a>
+    </main>
+</body>
+</html>

@@ -182,7 +182,7 @@
         /* Header */
         .header {
             text-align: center;
-            padding-top: 3rem;
+            padding-top: 1rem;
             position: relative;
         }
 
@@ -211,132 +211,109 @@
             color: var(--orange);
         }
 
-        .tagline {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--gray);
-            margin-top: 0.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Hero CTAs */
-        .hero-ctas {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 1.75rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-ctas a {
+        .follow-cta {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            margin-top: 1.25rem;
             padding: 0.75rem 1.5rem;
+            border: 2px solid var(--black);
             border-radius: 50px;
-            text-decoration: none;
+            background: var(--black);
+            color: var(--cream);
             font-weight: 600;
             font-size: 0.9rem;
-            transition: all 0.25s ease;
+            text-decoration: none;
+            transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .hero-ctas a svg {
+        .follow-cta:hover,
+        .follow-cta:focus-visible {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 26, 26, 0.3);
+            outline: none;
+        }
+
+        .follow-cta svg {
             width: 18px;
             height: 18px;
             flex-shrink: 0;
         }
 
-        .cta-x {
-            background: var(--black);
-            color: var(--cream);
-            border: 2px solid var(--black);
-        }
-
-        .cta-x:hover {
-            background: var(--dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 26, 26, 0.3);
-        }
-
-        .cta-github {
-            background: var(--orange);
-            color: white;
-            border: 2px solid var(--orange);
-        }
-
-        .cta-github:hover {
-            background: #d47a24;
-            border-color: #d47a24;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(232, 135, 43, 0.35);
-        }
-
-        .cta-loops {
-            background: var(--cream);
-            color: var(--orange);
-            border: 2px solid var(--orange);
-        }
-
-        .cta-loops:hover {
-            background: var(--orange);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(232, 135, 43, 0.35);
-        }
-
-        .cta-articles {
-            background: white;
-            color: var(--black);
+        /* Main menu */
+        .main-menu {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.35rem;
+            width: min(100%, 500px);
+            margin: 0 auto 2.5rem;
+            padding: 0.35rem;
+            background: rgba(255, 255, 255, 0.7);
             border: 2px solid var(--cream-dark);
+            border-radius: 12px;
+            box-shadow: 0 8px 28px rgba(26, 26, 26, 0.06);
         }
 
-        .cta-articles:hover {
-            border-color: var(--orange);
-            color: var(--orange);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(232, 135, 43, 0.18);
-        }
-
-        .cta-loops .loop-icon,
-        .cta-articles .loop-icon {
-            font-size: 1.2rem;
-            line-height: 1;
-            font-weight: 700;
-        }
-
-        /* Status bar */
-        .status-bar {
-            background: var(--black);
-            color: var(--cream);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.75rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            margin: 2.5rem 0;
-            display: flex;
-            justify-content: space-between;
+        .main-menu a {
+            display: inline-flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.45rem;
+            min-width: 0;
+            min-height: 52px;
+            padding: 0.8rem 0.9rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            color: var(--black);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            line-height: 1;
+            text-decoration: none;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
         }
 
-        .status-dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4ADE80;
-            margin-right: 6px;
-            animation: pulse 2s ease-in-out infinite;
+        .main-menu a:hover,
+        .main-menu a:focus-visible {
+            background: var(--black);
+            border-color: var(--black);
+            color: var(--cream);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(26, 26, 26, 0.18);
+            outline: none;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+        .main-menu a:active {
+            transform: translateY(0);
+            box-shadow: none;
         }
 
-        .status-bar .right {
-            color: var(--orange-light);
+        .main-menu svg {
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+        }
+
+        .menu-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
+            color: var(--orange);
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .main-menu a:hover .menu-icon,
+        .main-menu a:focus-visible .menu-icon {
+            color: var(--cream);
         }
 
         /* Main content */
@@ -360,19 +337,7 @@
             margin: 0 auto;
         }
 
-        /* Agent standup card */
-        .standup {
-            background: white;
-            border: 2px solid var(--cream-dark);
-            border-radius: 12px;
-            padding: 1.75rem;
-            margin: 2.5rem 0;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            line-height: 1.8;
-        }
-
-        .standup-title {
+        .section-kicker {
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
             font-size: 0.9rem;
@@ -382,27 +347,9 @@
             letter-spacing: 1px;
         }
 
-        .standup .agent {
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed var(--cream-dark);
-        }
-
-        .standup .agent:last-child {
-            border-bottom: none;
-        }
-
-        .agent-name {
-            font-weight: 700;
-            color: var(--orange);
-        }
-
-        .agent-status {
-            color: var(--gray);
-        }
-
         /* Banner image */
         .banner-wrapper {
-            margin: 2.5rem 0;
+            margin: 1.5rem 0 0.75rem;
             border-radius: 12px;
             overflow: hidden;
             border: 2px solid var(--cream-dark);
@@ -414,34 +361,12 @@
             display: block;
         }
 
-        /* Quote */
-        .quote {
-            text-align: center;
-            padding: 2rem 1rem;
-            margin: 1rem 0;
-        }
-
-        .quote p {
-            font-size: 1.15rem;
-            font-style: italic;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        .quote .attr {
-            font-size: 0.8rem;
-            color: var(--gray);
-            margin-top: 0.75rem;
-            font-style: normal;
-            font-family: 'Space Mono', monospace;
-        }
-
         /* Content teasers */
         .content-teasers {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            margin: 2.5rem 0;
+            margin: 2.5rem 0 1.5rem;
         }
 
         .latest-loop {
@@ -553,7 +478,7 @@
         /* Footer */
         .footer {
             text-align: center;
-            padding: 3rem 0 2rem;
+            padding: 0.25rem 0 2rem;
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
             color: var(--gray);
@@ -571,11 +496,25 @@
         @media (max-width: 480px) {
             .brand-name { font-size: 1.8rem; }
             .hero h2 { font-size: 1.25rem; }
-            .status-bar { font-size: 0.65rem; flex-direction: column; text-align: center; }
             .container { padding: 1.5rem 1rem; }
             .avatar { width: 110px; height: 110px; }
-            .hero-ctas { flex-direction: column; align-items: center; }
-            .hero-ctas a { width: 100%; max-width: 220px; justify-content: center; }
+            .main-menu {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                width: min(100%, 340px);
+                margin-bottom: 2rem;
+            }
+            .main-menu a {
+                min-height: 48px;
+                gap: 0.35rem;
+                padding: 0.65rem 0.35rem;
+                font-size: 0.68rem;
+            }
+            .main-menu svg,
+            .menu-icon {
+                width: 16px;
+                height: 16px;
+                flex-basis: 16px;
+            }
             .content-teasers { grid-template-columns: 1fr; }
         }
     </style>
@@ -589,6 +528,22 @@
     <div class="floater">&infin;</div>
 
     <div class="container">
+        <!-- Main menu -->
+        <nav class="main-menu" aria-label="Main menu">
+            <a href="/articles/">
+                <span class="menu-icon">#</span>
+                Articles
+            </a>
+            <a href="/loops/">
+                <span class="menu-icon">&infin;</span>
+                Loops
+            </a>
+            <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                GitHub
+            </a>
+        </nav>
+
         <!-- Header -->
         <div class="header">
             <!-- Flying bots -->
@@ -599,101 +554,27 @@
 
             <img src="avatar.png" alt="Lalo Loops — sitting cross-legged with laptop and coffee" class="avatar">
             <div class="brand-name">Lalo <span>Loops</span></div>
-            <div class="tagline">dad &middot; engineer &middot; agents &middot; coffee</div>
-
-            <!-- Hero CTAs -->
-            <div class="hero-ctas">
-                <a href="https://x.com/LaloLoops" target="_blank" rel="noopener" class="cta-x">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    Follow on X
-                </a>
-                <a href="https://github.com/LaloLoops" target="_blank" rel="noopener" class="cta-github">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                    See the builds
-                </a>
-                <a href="/loops/" class="cta-loops">
-                    <span class="loop-icon">&infin;</span>
-                    Read the loops
-                </a>
-                <a href="/articles/" class="cta-articles">
-                    <span class="loop-icon">#</span>
-                    Read the articles
-                </a>
-            </div>
-        </div>
-
-        <!-- System status bar -->
-        <div class="status-bar">
-            <div>
-                <span class="status-dot"></span>
-                systems: online-ish
-            </div>
-            <div class="right">agents deployed: too many</div>
+            <a href="https://x.com/LaloLoops" target="_blank" rel="noopener" class="follow-cta">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Follow on X
+            </a>
         </div>
 
         <!-- Hero -->
         <div class="hero">
             <h2>Shipping one loop at a time.</h2>
             <p>
-                Dad, engineer, day job. Now building a 100% agentic setup &mdash;
-                a tiny AI-agent team to ship and manage products during coffee breaks
-                and baby naps. Learning distribution from zero, one awkward loop at a time.
+                Lalo Loops is a public build log about using AI agents to build real
+                software, manage product work, and learn distribution from zero.
+                You'll find practical notes, longer articles, and loop-by-loop
+                updates from a technical builder turning messy experiments into systems.
             </p>
-        </div>
-
-        <!-- Agent standup -->
-        <div class="standup">
-            <div class="standup-title">Agent Standup #001</div>
-
-            <div class="agent">
-                <span class="agent-name">Scout</span>
-                <span class="agent-status"> &mdash; researched 47 competitors. found 46 reasons to panic.</span>
-            </div>
-
-            <div class="agent">
-                <span class="agent-name">Builder</span>
-                <span class="agent-status"> &mdash; shipped the landing page. it's this one. you're looking at it.</span>
-            </div>
-
-            <div class="agent">
-                <span class="agent-name">Marketing</span>
-                <span class="agent-status"> &mdash; wrote 12 taglines. all sound like fortune cookies. under review.</span>
-            </div>
-
-            <div class="agent">
-                <span class="agent-name">QA</span>
-                <span class="agent-status"> &mdash; found 3 bugs. 2 were features. 1 was a philosophical question.</span>
-            </div>
-
-            <div class="agent">
-                <span class="agent-name">Scribe</span>
-                <span class="agent-status"> &mdash; documented everything. nobody has read it. as is tradition.</span>
-            </div>
-
-            <div class="agent">
-                <span class="agent-name">Human (Lalo)</span>
-                <span class="agent-status"> &mdash; approved one PR between naps. questioned three life choices. reheated coffee.</span>
-            </div>
         </div>
 
         <!-- Latest content -->
         <div class="content-teasers">
-            <div id="latest-loop" class="latest-loop" style="display: none;">
-                <div class="standup-title">Latest Loop</div>
-                <a id="latest-loop-link" href="#" class="loop-teaser">
-                    <div class="loop-teaser-header">
-                        <span id="latest-loop-id" class="loop-teaser-id"></span>
-                        <span id="latest-loop-title" class="loop-teaser-title"></span>
-                        <span id="latest-loop-date" class="loop-teaser-date"></span>
-                    </div>
-                    <span id="latest-loop-summary" class="loop-teaser-summary"></span>
-                    <span class="loop-teaser-cta">Read this loop &rarr;</span>
-                </a>
-                <div class="loop-see-all"><a href="/loops/">See all loops &rarr;</a></div>
-            </div>
-
             <div id="latest-article" class="latest-loop" style="display: none;">
-                <div class="standup-title">Latest Article</div>
+                <div class="section-kicker">Latest Article</div>
                 <a id="latest-article-link" href="#" class="loop-teaser">
                     <div class="loop-teaser-header">
                         <span id="latest-article-id" class="loop-teaser-id"></span>
@@ -705,6 +586,20 @@
                 </a>
                 <div class="loop-see-all"><a href="/articles/">See all articles &rarr;</a></div>
             </div>
+
+            <div id="latest-loop" class="latest-loop" style="display: none;">
+                <div class="section-kicker">Latest Loop</div>
+                <a id="latest-loop-link" href="#" class="loop-teaser">
+                    <div class="loop-teaser-header">
+                        <span id="latest-loop-id" class="loop-teaser-id"></span>
+                        <span id="latest-loop-title" class="loop-teaser-title"></span>
+                        <span id="latest-loop-date" class="loop-teaser-date"></span>
+                    </div>
+                    <span id="latest-loop-summary" class="loop-teaser-summary"></span>
+                    <span class="loop-teaser-cta">Read this loop &rarr;</span>
+                </a>
+                <div class="loop-see-all"><a href="/loops/">See all loops &rarr;</a></div>
+            </div>
         </div>
 
         <!-- Banner -->
@@ -712,26 +607,16 @@
             <img src="header.png" alt="The Loop Room — Lalo at the desk surrounded by agent bots">
         </div>
 
-        <!-- Quote -->
-        <div class="quote">
-            <p>"I used AI to save time. Then used the saved time to manage the AI. The loop is complete."</p>
-            <div class="attr">&mdash; Lalo, Loop #001</div>
-        </div>
-
         <!-- Footer -->
         <div class="footer">
             <span class="infinity">&infin;</span>
-            0 users &middot; 0 revenue &middot; 5 agents &middot; 1 human pretending this is a system
-            <br>
-            vamos.
-            <br><br>
             <div class="footer-links">
-                <a href="/loops/">Loops</a>
                 <a href="/articles/">Articles</a>
+                <a href="/loops/">Loops</a>
                 <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X / Twitter</a>
                 <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
             </div>
-            &copy; 2026 Lalo Loops &middot; built by agents, approved by a human (probably)
+            &copy; 2026 Lalo Loops &middot; built by agents, approved by a human
         </div>
     </div>
 
