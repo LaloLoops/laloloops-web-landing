@@ -146,7 +146,14 @@
       "summary": "Agent-built products get more reliable when agents have roles, boundaries, and escalation paths instead of being treated like magic workers with prompts.",
       "date": "2026-06-01",
       "file": "0021_org_chart_for_robots.md"
+    },
+    {
+      "id": "0022_guessing_is_not_escalation",
+      "title": "Guessing Is Not Escalation",
+      "summary": "Reliable agent systems need a clean way to stop and escalate uncertainty before polite improvisation turns into confident cleanup work.",
+      "date": "2026-06-02",
+      "file": "0022_guessing_is_not_escalation.md"
     }
   ],
-  "latest": "0021_org_chart_for_robots"
+  "latest": "0022_guessing_is_not_escalation"
 }
