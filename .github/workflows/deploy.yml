@@ -39,8 +39,10 @@ jobs:
           for loop in manifest.get('loops', []):
               slug = loop['id']
               title = loop['title']
+              summary = loop.get('summary', 'Dispatch from the loop.')
               date = loop['date']
               loop_num = '#' + slug.split('_')[0]
+              canonical_url = f'https://laloloops.com/loops/{slug}/'
 
               md = subprocess.run(
                   ['git', 'show', f'origin/content:loops/{loop[\"file\"]}'],
@@ -50,6 +52,8 @@ jobs:
               body = md_lib.markdown(md, extensions=['fenced_code', 'tables'])
 
               page = template.replace('{{TITLE}}', html.escape(title))
+              page = page.replace('{{DESCRIPTION}}', html.escape(summary))
+              page = page.replace('{{CANONICAL_URL}}', html.escape(canonical_url))
               page = page.replace('{{LOOP_NUM}}', html.escape(loop_num))
               page = page.replace('{{DATE}}', html.escape(date))
               page = page.replace('{{BODY}}', body)
@@ -100,9 +104,18 @@ jobs:
                   m = re.search(r'<title>(.*?)</title>', content, re.IGNORECASE | re.DOTALL)
                   if m:
                       title = re.sub(r'\s+', ' ', html.unescape(m.group(1))).strip()
+                  description = 'Report, doc, or build output from Lalo Loops.'
+                  canonical_url = 'https://laloloops.com' + url
+                  page_head = (
+                      chrome_head
+                      .replace('{{TITLE}}', html.escape(title, quote=True))
+                      .replace('{{DESCRIPTION}}', html.escape(description, quote=True))
+                      .replace('{{CANONICAL_URL}}', html.escape(canonical_url, quote=True))
+                      .replace('{{OG_TYPE}}', 'article')
+                  )
                   if MARKER not in content:
                       if '<head>' in content:
-                          content = content.replace('<head>', '<head>\n    ' + MARKER + '\n' + chrome_head, 1)
+                          content = content.replace('<head>', '<head>\n    ' + MARKER + '\n' + page_head, 1)
                       if '<body>' in content:
                           content = re.sub(r'(<body[^>]*>)', lambda mo: mo.group(1) + '\n' + chrome_top, content, count=1)
                       if '</body>' in content:
