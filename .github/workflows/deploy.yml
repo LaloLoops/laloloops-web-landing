@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, content]
   workflow_dispatch:
 
 permissions:
@@ -24,46 +24,55 @@ jobs:
         with:
           ref: main
 
-      - name: Generate loop detail pages
+      - name: Generate content detail pages
         run: |
           pip install markdown
           git fetch origin content --depth=1 2>/dev/null || true
-          MANIFEST=$(git show origin/content:loops/manifest.json 2>/dev/null || echo '{"loops":[]}')
-          echo "$MANIFEST" | python3 -c "
-          import json, sys, os, subprocess, html
+          python3 <<'PYEOF'
+          import json, os, subprocess, html
           import markdown as md_lib
 
-          manifest = json.load(sys.stdin)
-          template = open('loops/_template.html').read()
-
-          for loop in manifest.get('loops', []):
-              slug = loop['id']
-              title = loop['title']
-              summary = loop.get('summary', 'Dispatch from the loop.')
-              date = loop['date']
-              loop_num = '#' + slug.split('_')[0]
-              canonical_url = f'https://laloloops.com/loops/{slug}/'
-
-              md = subprocess.run(
-                  ['git', 'show', f'origin/content:loops/{loop[\"file\"]}'],
+          def git_show(path, fallback):
+              result = subprocess.run(
+                  ['git', 'show', f'origin/content:{path}'],
                   capture_output=True, text=True
-              ).stdout
+              )
+              if result.returncode != 0:
+                  return fallback
+              return result.stdout
 
-              body = md_lib.markdown(md, extensions=['fenced_code', 'tables'])
+          def render_collection(name, number_token, default_summary):
+              manifest_text = git_show(f'{name}/manifest.json', '{"%s":[]}' % name)
+              manifest = json.loads(manifest_text)
+              template = open(f'{name}/_template.html').read()
 
-              page = template.replace('{{TITLE}}', html.escape(title))
-              page = page.replace('{{DESCRIPTION}}', html.escape(summary))
-              page = page.replace('{{CANONICAL_URL}}', html.escape(canonical_url))
-              page = page.replace('{{LOOP_NUM}}', html.escape(loop_num))
-              page = page.replace('{{DATE}}', html.escape(date))
-              page = page.replace('{{BODY}}', body)
+              for item in manifest.get(name, []):
+                  slug = item['id']
+                  title = item['title']
+                  summary = item.get('summary', default_summary)
+                  date = item['date']
+                  item_num = '#' + slug.split('_')[0]
+                  canonical_url = f'https://laloloops.com/{name}/{slug}/'
 
-              dir_path = f'loops/{slug}'
-              os.makedirs(dir_path, exist_ok=True)
-              with open(f'{dir_path}/index.html', 'w') as f:
-                  f.write(page)
-              print(f'Created {dir_path}/index.html')
-          "
+                  md = git_show(f'{name}/{item["file"]}', '')
+                  body = md_lib.markdown(md, extensions=['fenced_code', 'tables'])
+
+                  page = template.replace('{{TITLE}}', html.escape(title))
+                  page = page.replace('{{DESCRIPTION}}', html.escape(summary))
+                  page = page.replace('{{CANONICAL_URL}}', html.escape(canonical_url))
+                  page = page.replace(number_token, html.escape(item_num))
+                  page = page.replace('{{DATE}}', html.escape(date))
+                  page = page.replace('{{BODY}}', body)
+
+                  dir_path = f'{name}/{slug}'
+                  os.makedirs(dir_path, exist_ok=True)
+                  with open(f'{dir_path}/index.html', 'w') as f:
+                      f.write(page)
+                  print(f'Created {dir_path}/index.html')
+
+          render_collection('loops', '{{LOOP_NUM}}', 'Dispatch from the loop.')
+          render_collection('articles', '{{ARTICLE_NUM}}', 'Longer note from the loop.')
+          PYEOF
 
       - name: Build artifact pages
         run: |

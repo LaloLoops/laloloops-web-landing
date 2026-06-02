@@ -28,11 +28,9 @@
 
         :root {
             --orange: #E8872B;
-            --orange-light: #F5A623;
             --cream: #FDF0DC;
             --cream-dark: #F0D9B5;
             --black: #1A1A1A;
-            --dark: #2C2C2C;
             --gray: #6B6B6B;
         }
 
@@ -49,7 +47,6 @@
             padding: 2rem 1.5rem;
         }
 
-        /* Nav */
         .nav {
             display: flex;
             align-items: center;
@@ -86,19 +83,18 @@
 
         .nav-links a:hover { color: var(--black); }
 
-        /* Loop content */
-        .loop-header {
+        .article-header {
             margin-bottom: 2rem;
         }
 
-        .loop-title {
+        .article-title {
             font-size: 1.8rem;
             font-weight: 700;
             line-height: 1.3;
             margin-bottom: 0.5rem;
         }
 
-        .loop-meta {
+        .article-meta {
             font-family: 'Space Mono', monospace;
             font-size: 0.8rem;
             color: var(--gray);
@@ -106,31 +102,30 @@
             gap: 1rem;
         }
 
-        /* Markdown content styling */
-        .loop-body {
-            line-height: 1.8;
+        .article-body {
+            line-height: 1.85;
             font-size: 1.05rem;
         }
 
-        .loop-body h1, .loop-body h2, .loop-body h3 {
+        .article-body h1, .article-body h2, .article-body h3 {
             margin: 2rem 0 1rem;
             line-height: 1.3;
         }
 
-        .loop-body h1 { font-size: 1.5rem; }
-        .loop-body h2 { font-size: 1.3rem; }
-        .loop-body h3 { font-size: 1.1rem; }
+        .article-body h1 { font-size: 1.5rem; }
+        .article-body h2 { font-size: 1.3rem; }
+        .article-body h3 { font-size: 1.1rem; }
 
-        .loop-body p { margin-bottom: 1rem; }
+        .article-body p { margin-bottom: 1rem; }
 
-        .loop-body ul, .loop-body ol {
+        .article-body ul, .article-body ol {
             margin: 1rem 0;
             padding-left: 1.5rem;
         }
 
-        .loop-body li { margin-bottom: 0.5rem; }
+        .article-body li { margin-bottom: 0.5rem; }
 
-        .loop-body code {
+        .article-body code {
             font-family: 'Space Mono', monospace;
             background: var(--cream-dark);
             padding: 0.15rem 0.4rem;
@@ -138,7 +133,7 @@
             font-size: 0.9em;
         }
 
-        .loop-body pre {
+        .article-body pre {
             background: var(--black);
             color: var(--cream);
             padding: 1.25rem;
@@ -147,13 +142,13 @@
             margin: 1.5rem 0;
         }
 
-        .loop-body pre code {
+        .article-body pre code {
             background: none;
             padding: 0;
             color: inherit;
         }
 
-        .loop-body blockquote {
+        .article-body blockquote {
             border-left: 3px solid var(--orange);
             padding-left: 1rem;
             margin: 1.5rem 0;
@@ -161,26 +156,25 @@
             font-style: italic;
         }
 
-        .loop-body a {
+        .article-body a {
             color: var(--orange);
             text-decoration: underline;
         }
 
-        .loop-body img {
+        .article-body img {
             max-width: 100%;
             border-radius: 8px;
             margin: 1rem 0;
         }
 
-        .loop-body hr {
+        .article-body hr {
             border: none;
             border-top: 2px solid var(--cream-dark);
             margin: 2rem 0;
         }
 
-        .loop-body em { color: var(--gray); }
+        .article-body em { color: var(--gray); }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 3rem 0 2rem;
@@ -208,8 +202,8 @@
 
         @media (max-width: 480px) {
             .container { padding: 1.5rem 1rem; }
-            .loop-title { font-size: 1.4rem; }
-            .loop-meta { flex-direction: column; gap: 0.25rem; }
+            .article-title { font-size: 1.4rem; }
+            .article-meta { flex-direction: column; gap: 0.25rem; }
         }
     </style>
 </head>
@@ -225,14 +219,14 @@
             </div>
         </nav>
 
-        <div class="loop-header">
-            <h1 class="loop-title">{{TITLE}}</h1>
-            <div class="loop-meta">
-                <span>{{LOOP_NUM}}</span>
+        <div class="article-header">
+            <h1 class="article-title">{{TITLE}}</h1>
+            <div class="article-meta">
+                <span>{{ARTICLE_NUM}}</span>
                 <span>{{DATE}}</span>
             </div>
         </div>
-        <div class="loop-body">
+        <div class="article-body">
 {{BODY}}
         </div>
 

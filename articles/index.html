@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lalo Loops — Loops | Agentic Workflow Dispatches</title>
-    <meta name="description" content="Dispatches from the loop. Updates, builds, and the occasional existential crisis.">
-    <link rel="canonical" href="https://laloloops.com/loops/">
+    <title>Lalo Loops — Articles | Longer Notes from the Loop</title>
+    <meta name="description" content="Longer essays from Lalo Loops about agents, building products, and learning distribution without pretending it is elegant.">
+    <link rel="canonical" href="https://laloloops.com/articles/">
     <meta property="og:site_name" content="Lalo Loops">
-    <meta property="og:title" content="Lalo Loops — Loops | Agentic Workflow Dispatches">
-    <meta property="og:description" content="Dispatches from the loop. Updates, builds, and the occasional existential crisis.">
+    <meta property="og:title" content="Lalo Loops — Articles | Longer Notes from the Loop">
+    <meta property="og:description" content="Longer essays from Lalo Loops about agents, building products, and learning distribution without pretending it is elegant.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://laloloops.com/loops/">
+    <meta property="og:url" content="https://laloloops.com/articles/">
     <meta property="og:image" content="https://laloloops.com/header.png">
     <meta property="og:image:width" content="1983">
     <meta property="og:image:height" content="793">
     <meta property="og:image:alt" content="Lalo Loops header illustration showing a senior engineer building agentic workflows with AI helpers.">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lalo Loops — Loops | Agentic Workflow Dispatches">
-    <meta name="twitter:description" content="Dispatches from the loop. Updates, builds, and the occasional existential crisis.">
+    <meta name="twitter:title" content="Lalo Loops — Articles | Longer Notes from the Loop">
+    <meta name="twitter:description" content="Longer essays from Lalo Loops about agents, building products, and learning distribution without pretending it is elegant.">
     <meta name="twitter:image" content="https://laloloops.com/header.png">
     <meta name="twitter:image:alt" content="Lalo Loops header illustration showing a senior engineer building agentic workflows with AI helpers.">
     <link rel="icon" href="/favicon.png" type="image/png">
@@ -28,11 +28,9 @@
 
         :root {
             --orange: #E8872B;
-            --orange-light: #F5A623;
             --cream: #FDF0DC;
             --cream-dark: #F0D9B5;
             --black: #1A1A1A;
-            --dark: #2C2C2C;
             --gray: #6B6B6B;
         }
 
@@ -49,7 +47,6 @@
             padding: 2rem 1.5rem;
         }
 
-        /* Nav */
         .nav {
             display: flex;
             align-items: center;
@@ -96,10 +93,10 @@
             color: var(--gray);
             font-size: 0.95rem;
             margin-bottom: 2rem;
+            line-height: 1.6;
         }
 
-        /* Loop list */
-        .loop-item {
+        .article-item {
             display: block;
             background: white;
             border: 2px solid var(--cream-dark);
@@ -111,20 +108,20 @@
             transition: all 0.2s ease;
         }
 
-        .loop-item:hover {
+        .article-item:hover {
             border-color: var(--orange);
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(232, 135, 43, 0.15);
         }
 
-        .loop-item-header {
+        .article-item-header {
             display: flex;
             align-items: baseline;
             gap: 0.75rem;
             margin-bottom: 0.4rem;
         }
 
-        .loop-item-id {
+        .article-item-id {
             font-family: 'Space Mono', monospace;
             font-size: 0.75rem;
             color: var(--orange);
@@ -132,19 +129,19 @@
             flex-shrink: 0;
         }
 
-        .loop-item-title {
+        .article-item-title {
             font-weight: 600;
             font-size: 1.05rem;
         }
 
-        .loop-item-summary {
+        .article-item-summary {
             font-size: 0.85rem;
             color: var(--gray);
             line-height: 1.5;
             margin-top: 0.25rem;
         }
 
-        .loop-item-date {
+        .article-item-date {
             font-family: 'Space Mono', monospace;
             font-size: 0.7rem;
             color: var(--gray);
@@ -160,7 +157,6 @@
             line-height: 1.8;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding: 3rem 0 2rem;
@@ -189,7 +185,7 @@
         @media (max-width: 480px) {
             .container { padding: 1.5rem 1rem; }
             .page-title { font-size: 1.4rem; }
-            .loop-item-header { flex-direction: column; gap: 0.25rem; }
+            .article-item-header { flex-direction: column; gap: 0.25rem; }
         }
     </style>
 </head>
@@ -205,16 +201,17 @@
             </div>
         </nav>
 
-        <h1 class="page-title">Loops</h1>
-        <p class="page-subtitle">Dispatches from the loop. Newest first.</p>
+        <h1 class="page-title">Articles</h1>
+        <p class="page-subtitle">Longer notes from the loop. Still allergic to guru energy. Newest first.</p>
 
-        <div id="loops-list">
+        <div id="articles-list">
             <div class="empty">Loading...</div>
         </div>
 
         <div class="footer">
             <span class="infinity">&infin;</span>
             <a href="/">laloloops.com</a> &middot;
+            <a href="/loops/">Loops</a> &middot;
             <a href="/articles/">Articles</a> &middot;
             <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X</a> &middot;
             <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
@@ -225,54 +222,54 @@
         var RAW = 'https://raw.githubusercontent.com/LaloLoops/laloloops-web-landing/content';
 
         (async function() {
-            var list = document.getElementById('loops-list');
+            var list = document.getElementById('articles-list');
 
             try {
-                var res = await fetch(RAW + '/loops/manifest.json');
+                var res = await fetch(RAW + '/articles/manifest.json');
                 if (!res.ok) throw new Error();
                 var manifest = await res.json();
 
-                if (!manifest.loops.length) {
-                    list.innerHTML = '<div class="empty">No loops yet. The agents are still warming up.</div>';
+                if (!manifest.articles.length) {
+                    list.innerHTML = '<div class="empty">No articles yet. The long thoughts are still pretending to be notes.</div>';
                     return;
                 }
 
                 list.innerHTML = '';
-                var loops = manifest.loops.slice().reverse();
-                loops.forEach(function(loop) {
+                var articles = manifest.articles.slice().reverse();
+                articles.forEach(function(article) {
                     var a = document.createElement('a');
-                    a.href = '/loops/' + loop.id;
-                    a.className = 'loop-item';
+                    a.href = '/articles/' + article.id;
+                    a.className = 'article-item';
 
                     var header = document.createElement('div');
-                    header.className = 'loop-item-header';
+                    header.className = 'article-item-header';
 
                     var id = document.createElement('span');
-                    id.className = 'loop-item-id';
-                    id.textContent = '#' + loop.id.split('_')[0];
+                    id.className = 'article-item-id';
+                    id.textContent = 'Article #' + article.id.split('_')[0];
                     header.appendChild(id);
 
                     var title = document.createElement('span');
-                    title.className = 'loop-item-title';
-                    title.textContent = loop.title;
+                    title.className = 'article-item-title';
+                    title.textContent = article.title;
                     header.appendChild(title);
 
                     a.appendChild(header);
 
                     var summary = document.createElement('div');
-                    summary.className = 'loop-item-summary';
-                    summary.textContent = loop.summary;
+                    summary.className = 'article-item-summary';
+                    summary.textContent = article.summary;
                     a.appendChild(summary);
 
                     var date = document.createElement('div');
-                    date.className = 'loop-item-date';
-                    date.textContent = loop.date;
+                    date.className = 'article-item-date';
+                    date.textContent = article.date;
                     a.appendChild(date);
 
                     list.appendChild(a);
                 });
             } catch (e) {
-                list.innerHTML = '<div class="empty">No loops yet. The agents are still warming up.</div>';
+                list.innerHTML = '<div class="empty">No articles yet. The long thoughts are still pretending to be notes.</div>';
             }
         })();
     </script>

@@ -284,7 +284,21 @@
             box-shadow: 0 6px 20px rgba(232, 135, 43, 0.35);
         }
 
-        .cta-loops .loop-icon {
+        .cta-articles {
+            background: white;
+            color: var(--black);
+            border: 2px solid var(--cream-dark);
+        }
+
+        .cta-articles:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 135, 43, 0.18);
+        }
+
+        .cta-loops .loop-icon,
+        .cta-articles .loop-icon {
             font-size: 1.2rem;
             line-height: 1;
             font-weight: 700;
@@ -422,13 +436,20 @@
             font-family: 'Space Mono', monospace;
         }
 
-        /* Latest loop teaser */
+        /* Content teasers */
+        .content-teasers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2.5rem 0;
+        }
+
         .latest-loop {
             background: white;
             border: 2px solid var(--cream-dark);
             border-radius: 12px;
             padding: 1.75rem;
-            margin: 2.5rem 0;
+            min-width: 0;
         }
 
         .loop-teaser {
@@ -555,6 +576,7 @@
             .avatar { width: 110px; height: 110px; }
             .hero-ctas { flex-direction: column; align-items: center; }
             .hero-ctas a { width: 100%; max-width: 220px; justify-content: center; }
+            .content-teasers { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -592,6 +614,10 @@
                 <a href="/loops/" class="cta-loops">
                     <span class="loop-icon">&infin;</span>
                     Read the loops
+                </a>
+                <a href="/articles/" class="cta-articles">
+                    <span class="loop-icon">#</span>
+                    Read the articles
                 </a>
             </div>
         </div>
@@ -650,19 +676,35 @@
             </div>
         </div>
 
-        <!-- Latest Loop -->
-        <div id="latest-loop" class="latest-loop" style="display: none;">
-            <div class="standup-title">Latest from the Loop</div>
-            <a id="latest-loop-link" href="#" class="loop-teaser">
-                <div class="loop-teaser-header">
-                    <span id="latest-loop-id" class="loop-teaser-id"></span>
-                    <span id="latest-loop-title" class="loop-teaser-title"></span>
-                    <span id="latest-loop-date" class="loop-teaser-date"></span>
-                </div>
-                <span id="latest-loop-summary" class="loop-teaser-summary"></span>
-                <span class="loop-teaser-cta">Read this loop &rarr;</span>
-            </a>
-            <div class="loop-see-all"><a href="/loops/">See all loops &rarr;</a></div>
+        <!-- Latest content -->
+        <div class="content-teasers">
+            <div id="latest-loop" class="latest-loop" style="display: none;">
+                <div class="standup-title">Latest Loop</div>
+                <a id="latest-loop-link" href="#" class="loop-teaser">
+                    <div class="loop-teaser-header">
+                        <span id="latest-loop-id" class="loop-teaser-id"></span>
+                        <span id="latest-loop-title" class="loop-teaser-title"></span>
+                        <span id="latest-loop-date" class="loop-teaser-date"></span>
+                    </div>
+                    <span id="latest-loop-summary" class="loop-teaser-summary"></span>
+                    <span class="loop-teaser-cta">Read this loop &rarr;</span>
+                </a>
+                <div class="loop-see-all"><a href="/loops/">See all loops &rarr;</a></div>
+            </div>
+
+            <div id="latest-article" class="latest-loop" style="display: none;">
+                <div class="standup-title">Latest Article</div>
+                <a id="latest-article-link" href="#" class="loop-teaser">
+                    <div class="loop-teaser-header">
+                        <span id="latest-article-id" class="loop-teaser-id"></span>
+                        <span id="latest-article-title" class="loop-teaser-title"></span>
+                        <span id="latest-article-date" class="loop-teaser-date"></span>
+                    </div>
+                    <span id="latest-article-summary" class="loop-teaser-summary"></span>
+                    <span class="loop-teaser-cta">Read this article &rarr;</span>
+                </a>
+                <div class="loop-see-all"><a href="/articles/">See all articles &rarr;</a></div>
+            </div>
         </div>
 
         <!-- Banner -->
@@ -685,6 +727,7 @@
             <br><br>
             <div class="footer-links">
                 <a href="/loops/">Loops</a>
+                <a href="/articles/">Articles</a>
                 <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X / Twitter</a>
                 <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
             </div>
@@ -696,21 +739,27 @@
         (function() {
             var RAW = 'https://raw.githubusercontent.com/LaloLoops/laloloops-web-landing/content';
 
-            fetch(RAW + '/loops/manifest.json')
-                .then(function(r) { return r.json(); })
-                .then(function(manifest) {
-                    var loop = manifest.loops.find(function(l) { return l.id === manifest.latest; });
-                    if (!loop) return;
+            function loadLatest(kind, label, path) {
+                fetch(RAW + '/' + path + '/manifest.json')
+                    .then(function(r) { return r.json(); })
+                    .then(function(manifest) {
+                        var items = manifest[path] || [];
+                        var item = items.find(function(i) { return i.id === manifest.latest; });
+                        if (!item) return;
 
-                    var num = parseInt(loop.id.split('_')[0], 10);
-                    if (num) document.getElementById('latest-loop-id').textContent = '#' + loop.id.split('_')[0];
-                    document.getElementById('latest-loop-title').textContent = loop.title;
-                    if (loop.date) document.getElementById('latest-loop-date').textContent = loop.date;
-                    document.getElementById('latest-loop-summary').textContent = loop.summary;
-                    document.getElementById('latest-loop-link').href = '/loops/' + loop.id;
-                    document.getElementById('latest-loop').style.display = 'block';
-                })
-                .catch(function() {});
+                        var num = parseInt(item.id.split('_')[0], 10);
+                        if (num) document.getElementById('latest-' + kind + '-id').textContent = label + ' #' + item.id.split('_')[0];
+                        document.getElementById('latest-' + kind + '-title').textContent = item.title;
+                        if (item.date) document.getElementById('latest-' + kind + '-date').textContent = item.date;
+                        document.getElementById('latest-' + kind + '-summary').textContent = item.summary;
+                        document.getElementById('latest-' + kind + '-link').href = '/' + path + '/' + item.id;
+                        document.getElementById('latest-' + kind).style.display = 'block';
+                    })
+                    .catch(function() {});
+            }
+
+            loadLatest('loop', 'Loop', 'loops');
+            loadLatest('article', 'Article', 'articles');
         })();
     </script>
 </body>

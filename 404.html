@@ -51,6 +51,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1rem;
             padding: 1rem 0;
             margin-bottom: 2rem;
             border-bottom: 2px solid var(--cream-dark);
@@ -68,6 +69,8 @@
         .nav-links {
             display: flex;
             gap: 1.25rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .nav-links a {
@@ -136,8 +139,9 @@
         <nav class="nav">
             <a href="/" class="nav-brand">Lalo <span>Loops</span></a>
             <div class="nav-links">
-                <a href="/loops/">Loops</a>
                 <a href="/">Home</a>
+                <a href="/loops/">Loops</a>
+                <a href="/articles/">Articles</a>
                 <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">Follow on X</a>
             </div>
         </nav>
@@ -148,12 +152,15 @@
             <a href="/">&#8592; Back to base</a>
             &nbsp;&middot;&nbsp;
             <a href="/loops/">All loops</a>
+            &nbsp;&middot;&nbsp;
+            <a href="/articles/">All articles</a>
         </div>
 
         <div class="footer">
             <span class="infinity">&infin;</span>
             <a href="/">laloloops.com</a> &middot;
             <a href="/loops/">Loops</a> &middot;
+            <a href="/articles/">Articles</a> &middot;
             <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X</a> &middot;
             <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
         </div>
