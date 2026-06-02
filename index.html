@@ -738,9 +738,17 @@
     <script>
         (function() {
             var RAW = 'https://raw.githubusercontent.com/LaloLoops/laloloops-web-landing/content';
+            var LOCAL_HOSTS = ['localhost', '127.0.0.1', '::1'];
+
+            function manifestUrl(path) {
+                if (LOCAL_HOSTS.indexOf(location.hostname) !== -1) {
+                    return '/preview/content/' + path + '/manifest.json';
+                }
+                return RAW + '/' + path + '/manifest.json';
+            }
 
             function loadLatest(kind, label, path) {
-                fetch(RAW + '/' + path + '/manifest.json')
+                fetch(manifestUrl(path))
                     .then(function(r) { return r.json(); })
                     .then(function(manifest) {
                         var items = manifest[path] || [];

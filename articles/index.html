@@ -220,12 +220,20 @@
 
     <script>
         var RAW = 'https://raw.githubusercontent.com/LaloLoops/laloloops-web-landing/content';
+        var LOCAL_HOSTS = ['localhost', '127.0.0.1', '::1'];
+
+        function manifestUrl(path) {
+            if (LOCAL_HOSTS.indexOf(location.hostname) !== -1) {
+                return '/preview/content/' + path + '/manifest.json';
+            }
+            return RAW + '/' + path + '/manifest.json';
+        }
 
         (async function() {
             var list = document.getElementById('articles-list');
 
             try {
-                var res = await fetch(RAW + '/articles/manifest.json');
+                var res = await fetch(manifestUrl('articles'));
                 if (!res.ok) throw new Error();
                 var manifest = await res.json();
 
