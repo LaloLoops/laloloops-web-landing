@@ -1,0 +1,12 @@
+{
+  "articles": [
+    {
+      "id": "0001_more_ideas_than_time",
+      "title": "More ideas than time. Until AI.",
+      "summary": "Why time — not skill or compute — is the real constraint on building, and how agents change the exchange rate. A short take; the full essay lives on X.",
+      "date": "2026-05-25",
+      "file": "0001_more_ideas_than_time.md"
+    }
+  ],
+  "latest": "0001_more_ideas_than_time"
+}
