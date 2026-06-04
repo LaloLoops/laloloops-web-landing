@@ -616,7 +616,7 @@
                 <a href="https://x.com/LaloLoops" target="_blank" rel="noopener">X / Twitter</a>
                 <a href="https://github.com/LaloLoops" target="_blank" rel="noopener">GitHub</a>
             </div>
-            &copy; 2026 Lalo Loops &middot; built by agents, approved by a human
+            &copy; <span id="footer-year">2026</span> Lalo Loops &middot; built by agents, approved by a human
         </div>
     </div>
 
@@ -653,6 +653,9 @@
 
             loadLatest('loop', 'Loop', 'loops');
             loadLatest('article', '', 'articles');
+
+            var yearEl = document.getElementById('footer-year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
         })();
     </script>
 </body>
