@@ -155,7 +155,14 @@ The GitHub Pages source is set to **"GitHub Actions"** (not "Deploy from branch"
 
 Open `index.html` in a browser. The homepage content teasers require the `content` branch to be pushed to the remote because they fetch from `raw.githubusercontent.com`.
 
-To test archive rendering locally, you can temporarily point the `RAW` variable in the JS to a local server or use a tool like `npx serve`.
+For a full local preview — rendered loop/article detail pages plus populated listings, which otherwise only exist after a CI deploy — run:
+
+```bash
+./preview.sh          # builds preview content, serves on http://localhost:8000
+./preview.sh 8003     # optional custom port
+```
+
+`preview/build.py` reuses the same templating as the deploy workflow. Loops are rendered from the remote `content` branch; articles render from committed sample fixtures under `preview/fixtures/articles/`. The served output lands in `preview/content/` (gitignored), and the whole `preview/` directory is excluded from the published site via `_config.yml` — nothing in it ever reaches the live site or the `content` branch. See `preview/README.md`.
 
 ## File structure
 
@@ -173,8 +180,10 @@ main branch:
 ├── bot_*.png            # Flying bot decorations
 ├── .github/workflows/
 │   └── deploy.yml       # GitHub Actions: render content, inject GA4, deploy to Pages
-├── _config.yml          # Jekyll config (excludes agent files)
+├── _config.yml          # Jekyll config (excludes agent files + preview/)
 ├── CNAME                # Custom domain (laloloops.com)
+├── preview/             # Local preview harness (build.py + fixtures); excluded from the live site
+├── preview.sh           # Build + serve the site locally
 ├── AGENTS.md
 └── CLAUDE.md
 

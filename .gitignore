@@ -10,3 +10,8 @@
 # Local preview-generated detail pages
 /loops/[0-9][0-9][0-9][0-9]_*/
 /articles/[0-9][0-9][0-9][0-9]_*/
+
+# Local preview build output (assembled from preview/fixtures/ — see preview/README.md).
+# Source fixtures under preview/fixtures/ ARE tracked; the served build output is not.
+/preview/content/
+__pycache__/

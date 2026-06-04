@@ -58,6 +58,14 @@ not work fully from a local file URL.
 For content rendering changes, use the workflow documented in `README.md` and
 verify generated pages before publishing.
 
+To preview the site locally with rendered detail pages and populated listings
+(detail pages and manifest fetches normally only work after CI deploys), run
+`./preview.sh` — it builds preview content via `preview/build.py` and serves
+over HTTP. See `preview/README.md`. Loops are rendered from the remote `content`
+branch; articles render from committed sample fixtures under `preview/fixtures/`.
+Preview output is local-only and gitignored, and `preview/` is excluded from the
+published site; none of it ever reaches the live site or the `content` branch.
+
 ## Working Rules
 
 - Keep the site simple: HTML, CSS, and static assets unless the task explicitly
