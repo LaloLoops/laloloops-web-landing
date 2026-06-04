@@ -5,37 +5,37 @@
   </a>
 </div>
 
-I have always had more ideas than time to build them. Most people who make things do. The backlog is infinite; the hours are not. For a long time I filed that under personal failing — not enough discipline, not enough hours in the day. It isn't a discipline problem. It's an exchange-rate problem.
+I've always had more ideas than time to build them. Most people who make things do. The list keeps growing and the hours don't, and for years I filed that under personal failing: weak discipline, bad planning, not enough sleep. Took me too long to notice it isn't a discipline problem at all. It's an exchange rate.
 
 ## The budget nobody prints more of
 
-You get a few decades at full power — the years where skill, energy, and nerve actually overlap. That window is the whole budget. Everything you'll ever make, you make inside it.
+You get a few decades at full power — the years when skill, energy, and nerve actually overlap. That window is the whole budget. Everything you'll ever make, you make inside it.
 
-And most of it gets spent on things that were never the point: formatting, admin, research redone for the fourth time, the thousand small loops between an idea and the finished thing. Money you can borrow against, save, or move through time. The hours you can't. That's the asset sitting under all the others, and it's the only one you can't manufacture more of.
+Most of it gets spent on things that were never the point: formatting, admin, the same lookup done for the fourth time, the small loops between having an idea and holding the finished version of it. You can borrow money, save it, move it around in time. Hours don't work like that. Time is the asset sitting under all the others, and the only one you can't make more of.
 
 ## A bad exchange rate dressed up as virtue
 
-The usual answer to "I want to do more" is "work more hours." But work never runs out — finish today's list and tomorrow prints a fresh one. Life does run out. So the standard ambition trade is spending the one thing you can't get back for more of the one thing that never stops coming.
+The usual answer to "I want to do more" is "work more hours." But work is the one thing that never runs out — finish today's list and tomorrow prints a fresh one. Your life does run out. So the standard ambition move is to trade the thing you can't get back for more of the thing you already have too much of.
 
-That's a terrible rate. "Locked in" culture just sells it back to you as a virtue.
+Bad deal. "Locked in" culture just sells it back to you as a personality.
 
-The smarter move isn't more hours. It's changing the rate.
+The move isn't to find more hours. It's to change what an hour buys.
 
 ## What the agents are actually for
 
-This is where AI stops being a productivity flex and becomes a lever. Agents burn energy and money — compute, models, subscriptions — and return cognitive labor. A scout that researches. A builder that implements. A critic that attacks weak reasoning before the market does. Small, eager workers carrying the loops that used to tax a single human life, so the human can spend that life on the part that's actually theirs.
+This is where the agents earn their keep. They burn energy and money — compute, model bills, a stack of subscriptions — and hand back cognitive labor. Scout researches. Builder implements. Critic tears into weak reasoning before the market does. A tiny crew running the loops that used to tax a whole human life, so the human can spend that life on the part only they can do.
 
-Used well, it turns energy and money back into time. Used badly, it just makes you a faster employee of your own calendar.
+Pointed the right way, that turns money and energy back into time. Pointed the wrong way, it just makes you a faster employee of your own calendar.
 
 ## The hard half
 
-Changing the rate is the easy part. Spending what it gives back is the hard one.
+Getting the rate is the easy part. Spending what it gives back is harder.
 
-When you can build almost anything, taste becomes the bottleneck instead of capacity. Volume gets trivial, so "did this deserve to exist" becomes the only interesting question. And the busywork you hand off doesn't vanish — it comes back as a new job: reviewing, correcting, holding five half-built things in your head at once.
+When you can build almost anything, taste turns into the bottleneck. Volume stops being the constraint, so the only question left is whether the thing deserved to exist at all. And the busywork you handed off doesn't disappear — it comes back as a different job: reviewing, correcting, keeping five half-built things balanced in your head at once.
 
-I don't have clean answers yet. I think that's the work now — the part no agent gets to do for you.
+I don't have clean answers for that yet. Pretty sure that's the actual work now — the part no agent gets to do for you.
 
-Civilization learned to turn energy into work. Markets learned to price it across time. AI adds a lever that turns some of it back into hours. What you do with those hours is the only part that stays human — and I want two things out of them: work that outlasts the afternoon, and a life I was actually in. The agents are just the weird machinery that make both possible at once.
+Humans got good at turning energy into work, then got good at pricing that work across time. AI adds one more trick: turning a little of it back into hours. What you do with those hours is the only part that stays yours. I want two things out of mine — work that outlasts the afternoon, and a life I was actually present for. The agents are just the weird machinery that makes both possible at once.
 
 ---
 
