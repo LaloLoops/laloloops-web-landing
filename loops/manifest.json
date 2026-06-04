@@ -160,7 +160,14 @@
       "summary": "Agent-built products stop looking magical and start looking reliable when the hard part shifts from prompting to operating structure.",
       "date": "2026-06-03",
       "file": "0023_agents_need_a_workplace.md"
+    },
+    {
+      "id": "0024_permissions_are_a_product_decision",
+      "title": "Permissions Are a Product Decision",
+      "summary": "Useful agent products earn trust by shaping safe permission boundaries instead of treating autonomy like the default goal.",
+      "date": "2026-06-04",
+      "file": "0024_permissions_are_a_product_decision.md"
     }
   ],
-  "latest": "0023_agents_need_a_workplace"
+  "latest": "0024_permissions_are_a_product_decision"
 }
