@@ -641,7 +641,7 @@
                         if (!item) return;
 
                         var num = parseInt(item.id.split('_')[0], 10);
-                        if (num) document.getElementById('latest-' + kind + '-id').textContent = label + ' #' + item.id.split('_')[0];
+                        if (label && num) document.getElementById('latest-' + kind + '-id').textContent = label + ' #' + item.id.split('_')[0];
                         document.getElementById('latest-' + kind + '-title').textContent = item.title;
                         if (item.date) document.getElementById('latest-' + kind + '-date').textContent = item.date;
                         document.getElementById('latest-' + kind + '-summary').textContent = item.summary;
@@ -652,7 +652,7 @@
             }
 
             loadLatest('loop', 'Loop', 'loops');
-            loadLatest('article', 'Article', 'articles');
+            loadLatest('article', '', 'articles');
         })();
     </script>
 </body>

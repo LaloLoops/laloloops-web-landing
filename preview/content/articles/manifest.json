@@ -1,26 +1,12 @@
 {
   "articles": [
     {
-      "id": "0001_agents_need_middle_management",
-      "title": "Agents Need Middle Management",
-      "summary": "The uncomfortable truth about agent workflows: the hard part is not prompting, it is operating the tiny team you accidentally hired.",
-      "date": "2026-06-02",
-      "file": "0001_agents_need_middle_management.md"
-    },
-    {
-      "id": "0002_distribution_is_not_a_build_step",
-      "title": "Distribution Is Not a Build Step",
-      "summary": "A builder's note on why shipping the thing still leaves the most annoying dependency unresolved: people caring.",
-      "date": "2026-06-03",
-      "file": "0002_distribution_is_not_a_build_step.md"
-    },
-    {
-      "id": "0003_the_tiny_team_tax",
-      "title": "The Tiny Team Tax",
-      "summary": "One-person leverage with agents is real, but it arrives with coordination costs wearing a novelty hat.",
-      "date": "2026-06-04",
-      "file": "0003_the_tiny_team_tax.md"
+      "id": "0001_more_ideas_than_time",
+      "title": "More ideas than time. Until AI.",
+      "summary": "Why time — not skill or compute — is the real constraint on building, and how agents change the exchange rate. A short take; the full essay lives on X.",
+      "date": "2026-05-25",
+      "file": "0001_more_ideas_than_time.md"
     }
   ],
-  "latest": "0003_the_tiny_team_tax"
+  "latest": "0001_more_ideas_than_time"
 }
