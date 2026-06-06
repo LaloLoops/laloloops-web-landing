@@ -174,7 +174,14 @@
       "summary": "Agent reliability often depends less on a cleverer prompt than on handing the system a clear work ticket before it starts guessing.",
       "date": "2026-06-05",
       "file": "0025_the_prompt_starts_too_late.md"
+    },
+    {
+      "id": "0026_the_moat_is_the_runbook",
+      "title": "The Moat Is the Runbook",
+      "summary": "As models flatten into shared infrastructure, the real edge in agent-built products looks more like repeatable workflow design than prompt cleverness.",
+      "date": "2026-06-06",
+      "file": "0026_the_moat_is_the_runbook.md"
     }
   ],
-  "latest": "0025_the_prompt_starts_too_late"
+  "latest": "0026_the_moat_is_the_runbook"
 }
