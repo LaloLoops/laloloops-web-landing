@@ -181,7 +181,14 @@
       "summary": "As models flatten into shared infrastructure, the real edge in agent-built products looks more like repeatable workflow design than prompt cleverness.",
       "date": "2026-06-06",
       "file": "0026_the_moat_is_the_runbook.md"
+    },
+    {
+      "id": "0027_review_stays_on_payroll",
+      "title": "Review Stays on Payroll",
+      "summary": "Human review in an agent workflow is not a retreat from automation; it is where judgment gets saved for the moments that can actually break trust.",
+      "date": "2026-06-07",
+      "file": "0027_review_stays_on_payroll.md"
     }
   ],
-  "latest": "0026_the_moat_is_the_runbook"
+  "latest": "0027_review_stays_on_payroll"
 }
