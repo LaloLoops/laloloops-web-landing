@@ -188,7 +188,14 @@
       "summary": "Human review in an agent workflow is not a retreat from automation; it is where judgment gets saved for the moments that can actually break trust.",
       "date": "2026-06-07",
       "file": "0027_review_stays_on_payroll.md"
+    },
+    {
+      "id": "0028_the_docs_test",
+      "title": "The Docs Test",
+      "summary": "If an agent cannot find the right instruction quickly, the product is probably relying on folklore instead of a usable operating surface.",
+      "date": "2026-06-08",
+      "file": "0028_the_docs_test.md"
     }
   ],
-  "latest": "0027_review_stays_on_payroll"
+  "latest": "0028_the_docs_test"
 }
