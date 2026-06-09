@@ -195,7 +195,14 @@
       "summary": "If an agent cannot find the right instruction quickly, the product is probably relying on folklore instead of a usable operating surface.",
       "date": "2026-06-08",
       "file": "0028_the_docs_test.md"
+    },
+    {
+      "id": "0029_prompt_shopping_is_not_product_strategy",
+      "title": "Prompt Shopping Is Not Product Strategy",
+      "summary": "Agent-built products stop looking magical once you realize the real edge comes from memory, checks, and handoffs rather than chasing a slightly smarter prompt.",
+      "date": "2026-06-09",
+      "file": "0029_prompt_shopping_is_not_product_strategy.md"
     }
   ],
-  "latest": "0028_the_docs_test"
+  "latest": "0029_prompt_shopping_is_not_product_strategy"
 }
