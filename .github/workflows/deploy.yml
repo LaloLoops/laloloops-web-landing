@@ -74,6 +74,57 @@ jobs:
           render_collection('articles', '{{ARTICLE_NUM}}', 'Longer note from the loop.')
           PYEOF
 
+      - name: Generate sitemap and robots.txt
+        run: |
+          python3 <<'PYEOF'
+          import json, subprocess, re
+
+          BASE = 'https://laloloops.com'
+
+          def git_show(path, fallback):
+              result = subprocess.run(
+                  ['git', 'show', f'origin/content:{path}'],
+                  capture_output=True, text=True
+              )
+              return result.stdout if result.returncode == 0 else fallback
+
+          DATE_RE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
+          urls = []
+
+          def add(loc, lastmod=None):
+              urls.append((loc, lastmod if lastmod and DATE_RE.match(lastmod) else None))
+
+          # Static top-level pages
+          add(f'{BASE}/')
+          add(f'{BASE}/loops/')
+          add(f'{BASE}/articles/')
+
+          # Generated detail pages, from the content manifests
+          for name in ('loops', 'articles'):
+              manifest = json.loads(git_show(f'{name}/manifest.json', '{"%s":[]}' % name))
+              for item in manifest.get(name, []):
+                  add(f'{BASE}/{name}/{item["id"]}/', item.get('date'))
+
+          lines = [
+              '<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+          ]
+          for loc, lastmod in urls:
+              lines.append('  <url>')
+              lines.append(f'    <loc>{loc}</loc>')
+              if lastmod:
+                  lines.append(f'    <lastmod>{lastmod}</lastmod>')
+              lines.append('  </url>')
+          lines.append('</urlset>')
+          with open('sitemap.xml', 'w') as f:
+              f.write('\n'.join(lines) + '\n')
+          print(f'Wrote sitemap.xml with {len(urls)} urls')
+
+          with open('robots.txt', 'w') as f:
+              f.write('User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % BASE)
+          print('Wrote robots.txt')
+          PYEOF
+
       - name: Build artifact pages
         run: |
           python3 <<'PYEOF'
