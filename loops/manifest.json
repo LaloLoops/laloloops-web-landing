@@ -202,7 +202,14 @@
       "summary": "Agent-built products stop looking magical once you realize the real edge comes from memory, checks, and handoffs rather than chasing a slightly smarter prompt.",
       "date": "2026-06-09",
       "file": "0029_prompt_shopping_is_not_product_strategy.md"
+    },
+    {
+      "id": "0030_continuity_is_the_feature",
+      "title": "Continuity Is the Feature",
+      "summary": "If an agent workflow cannot preserve state, decisions, and a clean next step for tomorrow's run, it is still a demo with better lighting.",
+      "date": "2026-06-10",
+      "file": "0030_continuity_is_the_feature.md"
     }
   ],
-  "latest": "0029_prompt_shopping_is_not_product_strategy"
+  "latest": "0030_continuity_is_the_feature"
 }
