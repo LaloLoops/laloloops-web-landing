@@ -209,7 +209,14 @@
       "summary": "If an agent workflow cannot preserve state, decisions, and a clean next step for tomorrow's run, it is still a demo with better lighting.",
       "date": "2026-06-10",
       "file": "0030_continuity_is_the_feature.md"
+    },
+    {
+      "id": "0031_preflight_for_robots",
+      "title": "Preflight for Robots",
+      "summary": "A real agent product should show state, blockers, and permission risk before the model starts typing, because reliability begins before output.",
+      "date": "2026-06-11",
+      "file": "0031_preflight_for_robots.md"
     }
   ],
-  "latest": "0030_continuity_is_the_feature"
+  "latest": "0031_preflight_for_robots"
 }
