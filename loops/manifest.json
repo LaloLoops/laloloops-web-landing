@@ -216,7 +216,14 @@
       "summary": "A real agent product should show state, blockers, and permission risk before the model starts typing, because reliability begins before output.",
       "date": "2026-06-11",
       "file": "0031_preflight_for_robots.md"
+    },
+    {
+      "id": "0032_done_needs_a_shape",
+      "title": "Done Needs a Shape",
+      "summary": "Agent-built products get more reliable when definition of done is visible in the product instead of living as private folklore in the founder's head.",
+      "date": "2026-06-12",
+      "file": "0032_done_needs_a_shape.md"
     }
   ],
-  "latest": "0031_preflight_for_robots"
+  "latest": "0032_done_needs_a_shape"
 }
