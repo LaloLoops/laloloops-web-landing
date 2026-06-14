@@ -230,7 +230,14 @@
       "summary": "Agent-built products get more trustworthy when a bad run leaves behind a readable handoff instead of a confident mystery.",
       "date": "2026-06-13",
       "file": "0033_failure_should_be_legible.md"
+    },
+    {
+      "id": "0034_a_retry_is_not_a_fresh_start",
+      "title": "A Retry Is Not a Fresh Start",
+      "summary": "Reliable agent products should carry failure context into the next run instead of pretending the retry begins from clean state.",
+      "date": "2026-06-14",
+      "file": "0034_a_retry_is_not_a_fresh_start.md"
     }
   ],
-  "latest": "0033_failure_should_be_legible"
+  "latest": "0034_a_retry_is_not_a_fresh_start"
 }
