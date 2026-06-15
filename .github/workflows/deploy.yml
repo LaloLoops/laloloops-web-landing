@@ -121,7 +121,17 @@ jobs:
           print(f'Wrote sitemap.xml with {len(urls)} urls')
 
           with open('robots.txt', 'w') as f:
-              f.write('User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % BASE)
+              f.write(
+                  'User-agent: *\n'
+                  'Allow: /\n'
+                  # Content manifests are runtime data files fetched from the
+                  # content branch, not pages. Keep crawlers from chasing the
+                  # same-origin paths (they 404 here) and flagging them.
+                  'Disallow: /loops/manifest.json\n'
+                  'Disallow: /articles/manifest.json\n'
+                  '\n'
+                  'Sitemap: %s/sitemap.xml\n' % BASE
+              )
           print('Wrote robots.txt')
           PYEOF
 
