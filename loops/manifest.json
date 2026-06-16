@@ -244,7 +244,14 @@
       "summary": "The more agent workflows break, the clearer it gets that swapping models is often a distraction from the harder work of designing scope, memory, checks, and handoffs.",
       "date": "2026-06-15",
       "file": "0035_not_a_model_problem.md"
+    },
+    {
+      "id": "0036_the_product_is_the_workflow",
+      "title": "The Product Is the Workflow",
+      "summary": "Once you stop treating agents like magic workers, the useful product starts looking more like workflow software with status, approvals, retries, logs, and checks.",
+      "date": "2026-06-16",
+      "file": "0036_the_product_is_the_workflow.md"
     }
   ],
-  "latest": "0035_not_a_model_problem"
+  "latest": "0036_the_product_is_the_workflow"
 }
