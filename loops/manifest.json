@@ -251,7 +251,14 @@
       "summary": "Once you stop treating agents like magic workers, the useful product starts looking more like workflow software with status, approvals, retries, logs, and checks.",
       "date": "2026-06-16",
       "file": "0036_the_product_is_the_workflow.md"
+    },
+    {
+      "id": "0037_status_is_not_an_owner",
+      "title": "Status Is Not an Owner",
+      "summary": "An agent workflow becomes a product when unfinished work has a clear next owner instead of a polite status badge and a prayer.",
+      "date": "2026-06-17",
+      "file": "0037_status_is_not_an_owner.md"
     }
   ],
-  "latest": "0036_the_product_is_the_workflow"
+  "latest": "0037_status_is_not_an_owner"
 }
