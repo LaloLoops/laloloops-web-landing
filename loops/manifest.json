@@ -258,7 +258,14 @@
       "summary": "An agent workflow becomes a product when unfinished work has a clear next owner instead of a polite status badge and a prayer.",
       "date": "2026-06-17",
       "file": "0037_status_is_not_an_owner.md"
+    },
+    {
+      "id": "0038_trust_has_different_thresholds",
+      "title": "Trust Has Different Thresholds",
+      "summary": "Agent output can move faster on internal work, but the moment it touches a customer the product needs a sharper review threshold and an obvious owner.",
+      "date": "2026-06-18",
+      "file": "0038_trust_has_different_thresholds.md"
     }
   ],
-  "latest": "0037_status_is_not_an_owner"
+  "latest": "0038_trust_has_different_thresholds"
 }
