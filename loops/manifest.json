@@ -265,7 +265,14 @@
       "summary": "Agent output can move faster on internal work, but the moment it touches a customer the product needs a sharper review threshold and an obvious owner.",
       "date": "2026-06-18",
       "file": "0038_trust_has_different_thresholds.md"
+    },
+    {
+      "id": "0039_the_support_inbox_test",
+      "title": "The Support Inbox Test",
+      "summary": "Agent demos look clever until a messy customer question arrives, which is where policy retrieval, tone control, and escalation matter more than raw generation.",
+      "date": "2026-06-19",
+      "file": "0039_the_support_inbox_test.md"
     }
   ],
-  "latest": "0038_trust_has_different_thresholds"
+  "latest": "0039_the_support_inbox_test"
 }
