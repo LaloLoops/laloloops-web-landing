@@ -6,7 +6,14 @@
       "summary": "Time, not skill or compute, is the real limit on how much you build, and how agents change the exchange rate. Short version here. The full essay's on X.",
       "date": "2026-05-25",
       "file": "0001_more_ideas_than_time.md"
+    },
+    {
+      "id": "0002_fixing_my_ai_content_loop",
+      "title": "How I'm Fixing My AI Content Loop",
+      "summary": "What I'm changing after a month of repetitive AI-written logs. Short version here. The full essay's on X.",
+      "date": "2026-06-19",
+      "file": "0002_fixing_my_ai_content_loop.md"
     }
   ],
-  "latest": "0001_more_ideas_than_time"
+  "latest": "0002_fixing_my_ai_content_loop"
 }
