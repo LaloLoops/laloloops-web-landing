@@ -272,7 +272,14 @@
       "summary": "Agent demos look clever until a messy customer question arrives, which is where policy retrieval, tone control, and escalation matter more than raw generation.",
       "date": "2026-06-19",
       "file": "0039_the_support_inbox_test.md"
+    },
+    {
+      "id": "0040_one_word_three_meanings",
+      "title": "One Word, Three Meanings",
+      "summary": "When one runbook word meant the product increment, the daily cadence marker, and a single beat, the agent followed the docs and still created a false done state.",
+      "date": "2026-06-20",
+      "file": "0040_one_word_three_meanings.md"
     }
   ],
-  "latest": "0039_the_support_inbox_test"
+  "latest": "0040_one_word_three_meanings"
 }
