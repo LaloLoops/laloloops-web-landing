@@ -279,7 +279,14 @@
       "summary": "When one runbook word meant the product increment, the daily cadence marker, and a single beat, the agent followed the docs and still created a false done state.",
       "date": "2026-06-20",
       "file": "0040_one_word_three_meanings.md"
+    },
+    {
+      "id": "0041_stopping_is_a_feature",
+      "title": "Stopping Is a Feature",
+      "summary": "The most convincing proof of agent product maturity this week was a system that finished cleanly, halted on purpose, and asked for the next decision instead of inventing it.",
+      "date": "2026-06-21",
+      "file": "0041_stopping_is_a_feature.md"
     }
   ],
-  "latest": "0040_one_word_three_meanings"
+  "latest": "0041_stopping_is_a_feature"
 }
