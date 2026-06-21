@@ -252,6 +252,11 @@
                     var header = document.createElement('div');
                     header.className = 'article-item-header';
 
+                    var id = document.createElement('span');
+                    id.className = 'article-item-id';
+                    id.textContent = '#' + article.id.split('_')[0];
+                    header.appendChild(id);
+
                     var title = document.createElement('span');
                     title.className = 'article-item-title';
                     title.textContent = article.title;
