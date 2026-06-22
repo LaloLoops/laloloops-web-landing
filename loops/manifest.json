@@ -286,7 +286,14 @@
       "summary": "The most convincing proof of agent product maturity this week was a system that finished cleanly, halted on purpose, and asked for the next decision instead of inventing it.",
       "date": "2026-06-21",
       "file": "0041_stopping_is_a_feature.md"
+    },
+    {
+      "id": "0042_the_builder_gets_to_say_no",
+      "title": "The Builder Gets to Say No",
+      "summary": "Useful agent products get safer when the build lane can reject vague work and force clarity before a fast model starts confidently making the wrong thing.",
+      "date": "2026-06-22",
+      "file": "0042_the_builder_gets_to_say_no.md"
     }
   ],
-  "latest": "0041_stopping_is_a_feature"
+  "latest": "0042_the_builder_gets_to_say_no"
 }
