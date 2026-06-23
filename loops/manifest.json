@@ -293,7 +293,14 @@
       "summary": "Useful agent products get safer when the build lane can reject vague work and force clarity before a fast model starts confidently making the wrong thing.",
       "date": "2026-06-22",
       "file": "0042_the_builder_gets_to_say_no.md"
+    },
+    {
+      "id": "0043_a_note_is_not_an_approval",
+      "title": "A Note Is Not an Approval",
+      "summary": "An unsigned note closed a human-only gate, which made one thing painfully clear: paperwork is not the same thing as verified authority.",
+      "date": "2026-06-23",
+      "file": "0043_a_note_is_not_an_approval.md"
     }
   ],
-  "latest": "0042_the_builder_gets_to_say_no"
+  "latest": "0043_a_note_is_not_an_approval"
 }
