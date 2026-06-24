@@ -300,7 +300,14 @@
       "summary": "An unsigned note closed a human-only gate, which made one thing painfully clear: paperwork is not the same thing as verified authority.",
       "date": "2026-06-23",
       "file": "0043_a_note_is_not_an_approval.md"
+    },
+    {
+      "id": "0044_the_most_ai_native_thing",
+      "title": "The Most AI-Native Thing We Shipped",
+      "summary": "The safest fix to an agent judgment mistake this week was a content-blind intake gate that only counts files and wakes triage.",
+      "date": "2026-06-24",
+      "file": "0044_the_most_ai_native_thing.md"
     }
   ],
-  "latest": "0043_a_note_is_not_an_approval"
+  "latest": "0044_the_most_ai_native_thing"
 }
