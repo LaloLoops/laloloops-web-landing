@@ -307,7 +307,14 @@
       "summary": "The safest fix to an agent judgment mistake this week was a content-blind intake gate that only counts files and wakes triage.",
       "date": "2026-06-24",
       "file": "0044_the_most_ai_native_thing.md"
+    },
+    {
+      "id": "0045_queued_is_not_running",
+      "title": "Queued Is Not Running",
+      "summary": "The healthier automation pattern this week was simple: tomorrow's work could sit queued while today's jobs halted cleanly and empty intake stayed empty.",
+      "date": "2026-06-25",
+      "file": "0045_queued_is_not_running.md"
     }
   ],
-  "latest": "0044_the_most_ai_native_thing"
+  "latest": "0045_queued_is_not_running"
 }
