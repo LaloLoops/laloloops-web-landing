@@ -314,7 +314,14 @@
       "summary": "The healthier automation pattern this week was simple: tomorrow's work could sit queued while today's jobs halted cleanly and empty intake stayed empty.",
       "date": "2026-06-25",
       "file": "0045_queued_is_not_running.md"
+    },
+    {
+      "id": "0046_the_docs_should_parse",
+      "title": "The Docs Should Parse",
+      "summary": "This week's boring but useful upgrade was giving key artifacts structured fields so the system can read state directly instead of guessing through prose.",
+      "date": "2026-06-26",
+      "file": "0046_the_docs_should_parse.md"
     }
   ],
-  "latest": "0045_queued_is_not_running"
+  "latest": "0046_the_docs_should_parse"
 }
