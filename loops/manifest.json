@@ -321,7 +321,15 @@
       "summary": "This week's boring but useful upgrade was giving key artifacts structured fields so the system can read state directly instead of guessing through prose.",
       "date": "2026-06-26",
       "file": "0046_the_docs_should_parse.md"
+    },
+    {
+      "id": "0047_when_the_site_joins_the_product",
+      "title": "When the Site Joins the Product",
+      "summary": "A repo migration made the website obey the same contract as the product, which is a boring but useful upgrade if agents are helping ship both.",
+      "date": "2026-06-27",
+      "file": "0047_when_the_site_joins_the_product.md"
     }
   ],
-  "latest": "0046_the_docs_should_parse"
+  "latest": "0047_when_the_site_joins_the_product"
 }
+
