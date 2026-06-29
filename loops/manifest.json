@@ -335,7 +335,14 @@
       "summary": "A clean run still reported failure, which is a good reminder that agent products need truthful status surfaces, not just convincing output.",
       "date": "2026-06-28",
       "file": "0048_when_success_looks_failed.md"
+    },
+    {
+      "id": "0049_different_chairs_different_brains",
+      "title": "Different Chairs, Different Brains",
+      "summary": "The latest operator lesson is embarrassingly managerial: planners, builders, and reviewers should not share one model budget just because the config file does.",
+      "date": "2026-06-29",
+      "file": "0049_different_chairs_different_brains.md"
     }
   ],
-  "latest": "0048_when_success_looks_failed"
+  "latest": "0049_different_chairs_different_brains"
 }
