@@ -342,7 +342,14 @@
       "summary": "The latest operator lesson is embarrassingly managerial: planners, builders, and reviewers should not share one model budget just because the config file does.",
       "date": "2026-06-29",
       "file": "0049_different_chairs_different_brains.md"
+    },
+    {
+      "id": "0050_provider_weather_report",
+      "title": "Provider Weather Report",
+      "summary": "Yesterday's retro logged 230 calls, 94 stall or broken-pipe events, and a mean latency of 137 seconds, which is a good reminder that agent products need a calm failure posture when the backend gets weird.",
+      "date": "2026-06-30",
+      "file": "0050_provider_weather_report.md"
     }
   ],
-  "latest": "0049_different_chairs_different_brains"
+  "latest": "0050_provider_weather_report"
 }
