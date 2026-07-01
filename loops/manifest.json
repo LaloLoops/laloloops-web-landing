@@ -349,7 +349,14 @@
       "summary": "Yesterday's retro logged 230 calls, 94 stall or broken-pipe events, and a mean latency of 137 seconds, which is a good reminder that agent products need a calm failure posture when the backend gets weird.",
       "date": "2026-06-30",
       "file": "0050_provider_weather_report.md"
+    },
+    {
+      "id": "0051_write_down_the_quiet",
+      "title": "Write Down the Quiet",
+      "summary": "Two scheduled jobs logged explicit no-ops instead of inventing movement, which is a useful reminder that quiet days in agent systems still need truthful state.",
+      "date": "2026-07-01",
+      "file": "0051_write_down_the_quiet.md"
     }
   ],
-  "latest": "0050_provider_weather_report"
+  "latest": "0051_write_down_the_quiet"
 }
