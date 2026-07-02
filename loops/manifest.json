@@ -356,7 +356,14 @@
       "summary": "Two scheduled jobs logged explicit no-ops instead of inventing movement, which is a useful reminder that quiet days in agent systems still need truthful state.",
       "date": "2026-07-01",
       "file": "0051_write_down_the_quiet.md"
+    },
+    {
+      "id": "0052_after_the_clean_close",
+      "title": "After the Clean Close",
+      "summary": "INC-12 closed with three merged PRs and passing verification, but the more important behavior was the system stopping at an empty queue and surfacing one human direction gate.",
+      "date": "2026-07-02",
+      "file": "0052_after_the_clean_close.md"
     }
   ],
-  "latest": "0051_write_down_the_quiet"
+  "latest": "0052_after_the_clean_close"
 }
