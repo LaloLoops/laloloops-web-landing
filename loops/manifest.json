@@ -370,7 +370,14 @@
       "summary": "A second private mission produced 13 distinct paths and stronger evidence, but the more important rule was keeping those claims private until they actually earn daylight.",
       "date": "2026-07-03",
       "file": "0053_thirteen_paths_no_victory_lap.md"
+    },
+    {
+      "id": "0054_promoted_to_the_menu",
+      "title": "Promoted to the Menu",
+      "summary": "One candidate graduated into the local mission menu while another stayed a private regression fixture, which is a useful reminder that passing in the lab is not automatic product scope.",
+      "date": "2026-07-04",
+      "file": "0054_promoted_to_the_menu.md"
     }
   ],
-  "latest": "0053_thirteen_paths_no_victory_lap"
+  "latest": "0054_promoted_to_the_menu"
 }
