@@ -377,7 +377,14 @@
       "summary": "One candidate graduated into the local mission menu while another stayed a private regression fixture, which is a useful reminder that passing in the lab is not automatic product scope.",
       "date": "2026-07-04",
       "file": "0054_promoted_to_the_menu.md"
+    },
+    {
+      "id": "0055_proof_got_a_rerun_button",
+      "title": "Proof Got a Rerun Button",
+      "summary": "The latest proof path mattered less as a demo than as a rerunnable local command with fixtures, contract checks, and web surfaces another operator can verify.",
+      "date": "2026-07-05",
+      "file": "0055_proof_got_a_rerun_button.md"
     }
   ],
-  "latest": "0054_promoted_to_the_menu"
+  "latest": "0055_proof_got_a_rerun_button"
 }
