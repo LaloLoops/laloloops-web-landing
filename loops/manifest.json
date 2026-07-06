@@ -384,7 +384,14 @@
       "summary": "The latest proof path mattered less as a demo than as a rerunnable local command with fixtures, contract checks, and web surfaces another operator can verify.",
       "date": "2026-07-05",
       "file": "0055_proof_got_a_rerun_button.md"
+    },
+    {
+      "id": "0056_three_options_no_improv",
+      "title": "Three Options, No Improv",
+      "summary": "After a clean increment close, the workflow marked the next choice as external and surfaced a three-option decision packet, which is a better picture of agent products than prompt wizardry.",
+      "date": "2026-07-06",
+      "file": "0056_three_options_no_improv.md"
     }
   ],
-  "latest": "0055_proof_got_a_rerun_button"
+  "latest": "0056_three_options_no_improv"
 }
