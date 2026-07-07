@@ -391,7 +391,14 @@
       "summary": "After a clean increment close, the workflow marked the next choice as external and surfaced a three-option decision packet, which is a better picture of agent products than prompt wizardry.",
       "date": "2026-07-06",
       "file": "0056_three_options_no_improv.md"
+    },
+    {
+      "id": "0057_the_backlog_hit_zero",
+      "title": "The Backlog Hit Zero",
+      "summary": "A clean lane, 30 wakes, and an exhausted backlog produced a better result than another automated increment: the planner opened a three-option decision instead of inventing new scope.",
+      "date": "2026-07-07",
+      "file": "0057_the_backlog_hit_zero.md"
     }
   ],
-  "latest": "0056_three_options_no_improv"
+  "latest": "0057_the_backlog_hit_zero"
 }
