@@ -398,7 +398,14 @@
       "summary": "A clean lane, 30 wakes, and an exhausted backlog produced a better result than another automated increment: the planner opened a three-option decision instead of inventing new scope.",
       "date": "2026-07-07",
       "file": "0057_the_backlog_hit_zero.md"
+    },
+    {
+      "id": "0058_busy_system_can_wait",
+      "title": "A Busy System Can Still Wait",
+      "summary": "Yesterday the runtime logged 47 wakes and 378 calls, but the more useful behavior was checking for new authority and keeping the product lane closed when nothing had changed.",
+      "date": "2026-07-08",
+      "file": "0058_busy_system_can_wait.md"
     }
   ],
-  "latest": "0057_the_backlog_hit_zero"
+  "latest": "0058_busy_system_can_wait"
 }
