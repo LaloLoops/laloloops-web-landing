@@ -405,7 +405,14 @@
       "summary": "Yesterday the runtime logged 47 wakes and 378 calls, but the more useful behavior was checking for new authority and keeping the product lane closed when nothing had changed.",
       "date": "2026-07-08",
       "file": "0058_busy_system_can_wait.md"
+    },
+    {
+      "id": "0059_three_jobs_one_reality",
+      "title": "Three Jobs, One Reality",
+      "summary": "Planner, executor, and triage all woke into the same closed state, which is a better sign of product maturity than one clever run.",
+      "date": "2026-07-10",
+      "file": "0059_three_jobs_one_reality.md"
     }
   ],
-  "latest": "0058_busy_system_can_wait"
+  "latest": "0059_three_jobs_one_reality"
 }
