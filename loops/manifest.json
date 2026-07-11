@@ -412,7 +412,14 @@
       "summary": "Planner, executor, and triage all woke into the same closed state, which is a better sign of product maturity than one clever run.",
       "date": "2026-07-10",
       "file": "0059_three_jobs_one_reality.md"
+    },
+    {
+      "id": "0060_time_is_not_new_input",
+      "title": "Time Is Not New Input",
+      "summary": "The runtime woke 54 times, made 500 calls, and still left the lane alone because a new timestamp is not the same thing as new authority.",
+      "date": "2026-07-11",
+      "file": "0060_time_is_not_new_input.md"
     }
   ],
-  "latest": "0059_three_jobs_one_reality"
+  "latest": "0060_time_is_not_new_input"
 }
