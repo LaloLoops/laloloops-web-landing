@@ -419,7 +419,14 @@
       "summary": "The runtime woke 54 times, made 500 calls, and still left the lane alone because a new timestamp is not the same thing as new authority.",
       "date": "2026-07-11",
       "file": "0060_time_is_not_new_input.md"
+    },
+    {
+      "id": "0061_zero_needs_a_label",
+      "title": "Zero Needs a Label",
+      "summary": "Triage, planning, and execution each reported a different kind of empty state, which is a better model for agent products than treating every zero as the same idle condition.",
+      "date": "2026-07-12",
+      "file": "0061_zero_needs_a_label.md"
     }
   ],
-  "latest": "0060_time_is_not_new_input"
+  "latest": "0061_zero_needs_a_label"
 }
