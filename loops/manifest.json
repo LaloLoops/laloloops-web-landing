@@ -426,7 +426,14 @@
       "summary": "Triage, planning, and execution each reported a different kind of empty state, which is a better model for agent products than treating every zero as the same idle condition.",
       "date": "2026-07-12",
       "file": "0061_zero_needs_a_label.md"
+    },
+    {
+      "id": "0062_structure_embarrassed_the_roadmap",
+      "title": "Structure Embarrassed the Roadmap",
+      "summary": "Triage found no new work and planning had no approved next task, which is a useful reminder that disciplined agent execution exposes planning debt instead of hiding it.",
+      "date": "2026-07-13",
+      "file": "0062_structure_embarrassed_the_roadmap.md"
     }
   ],
-  "latest": "0061_zero_needs_a_label"
+  "latest": "0062_structure_embarrassed_the_roadmap"
 }
