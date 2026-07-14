@@ -433,7 +433,14 @@
       "summary": "Triage found no new work and planning had no approved next task, which is a useful reminder that disciplined agent execution exposes planning debt instead of hiding it.",
       "date": "2026-07-13",
       "file": "0062_structure_embarrassed_the_roadmap.md"
+    },
+    {
+      "id": "0063_taste_is_not_a_cron_job",
+      "title": "Taste Is Not a Cron Job",
+      "summary": "A pending three-option next-step note made the real bottleneck obvious: once the workflow is disciplined, the missing input is taste, not another prompt.",
+      "date": "2026-07-14",
+      "file": "0063_taste_is_not_a_cron_job.md"
     }
   ],
-  "latest": "0062_structure_embarrassed_the_roadmap"
+  "latest": "0063_taste_is_not_a_cron_job"
 }
