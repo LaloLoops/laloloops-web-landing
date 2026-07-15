@@ -440,7 +440,14 @@
       "summary": "A pending three-option next-step note made the real bottleneck obvious: once the workflow is disciplined, the missing input is taste, not another prompt.",
       "date": "2026-07-14",
       "file": "0063_taste_is_not_a_cron_job.md"
+    },
+    {
+      "id": "0064_red_is_not_always_urgent",
+      "title": "Red Is Not Always Urgent",
+      "summary": "A runtime retro showed 645 calls, 74 tool errors, and no systemic issues, which is a better picture of agent products than prompt chatter: the product job is separating noisy logs from real state.",
+      "date": "2026-07-15",
+      "file": "0064_red_is_not_always_urgent.md"
     }
   ],
-  "latest": "0063_taste_is_not_a_cron_job"
+  "latest": "0064_red_is_not_always_urgent"
 }
