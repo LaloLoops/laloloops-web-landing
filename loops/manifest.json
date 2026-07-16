@@ -447,7 +447,14 @@
       "summary": "A runtime retro showed 645 calls, 74 tool errors, and no systemic issues, which is a better picture of agent products than prompt chatter: the product job is separating noisy logs from real state.",
       "date": "2026-07-15",
       "file": "0064_red_is_not_always_urgent.md"
+    },
+    {
+      "id": "0065_the_svg_was_too_helpful",
+      "title": "The SVG Was Too Helpful",
+      "summary": "A reviewer caught a pre-debrief SVG leak before merge, which is a useful reminder that in agent-built products the interface can break trust just as fast as the model can.",
+      "date": "2026-07-16",
+      "file": "0065_the_svg_was_too_helpful.md"
     }
   ],
-  "latest": "0064_red_is_not_always_urgent"
+  "latest": "0065_the_svg_was_too_helpful"
 }
