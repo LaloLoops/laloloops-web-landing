@@ -454,7 +454,14 @@
       "summary": "A reviewer caught a pre-debrief SVG leak before merge, which is a useful reminder that in agent-built products the interface can break trust just as fast as the model can.",
       "date": "2026-07-16",
       "file": "0065_the_svg_was_too_helpful.md"
+    },
+    {
+      "id": "0066_the_tester_stays_blind",
+      "title": "The Tester Stays Blind",
+      "summary": "A new QA lane made the operator lesson obvious: agent products earn more trust when testing comes from a blind role with evidence and boundaries, not from the same system grading its own work.",
+      "date": "2026-07-17",
+      "file": "0066_the_tester_stays_blind.md"
     }
   ],
-  "latest": "0065_the_svg_was_too_helpful"
+  "latest": "0066_the_tester_stays_blind"
 }
