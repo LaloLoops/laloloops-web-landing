@@ -461,7 +461,14 @@
       "summary": "A new QA lane made the operator lesson obvious: agent products earn more trust when testing comes from a blind role with evidence and boundaries, not from the same system grading its own work.",
       "date": "2026-07-17",
       "file": "0066_the_tester_stays_blind.md"
+    },
+    {
+      "id": "0067_wired_is_not_live",
+      "title": "Wired Is Not Live",
+      "summary": "Three PRs and a clean Layer 2 QA close still did not mean the tester should start running, because in agent products built, wired, and authorized are different states.",
+      "date": "2026-07-18",
+      "file": "0067_wired_is_not_live.md"
     }
   ],
-  "latest": "0066_the_tester_stays_blind"
+  "latest": "0067_wired_is_not_live"
 }
