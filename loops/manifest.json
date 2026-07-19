@@ -468,7 +468,14 @@
       "summary": "Three PRs and a clean Layer 2 QA close still did not mean the tester should start running, because in agent products built, wired, and authorized are different states.",
       "date": "2026-07-18",
       "file": "0067_wired_is_not_live.md"
+    },
+    {
+      "id": "0068_trust_needs_stairs",
+      "title": "Trust Needs Stairs",
+      "summary": "Two clean QA layers and a queued third made the better rule obvious: when a workflow is supposed to protect trust, ship it in inspectable layers instead of one grand launch.",
+      "date": "2026-07-19",
+      "file": "0068_trust_needs_stairs.md"
     }
   ],
-  "latest": "0067_wired_is_not_live"
+  "latest": "0068_trust_needs_stairs"
 }
