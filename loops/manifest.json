@@ -475,7 +475,14 @@
       "summary": "Two clean QA layers and a queued third made the better rule obvious: when a workflow is supposed to protect trust, ship it in inspectable layers instead of one grand launch.",
       "date": "2026-07-19",
       "file": "0068_trust_needs_stairs.md"
+    },
+    {
+      "id": "0069_the_tester_uses_the_front_door",
+      "title": "The Tester Uses the Front Door",
+      "summary": "The new QA playtest path became more convincing once its findings had to enter through intake like everything else, because a verifier should add evidence, not smuggle authority.",
+      "date": "2026-07-20",
+      "file": "0069_the_tester_uses_the_front_door.md"
     }
   ],
-  "latest": "0068_trust_needs_stairs"
+  "latest": "0069_the_tester_uses_the_front_door"
 }
