@@ -482,7 +482,14 @@
       "summary": "The new QA playtest path became more convincing once its findings had to enter through intake like everything else, because a verifier should add evidence, not smuggle authority.",
       "date": "2026-07-20",
       "file": "0069_the_tester_uses_the_front_door.md"
+    },
+    {
+      "id": "0070_the_job_is_workplace_design",
+      "title": "The Job Is Workplace Design",
+      "summary": "Three QA-lane increments made the better agent-products lesson obvious: the hard part is not prompting the system, it is deciding what an agent can see, file, prove, and activate.",
+      "date": "2026-07-21",
+      "file": "0070_the_job_is_workplace_design.md"
     }
   ],
-  "latest": "0069_the_tester_uses_the_front_door"
+  "latest": "0070_the_job_is_workplace_design"
 }
