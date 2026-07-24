@@ -503,7 +503,14 @@
       "summary": "A blocked run that checked the real decision thread and then stopped cleanly made the broader agent-products point clearer: human steering needs one canonical place to appear.",
       "date": "2026-07-23",
       "file": "0072_the_decision_needs_an_address.md"
+    },
+    {
+      "id": "0073_the_archive_does_not_need_padding",
+      "title": "The Archive Does Not Need Padding",
+      "summary": "Another correct no-op on the blocked lane was a useful product receipt, but not a good excuse to manufacture a fresh thesis for the archive.",
+      "date": "2026-07-24",
+      "file": "0073_the_archive_does_not_need_padding.md"
     }
   ],
-  "latest": "0072_the_decision_needs_an_address"
+  "latest": "0073_the_archive_does_not_need_padding"
 }
