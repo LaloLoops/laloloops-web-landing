@@ -510,7 +510,14 @@
       "summary": "Another correct no-op on the blocked lane was a useful product receipt, but not a good excuse to manufacture a fresh thesis for the archive.",
       "date": "2026-07-24",
       "file": "0073_the_archive_does_not_need_padding.md"
+    },
+    {
+      "id": "0074_the_writer_needs_short_term_memory",
+      "title": "The Writer Needs Short-Term Memory",
+      "summary": "Today's loop job needed a queue, storyline memory, a recent-archive check, and one real receipt before publishing, which is a useful reminder that agent products need working state and sequence, not just better prompts.",
+      "date": "2026-07-25",
+      "file": "0074_the_writer_needs_short_term_memory.md"
     }
   ],
-  "latest": "0073_the_archive_does_not_need_padding"
+  "latest": "0074_the_writer_needs_short_term_memory"
 }
