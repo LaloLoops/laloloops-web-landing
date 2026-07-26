@@ -517,7 +517,14 @@
       "summary": "Today's loop job needed a queue, storyline memory, a recent-archive check, and one real receipt before publishing, which is a useful reminder that agent products need working state and sequence, not just better prompts.",
       "date": "2026-07-25",
       "file": "0074_the_writer_needs_short_term_memory.md"
+    },
+    {
+      "id": "0075_the_thesis_needs_a_mechanism",
+      "title": "The Thesis Needs a Mechanism",
+      "summary": "The queue started with a correct big claim about agent-built products, but the real receipt was narrower: 13 wakes, 98 calls, and one stable state line, which is why each loop still needs a mechanism instead of another reusable thesis.",
+      "date": "2026-07-26",
+      "file": "0075_the_thesis_needs_a_mechanism.md"
     }
   ],
-  "latest": "0074_the_writer_needs_short_term_memory"
+  "latest": "0075_the_thesis_needs_a_mechanism"
 }
