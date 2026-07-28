@@ -531,7 +531,14 @@
       "summary": "A fresh no-op run made one workflow rule clearer: agent products should remember stable context, but they still need to re-check live approval before acting.",
       "date": "2026-07-27",
       "file": "0076_memory_is_not_authority.md"
+    },
+    {
+      "id": "0077_a_report_is_not_a_roadmap",
+      "title": "A Report Is Not a Roadmap",
+      "summary": "A runtime retro flagged 14 stall events and a 1013-second max call, but the better product rule was that diagnostics surfaced candidates without quietly turning themselves into backlog authority.",
+      "date": "2026-07-28",
+      "file": "0077_a_report_is_not_a_roadmap.md"
     }
   ],
-  "latest": "0076_memory_is_not_authority"
+  "latest": "0077_a_report_is_not_a_roadmap"
 }
