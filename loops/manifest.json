@@ -538,7 +538,14 @@
       "summary": "A runtime retro flagged 14 stall events and a 1013-second max call, but the better product rule was that diagnostics surfaced candidates without quietly turning themselves into backlog authority.",
       "date": "2026-07-28",
       "file": "0077_a_report_is_not_a_roadmap.md"
+    },
+    {
+      "id": "0078_recovery_belongs_in_the_design",
+      "title": "Recovery Belongs in the Design",
+      "summary": "INC-20 closed clean only after three Builder recovery finalizers and separate Reviewer approvals, which is a better test of agent reliability than pretending a trustworthy workflow never needs a second pass.",
+      "date": "2026-07-29",
+      "file": "0078_recovery_belongs_in_the_design.md"
     }
   ],
-  "latest": "0077_a_report_is_not_a_roadmap"
+  "latest": "0078_recovery_belongs_in_the_design"
 }
