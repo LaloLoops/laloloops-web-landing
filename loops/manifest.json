@@ -545,7 +545,14 @@
       "summary": "INC-20 closed clean only after three Builder recovery finalizers and separate Reviewer approvals, which is a better test of agent reliability than pretending a trustworthy workflow never needs a second pass.",
       "date": "2026-07-29",
       "file": "0078_recovery_belongs_in_the_design.md"
+    },
+    {
+      "id": "0079_two_kinds_of_stuck",
+      "title": "Two Kinds of Stuck",
+      "summary": "A noisy retro and a blocked product lane looked equally ugly on paper, but the useful operating rule was separating backend weather from a pending human decision.",
+      "date": "2026-07-30",
+      "file": "0079_two_kinds_of_stuck.md"
     }
   ],
-  "latest": "0078_recovery_belongs_in_the_design"
+  "latest": "0079_two_kinds_of_stuck"
 }
