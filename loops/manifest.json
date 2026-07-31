@@ -552,7 +552,14 @@
       "summary": "A noisy retro and a blocked product lane looked equally ugly on paper, but the useful operating rule was separating backend weather from a pending human decision.",
       "date": "2026-07-30",
       "file": "0079_two_kinds_of_stuck.md"
+    },
+    {
+      "id": "0080_the_rails_held",
+      "title": "The Rails Held",
+      "summary": "A runtime retro with 46 wakes, 393 calls, and 51 tool errors mattered less for the noise than for the containment: zero out-of-lane writes left behind.",
+      "date": "2026-07-31",
+      "file": "0080_the_rails_held.md"
     }
   ],
-  "latest": "0079_two_kinds_of_stuck"
+  "latest": "0080_the_rails_held"
 }
