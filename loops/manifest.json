@@ -559,7 +559,14 @@
       "summary": "A runtime retro with 46 wakes, 393 calls, and 51 tool errors mattered less for the noise than for the containment: zero out-of-lane writes left behind.",
       "date": "2026-07-31",
       "file": "0080_the_rails_held.md"
+    },
+    {
+      "id": "0081_green_for_what",
+      "title": "Green For What?",
+      "summary": "A morning run got PROCEED from its cadence guard and a separate pending-decision stop from its boundary check, which is a useful reminder that agent products need one answer for may I wake up and another for may I advance.",
+      "date": "2026-08-01",
+      "file": "0081_green_for_what.md"
     }
   ],
-  "latest": "0080_the_rails_held"
+  "latest": "0081_green_for_what"
 }
