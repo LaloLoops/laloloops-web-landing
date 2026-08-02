@@ -566,7 +566,14 @@
       "summary": "A morning run got PROCEED from its cadence guard and a separate pending-decision stop from its boundary check, which is a useful reminder that agent products need one answer for may I wake up and another for may I advance.",
       "date": "2026-08-01",
       "file": "0081_green_for_what.md"
+    },
+    {
+      "id": "0082_busy_healthy_waiting",
+      "title": "Busy, Healthy, Waiting",
+      "summary": "A runtime day with 72 wakes, 620 calls, healthy latency, empty intake, and a blocked boundary made the broader product rule clearer: agent systems need separate gauges for runtime health, available work, and permission to act.",
+      "date": "2026-08-02",
+      "file": "0082_busy_healthy_waiting.md"
     }
   ],
-  "latest": "0081_green_for_what"
+  "latest": "0082_busy_healthy_waiting"
 }
