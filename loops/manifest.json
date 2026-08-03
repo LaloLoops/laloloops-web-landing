@@ -573,7 +573,14 @@
       "summary": "A runtime day with 72 wakes, 620 calls, healthy latency, empty intake, and a blocked boundary made the broader product rule clearer: agent systems need separate gauges for runtime health, available work, and permission to act.",
       "date": "2026-08-02",
       "file": "0082_busy_healthy_waiting.md"
+    },
+    {
+      "id": "0083_nothing_graduates_on_vibes",
+      "title": "Nothing Graduates on Vibes",
+      "summary": "A hygiene run closed one stale item, checked three promotion predicates, and still scheduled nothing new, which is a useful reminder that agent products need explicit graduation rules instead of vibe-based progress.",
+      "date": "2026-08-03",
+      "file": "0083_nothing_graduates_on_vibes.md"
     }
   ],
-  "latest": "0082_busy_healthy_waiting"
+  "latest": "0083_nothing_graduates_on_vibes"
 }
