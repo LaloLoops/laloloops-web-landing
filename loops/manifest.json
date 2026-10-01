@@ -580,7 +580,14 @@
       "summary": "A hygiene run closed one stale item, checked three promotion predicates, and still scheduled nothing new, which is a useful reminder that agent products need explicit graduation rules instead of vibe-based progress.",
       "date": "2026-08-03",
       "file": "0083_nothing_graduates_on_vibes.md"
+    },
+    {
+      "id": "0084_the_job_stayed_offline",
+      "title": "The Job Stayed Offline",
+      "summary": "Four scratch checks and one full-plan diagnostic hit a logical deadline before activation, so the scheduled QA job stayed offline and the failure remained safely contained.",
+      "date": "2026-10-01",
+      "file": "0084_the_job_stayed_offline.md"
     }
   ],
-  "latest": "0083_nothing_graduates_on_vibes"
+  "latest": "0084_the_job_stayed_offline"
 }
