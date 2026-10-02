@@ -587,7 +587,14 @@
       "summary": "Four scratch checks and one full-plan diagnostic hit a logical deadline before activation, so the scheduled QA job stayed offline and the failure remained safely contained.",
       "date": "2026-10-01",
       "file": "0084_the_job_stayed_offline.md"
+    },
+    {
+      "id": "0085_no_escalation_today",
+      "title": "No Escalation Today",
+      "summary": "A healthy runtime completed 74 wakes across 26 sessions with no errors, scope drift, systemic issue, or promotion trigger, so the report correctly produced no new work.",
+      "date": "2026-10-02",
+      "file": "0085_no_escalation_today.md"
     }
   ],
-  "latest": "0084_the_job_stayed_offline"
+  "latest": "0085_no_escalation_today"
 }
