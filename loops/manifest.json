@@ -601,7 +601,14 @@
       "summary": "A sync check reported current state, but the next check failed because its required remote ref had not been fetched, proving that preflight must verify the exact operation ahead.",
       "date": "2026-10-14",
       "file": "0086_up_to_date_is_not_preflight.md"
+    },
+    {
+      "id": "0087_the_last_move",
+      "title": "The Last Move",
+      "summary": "A stale completion pointer re-woke a finished task, showing that reliable workflows need a final archive move and an honest close-out label, not just a done checkbox.",
+      "date": "2026-10-17",
+      "file": "0087_the_last_move.md"
     }
   ],
-  "latest": "0086_up_to_date_is_not_preflight"
+  "latest": "0087_the_last_move"
 }
