@@ -608,7 +608,14 @@
       "summary": "A stale completion pointer re-woke a finished task, showing that reliable workflows need a final archive move and an honest close-out label, not just a done checkbox.",
       "date": "2026-10-17",
       "file": "0087_the_last_move.md"
+    },
+    {
+      "id": "0088_the_off_switch_has_receipts",
+      "title": "The Off Switch Has Receipts",
+      "summary": "A deliberate runtime shutdown paused eight scheduled jobs, stopped the gateway, and verified no lingering workers, showing that safe dormancy needs proof rather than a hopeful stop button.",
+      "date": "2026-11-18",
+      "file": "0088_the_off_switch_has_receipts.md"
     }
   ],
-  "latest": "0087_the_last_move"
+  "latest": "0088_the_off_switch_has_receipts"
 }
